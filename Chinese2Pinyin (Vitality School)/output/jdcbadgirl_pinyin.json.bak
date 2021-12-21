@@ -1,0 +1,3291 @@
+{
+    "MapName": "JDCBadGirl",
+    "JDVersion": 2017,
+    "OriginalJDVersion": 4514,
+    "Artist": "Wu Yi Fan (吴亦凡)",
+    "Title": "Bad Girl",
+    "Credits": "CREDITS STRING TO BE FILLED",
+    "NumCoach": 1,
+    "CountInProgression": 1,
+    "DancerName": "Unknown Dancer",
+    "LocaleID": 4294967295,
+    "MojoValue": 0,
+    "Mode": 6,
+    "Status": 3,
+    "LyricsType": 0,
+    "BackgroundType": 0,
+    "Difficulty": 2,
+    "MojoValue": 0,
+    "DefaultColors": {
+        "lyrics": "0xFFFFFFFF",
+        "theme": "0xFFFFFFFF",
+        "songcolor_1A": "0xFFFFFFFF",
+        "songcolor_1B": "0xFFFFFFFF",
+        "songcolor_2A": "0xFFFFFFFF",
+        "songcolor_2B": "0xFFFFFFFF"
+    },
+    "lyricsColor": "#36b485",
+    "videoOffset": 0,
+    "beats": [0, 469, 938, 1406, 1875, 2344, 2813, 3281, 3750, 4219, 4688, 5156, 5625, 6094, 6563, 7031, 7500, 7969, 8438, 8906, 9375, 9844, 10313, 10781, 11250, 11719, 12188, 12656, 13125, 13594, 14063, 14531, 15000, 15469, 15938, 16406, 16875, 17344, 17813, 18281, 18750, 19219, 19688, 20156, 20625, 21094, 21563, 22031, 22500, 22969, 23438, 23906, 24375, 24844, 25313, 25781, 26250, 26719, 27188, 27656, 28125, 28594, 29063, 29531, 30000, 30469, 30938, 31406, 31875, 32344, 32813, 33281, 33750, 34219, 34688, 35156, 35625, 36094, 36563, 37031, 37500, 37969, 38438, 38906, 39375, 39844, 40313, 40781, 41250, 41719, 42188, 42656, 43125, 43594, 44063, 44531, 45000, 45469, 45938, 46406, 46875, 47344, 47813, 48281, 48750, 49219, 49688, 50156, 50625, 51094, 51563, 52031, 52500, 52969, 53438, 53906, 54375, 54844, 55313, 55781, 56250, 56719, 57188, 57656, 58125, 58594, 59063, 59531, 60000, 60469, 60938, 61406, 61875, 62344, 62813, 63281, 63750, 64219, 64688, 65156, 65625, 66094, 66563, 67031, 67500, 67969, 68438, 68906, 69375, 69844, 70313, 70781, 71250, 71719, 72188, 72656, 73125, 73594, 74063, 74531, 75000, 75469, 75938, 76406, 76875, 77344, 77813, 78281, 78750, 79219, 79688, 80156, 80625, 81094, 81563, 82031, 82500, 82969, 83438, 83906, 84375, 84844, 85313, 85781, 86250, 86719, 87188, 87656, 88125, 88594, 89063, 89531, 90000, 90469, 90938, 91406, 91875, 92344, 92813, 93281, 93750, 94219, 94688, 95156, 95625, 96094, 96563, 97031, 97500, 97969, 98438, 98906, 99375, 99844, 100313, 100781, 101250, 101719, 102188, 102656, 103125, 103594, 104063, 104531, 105000, 105469, 105938, 106406, 106875, 107344, 107813, 108281, 108750, 109219, 109688, 110156, 110625, 111094, 111563, 112031, 112500, 112969, 113438, 113906, 114375, 114844, 115313, 115781, 116250, 116719, 117188, 117656, 118125, 118594, 119063, 119531, 120000, 120469, 120938, 121406, 121875, 122344, 122813, 123281, 123750, 124219, 124688, 125156, 125625, 126094, 126563, 127031, 127500, 127969, 128438, 128906, 129375, 129844, 130313, 130781, 131250, 131719, 132188, 132656, 133125, 133594, 134063, 134531, 135000, 135469, 135938, 136406, 136875, 137344, 137813, 138281, 138750, 139219, 139688, 140156, 140625, 141094, 141563, 142031, 142500, 142969, 143438, 143906, 144375, 144844, 145313, 145781, 146250, 146719, 147188, 147656, 148125, 148594, 149063, 149531, 150000, 150469, 150938, 151406, 151875, 152344, 152813, 153281, 153750, 154219, 154688, 155156, 155625, 156094, 156563, 157031, 157500, 157969, 158438, 158906, 159375, 159844, 160313, 160781, 161250, 161719, 162188, 162656, 163125, 163594, 164063, 164531, 165000, 165469, 165938, 166406, 166875, 167344, 167813, 168281, 168750, 169219, 169688, 170156, 170625, 171094, 171563, 172031, 172500, 172969, 173438, 173906, 174375, 174844, 175313, 175781, 176250, 176719, 177188, 177656, 178125, 178594, 179063, 179531, 180000, 180469, 180938, 181406, 181875, 182344, 182813, 183281, 183750, 184219, 184688, 185156, 185625, 186094, 186563, 187031, 187500, 187969, 188438, 188906, 189375, 189844, 190313, 190781, 191250, 191719, 192188, 192656, 193125, 193594, 194063, 194531, 195000, 195469, 195938, 196406, 196875, 197344, 197813, 198281],
+    "lyrics": [{
+            "time": 14765,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 15000,
+            "duration": 234,
+            "text": "r ",
+            "isLineEnding": 0
+        }, {
+            "time": 15234,
+            "duration": 235,
+            "text": "so ",
+            "isLineEnding": 0
+        }, {
+            "time": 15469,
+            "duration": 469,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 15938,
+            "duration": 507,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 16640,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 16875,
+            "duration": 234,
+            "text": "cai ",
+            "isLineEnding": 0
+        }, {
+            "time": 17109,
+            "duration": 235,
+            "text": "fa ",
+            "isLineEnding": 0
+        }, {
+            "time": 17344,
+            "duration": 469,
+            "text": "xian ",
+            "isLineEnding": 1
+        }, {
+            "time": 18515,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 18750,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 18984,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 19219,
+            "duration": 234,
+            "text": "dui ",
+            "isLineEnding": 0
+        }, {
+            "time": 19453,
+            "duration": 235,
+            "text": "shou ",
+            "isLineEnding": 1
+        }, {
+            "time": 20390,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 20625,
+            "duration": 234,
+            "text": "bei ",
+            "isLineEnding": 0
+        }, {
+            "time": 20859,
+            "duration": 235,
+            "text": "da ",
+            "isLineEnding": 0
+        }, {
+            "time": 21094,
+            "duration": 469,
+            "text": "lian ",
+            "isLineEnding": 0
+        }, {
+            "time": 21563,
+            "duration": 976,
+            "text": "oh ",
+            "isLineEnding": 1
+        }, {
+            "time": 22734,
+            "duration": 235,
+            "text": "wei ",
+            "isLineEnding": 0
+        }, {
+            "time": 22969,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 23203,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 23438,
+            "duration": 234,
+            "text": "gu ",
+            "isLineEnding": 0
+        }, {
+            "time": 23672,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 23906,
+            "duration": 469,
+            "text": "qie ",
+            "isLineEnding": 0
+        }, {
+            "time": 24609,
+            "duration": 469,
+            "text": "pao ",
+            "isLineEnding": 0
+        }, {
+            "time": 25078,
+            "duration": 235,
+            "text": "xia ",
+            "isLineEnding": 0
+        }, {
+            "time": 25313,
+            "duration": 234,
+            "text": "quan ",
+            "isLineEnding": 0
+        }, {
+            "time": 25547,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 25781,
+            "duration": 469,
+            "text": "jie ",
+            "isLineEnding": 0
+        }, {
+            "time": 26484,
+            "duration": 1875,
+            "text": "no ",
+            "isLineEnding": 1
+        }, {
+            "time": 28359,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 28594,
+            "duration": 469,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 29297,
+            "duration": 468,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 30000,
+            "duration": 234,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 30469,
+            "duration": 117,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 30586,
+            "duration": 117,
+            "text": "zhi ",
+            "isLineEnding": 0
+        }, {
+            "time": 30703,
+            "duration": 117,
+            "text": "dao ",
+            "isLineEnding": 0
+        }, {
+            "time": 30820,
+            "duration": 118,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 30938,
+            "duration": 234,
+            "text": "hen ",
+            "isLineEnding": 0
+        }, {
+            "time": 31172,
+            "duration": 234,
+            "text": "duo ",
+            "isLineEnding": 0
+        }, {
+            "time": 31406,
+            "duration": 234,
+            "text": "nan ",
+            "isLineEnding": 0
+        }, {
+            "time": 31640,
+            "duration": 235,
+            "text": "ren ",
+            "isLineEnding": 0
+        }, {
+            "time": 31875,
+            "duration": 469,
+            "text": "ai ",
+            "isLineEnding": 1
+        }, {
+            "time": 32578,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 32813,
+            "duration": 234,
+            "text": "ye ",
+            "isLineEnding": 0
+        }, {
+            "time": 33047,
+            "duration": 117,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 33164,
+            "duration": 117,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 33281,
+            "duration": 234,
+            "text": "ge ",
+            "isLineEnding": 0
+        }, {
+            "time": 33515,
+            "duration": 235,
+            "text": "ye ",
+            "isLineEnding": 0
+        }, {
+            "time": 33750,
+            "duration": 234,
+            "text": "cai ",
+            "isLineEnding": 1
+        }, {
+            "time": 33984,
+            "duration": 117,
+            "text": "ye ",
+            "isLineEnding": 0
+        }, {
+            "time": 34101,
+            "duration": 118,
+            "text": "xu ",
+            "isLineEnding": 0
+        }, {
+            "time": 34219,
+            "duration": 234,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 34453,
+            "duration": 117,
+            "text": "jiu ",
+            "isLineEnding": 0
+        }, {
+            "time": 34570,
+            "duration": 118,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 34688,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 34922,
+            "duration": 234,
+            "text": "bei ",
+            "isLineEnding": 0
+        }, {
+            "time": 35156,
+            "duration": 234,
+            "text": "tai ",
+            "isLineEnding": 1
+        }, {
+            "time": 35390,
+            "duration": 117,
+            "text": "dan ",
+            "isLineEnding": 0
+        }, {
+            "time": 35507,
+            "duration": 118,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 35625,
+            "duration": 234,
+            "text": "yuan ",
+            "isLineEnding": 0
+        }, {
+            "time": 35859,
+            "duration": 78,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 35937,
+            "duration": 78,
+            "text": "gei ",
+            "isLineEnding": 0
+        }, {
+            "time": 36015,
+            "duration": 79,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 36094,
+            "duration": 234,
+            "text": "guan ",
+            "isLineEnding": 0
+        }, {
+            "time": 36328,
+            "duration": 469,
+            "text": "huai ",
+            "isLineEnding": 1
+        }, {
+            "time": 36797,
+            "duration": 117,
+            "text": "rang ",
+            "isLineEnding": 0
+        }, {
+            "time": 36914,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 37031,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 37265,
+            "duration": 469,
+            "text": "lai ",
+            "isLineEnding": 1
+        }, {
+            "time": 37734,
+            "duration": 235,
+            "text": "qi ",
+            "isLineEnding": 0
+        }, {
+            "time": 37969,
+            "duration": 234,
+            "text": "dai ",
+            "isLineEnding": 0
+        }, {
+            "time": 38203,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 38438,
+            "duration": 234,
+            "text": "gei ",
+            "isLineEnding": 0
+        }, {
+            "time": 38672,
+            "duration": 253,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 38925,
+            "duration": 215,
+            "text": "cheng ",
+            "isLineEnding": 0
+        }, {
+            "time": 39140,
+            "duration": 235,
+            "text": "nuo ",
+            "isLineEnding": 1
+        }, {
+            "time": 39609,
+            "duration": 117,
+            "text": "ran ",
+            "isLineEnding": 0
+        }, {
+            "time": 39726,
+            "duration": 118,
+            "text": "er ",
+            "isLineEnding": 0
+        }, {
+            "time": 39844,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 40078,
+            "duration": 235,
+            "text": "que ",
+            "isLineEnding": 0
+        }, {
+            "time": 40313,
+            "duration": 234,
+            "text": "zhi ",
+            "isLineEnding": 0
+        }, {
+            "time": 40547,
+            "duration": 234,
+            "text": "hui ",
+            "isLineEnding": 0
+        }, {
+            "time": 40781,
+            "duration": 234,
+            "text": "chen ",
+            "isLineEnding": 0
+        }, {
+            "time": 41015,
+            "duration": 469,
+            "text": "mo ",
+            "isLineEnding": 1
+        }, {
+            "time": 41484,
+            "duration": 235,
+            "text": "lai ",
+            "isLineEnding": 0
+        }, {
+            "time": 41719,
+            "duration": 117,
+            "text": "kan ",
+            "isLineEnding": 0
+        }, {
+            "time": 41836,
+            "duration": 117,
+            "text": "kan ",
+            "isLineEnding": 0
+        }, {
+            "time": 41953,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 42188,
+            "duration": 117,
+            "text": "shou ",
+            "isLineEnding": 0
+        }, {
+            "time": 42305,
+            "duration": 117,
+            "text": "ji ",
+            "isLineEnding": 0
+        }, {
+            "time": 42422,
+            "duration": 234,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 42656,
+            "duration": 234,
+            "text": "zhao ",
+            "isLineEnding": 0
+        }, {
+            "time": 42890,
+            "duration": 235,
+            "text": "pian ",
+            "isLineEnding": 1
+        }, {
+            "time": 43359,
+            "duration": 235,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 43594,
+            "duration": 234,
+            "text": "he ",
+            "isLineEnding": 0
+        }, {
+            "time": 43828,
+            "duration": 117,
+            "text": "bie ",
+            "isLineEnding": 0
+        }, {
+            "time": 43945,
+            "duration": 118,
+            "text": "ren ",
+            "isLineEnding": 0
+        }, {
+            "time": 44063,
+            "duration": 234,
+            "text": "tong ",
+            "isLineEnding": 0
+        }, {
+            "time": 44297,
+            "duration": 117,
+            "text": "kuang ",
+            "isLineEnding": 0
+        }, {
+            "time": 44414,
+            "duration": 117,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 44531,
+            "duration": 234,
+            "text": "hua ",
+            "isLineEnding": 0
+        }, {
+            "time": 44765,
+            "duration": 235,
+            "text": "mian ",
+            "isLineEnding": 1
+        }, {
+            "time": 45234,
+            "duration": 117,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 45351,
+            "duration": 118,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 45469,
+            "duration": 351,
+            "text": "tai ",
+            "isLineEnding": 0
+        }, {
+            "time": 45820,
+            "duration": 352,
+            "text": "dong ",
+            "isLineEnding": 1
+        }, {
+            "time": 46172,
+            "duration": 117,
+            "text": "zhen ",
+            "isLineEnding": 0
+        }, {
+            "time": 46289,
+            "duration": 117,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 46406,
+            "duration": 351,
+            "text": "tai ",
+            "isLineEnding": 0
+        }, {
+            "time": 46757,
+            "duration": 352,
+            "text": "jiong ",
+            "isLineEnding": 1
+        }, {
+            "time": 47109,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 47344,
+            "duration": 234,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 47578,
+            "duration": 235,
+            "text": "da ",
+            "isLineEnding": 0
+        }, {
+            "time": 47813,
+            "duration": 234,
+            "text": "shu ",
+            "isLineEnding": 0
+        }, {
+            "time": 48047,
+            "duration": 117,
+            "text": "cai ",
+            "isLineEnding": 0
+        }, {
+            "time": 48164,
+            "duration": 117,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 48281,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 48398,
+            "duration": 117,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 48515,
+            "duration": 235,
+            "text": "cai ",
+            "isLineEnding": 1
+        }, {
+            "time": 48750,
+            "duration": 117,
+            "text": "er ",
+            "isLineEnding": 0
+        }, {
+            "time": 48867,
+            "duration": 117,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 48984,
+            "duration": 117,
+            "text": "zhi ",
+            "isLineEnding": 0
+        }, {
+            "time": 49101,
+            "duration": 118,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 49219,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 49453,
+            "duration": 235,
+            "text": "ke ",
+            "isLineEnding": 0
+        }, {
+            "time": 49688,
+            "duration": 234,
+            "text": "bai ",
+            "isLineEnding": 0
+        }, {
+            "time": 49922,
+            "duration": 234,
+            "text": "cai ",
+            "isLineEnding": 1
+        }, {
+            "time": 50156,
+            "duration": 234,
+            "text": "ming ",
+            "isLineEnding": 0
+        }, {
+            "time": 50390,
+            "duration": 235,
+            "text": "zhi ",
+            "isLineEnding": 0
+        }, {
+            "time": 50625,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 50859,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 51094,
+            "duration": 234,
+            "text": "ai ",
+            "isLineEnding": 1
+        }, {
+            "time": 51328,
+            "duration": 235,
+            "text": "que ",
+            "isLineEnding": 0
+        }, {
+            "time": 51563,
+            "duration": 234,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 51797,
+            "duration": 234,
+            "text": "gan ",
+            "isLineEnding": 0
+        }, {
+            "time": 52031,
+            "duration": 469,
+            "text": "say ",
+            "isLineEnding": 0
+        }, {
+            "time": 52500,
+            "duration": 469,
+            "text": "bye ",
+            "isLineEnding": 1
+        }, {
+            "time": 53672,
+            "duration": 117,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 53789,
+            "duration": 117,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 53906,
+            "duration": 117,
+            "text": "jing ",
+            "isLineEnding": 0
+        }, {
+            "time": 54023,
+            "duration": 117,
+            "text": "jing ",
+            "isLineEnding": 1
+        }, {
+            "time": 54140,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 54375,
+            "duration": 234,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 54609,
+            "duration": 117,
+            "text": "zhuang ",
+            "isLineEnding": 0
+        }, {
+            "time": 54726,
+            "duration": 118,
+            "text": "zuo ",
+            "isLineEnding": 0
+        }, {
+            "time": 54844,
+            "duration": 234,
+            "text": "ting ",
+            "isLineEnding": 0
+        }, {
+            "time": 55078,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 55313,
+            "duration": 234,
+            "text": "dong ",
+            "isLineEnding": 0
+        }, {
+            "time": 55547,
+            "duration": 234,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 55781,
+            "duration": 234,
+            "text": "yang ",
+            "isLineEnding": 0
+        }, {
+            "time": 56015,
+            "duration": 235,
+            "text": "zi ",
+            "isLineEnding": 1
+        }, {
+            "time": 56250,
+            "duration": 234,
+            "text": "gei ",
+            "isLineEnding": 0
+        }, {
+            "time": 56484,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 56719,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 56953,
+            "duration": 235,
+            "text": "chuang ",
+            "isLineEnding": 0
+        }, {
+            "time": 57188,
+            "duration": 234,
+            "text": "bei ",
+            "isLineEnding": 0
+        }, {
+            "time": 57422,
+            "duration": 234,
+            "text": "zi ",
+            "isLineEnding": 1
+        }, {
+            "time": 57890,
+            "duration": 235,
+            "text": "rang ",
+            "isLineEnding": 0
+        }, {
+            "time": 58125,
+            "duration": 234,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 58359,
+            "duration": 117,
+            "text": "meng ",
+            "isLineEnding": 0
+        }, {
+            "time": 58476,
+            "duration": 118,
+            "text": "dao ",
+            "isLineEnding": 0
+        }, {
+            "time": 58594,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 58828,
+            "duration": 235,
+            "text": "zui ",
+            "isLineEnding": 0
+        }, {
+            "time": 59063,
+            "duration": 234,
+            "text": "chu ",
+            "isLineEnding": 0
+        }, {
+            "time": 59297,
+            "duration": 234,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 59531,
+            "duration": 234,
+            "text": "yang ",
+            "isLineEnding": 0
+        }, {
+            "time": 59765,
+            "duration": 235,
+            "text": "zi ",
+            "isLineEnding": 1
+        }, {
+            "time": 60703,
+            "duration": 235,
+            "text": "i ",
+            "isLineEnding": 0
+        }, {
+            "time": 60938,
+            "duration": 234,
+            "text": "thought ",
+            "isLineEnding": 0
+        }, {
+            "time": 61172,
+            "duration": 234,
+            "text": "it ",
+            "isLineEnding": 0
+        }, {
+            "time": 61406,
+            "duration": 234,
+            "text": "won't ",
+            "isLineEnding": 0
+        }, {
+            "time": 61640,
+            "duration": 235,
+            "text": "be ",
+            "isLineEnding": 0
+        }, {
+            "time": 61875,
+            "duration": 234,
+            "text": "like ",
+            "isLineEnding": 0
+        }, {
+            "time": 62109,
+            "duration": 704,
+            "text": "this ",
+            "isLineEnding": 1
+        }, {
+            "time": 63515,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 63750,
+            "duration": 234,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 63984,
+            "duration": 235,
+            "text": "guo ",
+            "isLineEnding": 0
+        }, {
+            "time": 64219,
+            "duration": 234,
+            "text": "suo ",
+            "isLineEnding": 0
+        }, {
+            "time": 64453,
+            "duration": 235,
+            "text": "you ",
+            "isLineEnding": 0
+        }, {
+            "time": 64688,
+            "duration": 234,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 64922,
+            "duration": 234,
+            "text": "li ",
+            "isLineEnding": 0
+        }, {
+            "time": 65156,
+            "duration": 234,
+            "text": "you ",
+            "isLineEnding": 0
+        }, {
+            "time": 65859,
+            "duration": 235,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 66094,
+            "duration": 234,
+            "text": "yao ",
+            "isLineEnding": 0
+        }, {
+            "time": 66328,
+            "duration": 235,
+            "text": "zou ",
+            "isLineEnding": 0
+        }, {
+            "time": 66563,
+            "duration": 234,
+            "text": "dao ",
+            "isLineEnding": 0
+        }, {
+            "time": 66797,
+            "duration": 234,
+            "text": "zui ",
+            "isLineEnding": 0
+        }, {
+            "time": 67031,
+            "duration": 195,
+            "text": "hou ",
+            "isLineEnding": 0
+        }, {
+            "time": 67734,
+            "duration": 469,
+            "text": "eh ",
+            "isLineEnding": 1
+        }, {
+            "time": 68672,
+            "duration": 234,
+            "text": "should ",
+            "isLineEnding": 0
+        }, {
+            "time": 68906,
+            "duration": 234,
+            "text": "not ",
+            "isLineEnding": 0
+        }, {
+            "time": 69140,
+            "duration": 235,
+            "text": "be ",
+            "isLineEnding": 0
+        }, {
+            "time": 69375,
+            "duration": 234,
+            "text": "like ",
+            "isLineEnding": 0
+        }, {
+            "time": 69609,
+            "duration": 469,
+            "text": "this ",
+            "isLineEnding": 1
+        }, {
+            "time": 71484,
+            "duration": 235,
+            "text": "You ",
+            "isLineEnding": 0
+        }, {
+            "time": 71719,
+            "duration": 234,
+            "text": "play ",
+            "isLineEnding": 0
+        }, {
+            "time": 71953,
+            "duration": 235,
+            "text": "me ",
+            "isLineEnding": 0
+        }, {
+            "time": 72188,
+            "duration": 234,
+            "text": "like ",
+            "isLineEnding": 0
+        }, {
+            "time": 72422,
+            "duration": 234,
+            "text": "a ",
+            "isLineEnding": 0
+        }, {
+            "time": 72656,
+            "duration": 469,
+            "text": "fool ",
+            "isLineEnding": 1
+        }, {
+            "time": 74765,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 75000,
+            "duration": 234,
+            "text": "r ",
+            "isLineEnding": 0
+        }, {
+            "time": 75234,
+            "duration": 235,
+            "text": "so ",
+            "isLineEnding": 0
+        }, {
+            "time": 75469,
+            "duration": 469,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 75938,
+            "duration": 507,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 76640,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 76875,
+            "duration": 234,
+            "text": "cai ",
+            "isLineEnding": 0
+        }, {
+            "time": 77109,
+            "duration": 235,
+            "text": "fa ",
+            "isLineEnding": 0
+        }, {
+            "time": 77344,
+            "duration": 469,
+            "text": "xian ",
+            "isLineEnding": 1
+        }, {
+            "time": 78515,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 78750,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 78984,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 79219,
+            "duration": 234,
+            "text": "dui ",
+            "isLineEnding": 0
+        }, {
+            "time": 79453,
+            "duration": 235,
+            "text": "shou ",
+            "isLineEnding": 1
+        }, {
+            "time": 80390,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 80625,
+            "duration": 234,
+            "text": "bei ",
+            "isLineEnding": 0
+        }, {
+            "time": 80859,
+            "duration": 235,
+            "text": "da ",
+            "isLineEnding": 0
+        }, {
+            "time": 81094,
+            "duration": 469,
+            "text": "lian ",
+            "isLineEnding": 0
+        }, {
+            "time": 81563,
+            "duration": 976,
+            "text": "oh ",
+            "isLineEnding": 1
+        }, {
+            "time": 82734,
+            "duration": 235,
+            "text": "wei ",
+            "isLineEnding": 0
+        }, {
+            "time": 82969,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 83203,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 83438,
+            "duration": 234,
+            "text": "gu ",
+            "isLineEnding": 0
+        }, {
+            "time": 83672,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 83906,
+            "duration": 469,
+            "text": "qie ",
+            "isLineEnding": 0
+        }, {
+            "time": 84609,
+            "duration": 469,
+            "text": "pao ",
+            "isLineEnding": 0
+        }, {
+            "time": 85078,
+            "duration": 235,
+            "text": "xia ",
+            "isLineEnding": 0
+        }, {
+            "time": 85313,
+            "duration": 234,
+            "text": "quan ",
+            "isLineEnding": 0
+        }, {
+            "time": 85547,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 85781,
+            "duration": 469,
+            "text": "jie ",
+            "isLineEnding": 0
+        }, {
+            "time": 86484,
+            "duration": 1875,
+            "text": "no ",
+            "isLineEnding": 1
+        }, {
+            "time": 88359,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 88594,
+            "duration": 469,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 89297,
+            "duration": 468,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 90000,
+            "duration": 234,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 90469,
+            "duration": 117,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 97734,
+            "duration": 235,
+            "text": "wei ",
+            "isLineEnding": 0
+        }, {
+            "time": 97969,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 98203,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 98438,
+            "duration": 234,
+            "text": "gu ",
+            "isLineEnding": 0
+        }, {
+            "time": 98672,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 98906,
+            "duration": 469,
+            "text": "qie ",
+            "isLineEnding": 0
+        }, {
+            "time": 99609,
+            "duration": 469,
+            "text": "pao ",
+            "isLineEnding": 0
+        }, {
+            "time": 100078,
+            "duration": 235,
+            "text": "xia ",
+            "isLineEnding": 0
+        }, {
+            "time": 100313,
+            "duration": 234,
+            "text": "quan ",
+            "isLineEnding": 0
+        }, {
+            "time": 100547,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 100781,
+            "duration": 469,
+            "text": "jie ",
+            "isLineEnding": 0
+        }, {
+            "time": 101484,
+            "duration": 1875,
+            "text": "no ",
+            "isLineEnding": 1
+        }, {
+            "time": 103359,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 103594,
+            "duration": 469,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 104297,
+            "duration": 468,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 105000,
+            "duration": 234,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 105469,
+            "duration": 117,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 105586,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 105703,
+            "duration": 117,
+            "text": "kou ",
+            "isLineEnding": 0
+        }, {
+            "time": 105820,
+            "duration": 118,
+            "text": "ke ",
+            "isLineEnding": 0
+        }, {
+            "time": 105938,
+            "duration": 234,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 106172,
+            "duration": 234,
+            "text": "gei ",
+            "isLineEnding": 0
+        }, {
+            "time": 106406,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 106640,
+            "duration": 235,
+            "text": "mai ",
+            "isLineEnding": 0
+        }, {
+            "time": 106875,
+            "duration": 234,
+            "text": "shui ",
+            "isLineEnding": 1
+        }, {
+            "time": 107344,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 107578,
+            "duration": 235,
+            "text": "shuo ",
+            "isLineEnding": 0
+        }, {
+            "time": 107813,
+            "duration": 234,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 108047,
+            "duration": 117,
+            "text": "zui ",
+            "isLineEnding": 0
+        }, {
+            "time": 108164,
+            "duration": 117,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 108281,
+            "duration": 234,
+            "text": "pei ",
+            "isLineEnding": 0
+        }, {
+            "time": 108515,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 108750,
+            "duration": 234,
+            "text": "xiu ",
+            "isLineEnding": 0
+        }, {
+            "time": 108984,
+            "duration": 235,
+            "text": "zui ",
+            "isLineEnding": 1
+        }, {
+            "time": 109453,
+            "duration": 117,
+            "text": "hai ",
+            "isLineEnding": 0
+        }, {
+            "time": 109570,
+            "duration": 118,
+            "text": "mai ",
+            "isLineEnding": 0
+        }, {
+            "time": 109688,
+            "duration": 117,
+            "text": "zhi ",
+            "isLineEnding": 0
+        }, {
+            "time": 109805,
+            "duration": 117,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 109922,
+            "duration": 234,
+            "text": "bin ",
+            "isLineEnding": 0
+        }, {
+            "time": 110156,
+            "duration": 234,
+            "text": "gei ",
+            "isLineEnding": 0
+        }, {
+            "time": 110390,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 110625,
+            "duration": 234,
+            "text": "ge ",
+            "isLineEnding": 0
+        }, {
+            "time": 110859,
+            "duration": 235,
+            "text": "men ",
+            "isLineEnding": 1
+        }, {
+            "time": 111094,
+            "duration": 234,
+            "text": "bao ",
+            "isLineEnding": 0
+        }, {
+            "time": 111328,
+            "duration": 235,
+            "text": "bei ",
+            "isLineEnding": 0
+        }, {
+            "time": 111797,
+            "duration": 234,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 112031,
+            "duration": 234,
+            "text": "xuan ",
+            "isLineEnding": 0
+        }, {
+            "time": 112265,
+            "duration": 235,
+            "text": "ze ",
+            "isLineEnding": 0
+        }, {
+            "time": 112500,
+            "duration": 234,
+            "text": "beng ",
+            "isLineEnding": 0
+        }, {
+            "time": 112734,
+            "duration": 235,
+            "text": "kui ",
+            "isLineEnding": 1
+        }, {
+            "time": 113438,
+            "duration": 117,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 113555,
+            "duration": 136,
+            "text": "hui ",
+            "isLineEnding": 0
+        }, {
+            "time": 113691,
+            "duration": 137,
+            "text": "pei ",
+            "isLineEnding": 0
+        }, {
+            "time": 113828,
+            "duration": 136,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 113964,
+            "duration": 137,
+            "text": "dao ",
+            "isLineEnding": 0
+        }, {
+            "time": 114101,
+            "duration": 137,
+            "text": "zui ",
+            "isLineEnding": 0
+        }, {
+            "time": 114238,
+            "duration": 137,
+            "text": "hou ",
+            "isLineEnding": 1
+        }, {
+            "time": 114609,
+            "duration": 117,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 114726,
+            "duration": 118,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 115078,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 115195,
+            "duration": 118,
+            "text": "hui ",
+            "isLineEnding": 0
+        }, {
+            "time": 115313,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 115547,
+            "duration": 234,
+            "text": "zhi ",
+            "isLineEnding": 0
+        }, {
+            "time": 115781,
+            "duration": 234,
+            "text": "he ",
+            "isLineEnding": 0
+        }, {
+            "time": 116015,
+            "duration": 235,
+            "text": "dao ",
+            "isLineEnding": 0
+        }, {
+            "time": 116250,
+            "duration": 234,
+            "text": "zui ",
+            "isLineEnding": 0
+        }, {
+            "time": 116484,
+            "duration": 235,
+            "text": "hou ",
+            "isLineEnding": 1
+        }, {
+            "time": 116953,
+            "duration": 117,
+            "text": "na ",
+            "isLineEnding": 0
+        }, {
+            "time": 117070,
+            "duration": 118,
+            "text": "xie ",
+            "isLineEnding": 0
+        }, {
+            "time": 117188,
+            "duration": 117,
+            "text": "shuai ",
+            "isLineEnding": 0
+        }, {
+            "time": 117305,
+            "duration": 117,
+            "text": "ge ",
+            "isLineEnding": 0
+        }, {
+            "time": 117422,
+            "duration": 117,
+            "text": "dui ",
+            "isLineEnding": 0
+        }, {
+            "time": 117539,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 117656,
+            "duration": 234,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 117890,
+            "duration": 235,
+            "text": "tai ",
+            "isLineEnding": 0
+        }, {
+            "time": 118125,
+            "duration": 234,
+            "text": "huai ",
+            "isLineEnding": 1
+        }, {
+            "time": 118828,
+            "duration": 117,
+            "text": "ke ",
+            "isLineEnding": 0
+        }, {
+            "time": 118945,
+            "duration": 118,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 119063,
+            "duration": 234,
+            "text": "na ",
+            "isLineEnding": 0
+        }, {
+            "time": 119297,
+            "duration": 234,
+            "text": "ye ",
+            "isLineEnding": 0
+        }, {
+            "time": 119531,
+            "duration": 234,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 119765,
+            "duration": 235,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 120000,
+            "duration": 469,
+            "text": "ai ",
+            "isLineEnding": 1
+        }, {
+            "time": 120703,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 120820,
+            "duration": 118,
+            "text": "shuo ",
+            "isLineEnding": 0
+        }, {
+            "time": 120938,
+            "duration": 195,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 121133,
+            "duration": 156,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 121289,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 121406,
+            "duration": 234,
+            "text": "xiao ",
+            "isLineEnding": 0
+        }, {
+            "time": 121640,
+            "duration": 235,
+            "text": "xian ",
+            "isLineEnding": 0
+        }, {
+            "time": 121875,
+            "duration": 234,
+            "text": "rou ",
+            "isLineEnding": 1
+        }, {
+            "time": 122578,
+            "duration": 117,
+            "text": "qi ",
+            "isLineEnding": 0
+        }, {
+            "time": 122695,
+            "duration": 118,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 122813,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 123047,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 123281,
+            "duration": 234,
+            "text": "jiu ",
+            "isLineEnding": 0
+        }, {
+            "time": 123515,
+            "duration": 235,
+            "text": "bao ",
+            "isLineEnding": 0
+        }, {
+            "time": 123750,
+            "duration": 234,
+            "text": "gen ",
+            "isLineEnding": 0
+        }, {
+            "time": 123984,
+            "duration": 469,
+            "text": "ban ",
+            "isLineEnding": 1
+        }, {
+            "time": 124453,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 124570,
+            "duration": 118,
+            "text": "zai ",
+            "isLineEnding": 0
+        }, {
+            "time": 124688,
+            "duration": 234,
+            "text": "wai ",
+            "isLineEnding": 0
+        }, {
+            "time": 124922,
+            "duration": 234,
+            "text": "mian ",
+            "isLineEnding": 0
+        }, {
+            "time": 125156,
+            "duration": 234,
+            "text": "wan ",
+            "isLineEnding": 0
+        }, {
+            "time": 125390,
+            "duration": 235,
+            "text": "hen ",
+            "isLineEnding": 0
+        }, {
+            "time": 125625,
+            "duration": 234,
+            "text": "high ",
+            "isLineEnding": 1
+        }, {
+            "time": 125859,
+            "duration": 117,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 125976,
+            "duration": 118,
+            "text": "zai ",
+            "isLineEnding": 0
+        }, {
+            "time": 126094,
+            "duration": 234,
+            "text": "jia ",
+            "isLineEnding": 0
+        }, {
+            "time": 126328,
+            "duration": 117,
+            "text": "li ",
+            "isLineEnding": 0
+        }, {
+            "time": 126445,
+            "duration": 118,
+            "text": "mian ",
+            "isLineEnding": 0
+        }, {
+            "time": 126563,
+            "duration": 234,
+            "text": "wan ",
+            "isLineEnding": 0
+        }, {
+            "time": 126797,
+            "duration": 234,
+            "text": "you ",
+            "isLineEnding": 0
+        }, {
+            "time": 127031,
+            "duration": 234,
+            "text": "xi ",
+            "isLineEnding": 0
+        }, {
+            "time": 127265,
+            "duration": 235,
+            "text": "fa ",
+            "isLineEnding": 0
+        }, {
+            "time": 127500,
+            "duration": 469,
+            "text": "dai ",
+            "isLineEnding": 1
+        }, {
+            "time": 128203,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 128438,
+            "duration": 97,
+            "text": "hai ",
+            "isLineEnding": 0
+        }, {
+            "time": 128535,
+            "duration": 137,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 128672,
+            "duration": 117,
+            "text": "na ",
+            "isLineEnding": 0
+        }, {
+            "time": 128789,
+            "duration": 117,
+            "text": "ge ",
+            "isLineEnding": 0
+        }, {
+            "time": 128906,
+            "duration": 469,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 129375,
+            "duration": 351,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 129726,
+            "duration": 118,
+            "text": "er ",
+            "isLineEnding": 0
+        }, {
+            "time": 129844,
+            "duration": 117,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 129961,
+            "duration": 117,
+            "text": "xian ",
+            "isLineEnding": 0
+        }, {
+            "time": 130078,
+            "duration": 117,
+            "text": "zai ",
+            "isLineEnding": 0
+        }, {
+            "time": 130195,
+            "duration": 352,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 130547,
+            "duration": 117,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 130664,
+            "duration": 117,
+            "text": "tiao ",
+            "isLineEnding": 0
+        }, {
+            "time": 130781,
+            "duration": 234,
+            "text": "dan ",
+            "isLineEnding": 0
+        }, {
+            "time": 131015,
+            "duration": 235,
+            "text": "shen ",
+            "isLineEnding": 0
+        }, {
+            "time": 131250,
+            "duration": 234,
+            "text": "gou ",
+            "isLineEnding": 1
+        }, {
+            "time": 131484,
+            "duration": 117,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 131601,
+            "duration": 118,
+            "text": "yao ",
+            "isLineEnding": 0
+        }, {
+            "time": 131719,
+            "duration": 351,
+            "text": "nue ",
+            "isLineEnding": 0
+        }, {
+            "time": 132070,
+            "duration": 352,
+            "text": "gou ",
+            "isLineEnding": 0
+        }, {
+            "time": 132422,
+            "duration": 117,
+            "text": "fang ",
+            "isLineEnding": 0
+        }, {
+            "time": 132539,
+            "duration": 117,
+            "text": "kai ",
+            "isLineEnding": 0
+        }, {
+            "time": 132656,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 132890,
+            "duration": 235,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 133125,
+            "duration": 234,
+            "text": "shou ",
+            "isLineEnding": 1
+        }, {
+            "time": 133359,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 133594,
+            "duration": 234,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 133828,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 134063,
+            "duration": 234,
+            "text": "xu ",
+            "isLineEnding": 0
+        }, {
+            "time": 134297,
+            "duration": 234,
+            "text": "yao ",
+            "isLineEnding": 0
+        }, {
+            "time": 134531,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 134765,
+            "duration": 235,
+            "text": "bei ",
+            "isLineEnding": 0
+        }, {
+            "time": 135000,
+            "duration": 234,
+            "text": "jiu ",
+            "isLineEnding": 1
+        }, {
+            "time": 135703,
+            "duration": 235,
+            "text": "i ",
+            "isLineEnding": 0
+        }, {
+            "time": 135938,
+            "duration": 234,
+            "text": "thought ",
+            "isLineEnding": 0
+        }, {
+            "time": 136172,
+            "duration": 234,
+            "text": "it ",
+            "isLineEnding": 0
+        }, {
+            "time": 136406,
+            "duration": 234,
+            "text": "won't ",
+            "isLineEnding": 0
+        }, {
+            "time": 136640,
+            "duration": 235,
+            "text": "be ",
+            "isLineEnding": 0
+        }, {
+            "time": 136875,
+            "duration": 234,
+            "text": "like ",
+            "isLineEnding": 0
+        }, {
+            "time": 137109,
+            "duration": 704,
+            "text": "this ",
+            "isLineEnding": 1
+        }, {
+            "time": 138515,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 138750,
+            "duration": 234,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 138984,
+            "duration": 235,
+            "text": "guo ",
+            "isLineEnding": 0
+        }, {
+            "time": 139219,
+            "duration": 234,
+            "text": "suo ",
+            "isLineEnding": 0
+        }, {
+            "time": 139453,
+            "duration": 235,
+            "text": "you ",
+            "isLineEnding": 0
+        }, {
+            "time": 139688,
+            "duration": 234,
+            "text": "de ",
+            "isLineEnding": 0
+        }, {
+            "time": 139922,
+            "duration": 234,
+            "text": "li ",
+            "isLineEnding": 0
+        }, {
+            "time": 140156,
+            "duration": 234,
+            "text": "you ",
+            "isLineEnding": 1
+        }, {
+            "time": 140859,
+            "duration": 235,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 141094,
+            "duration": 234,
+            "text": "yao ",
+            "isLineEnding": 0
+        }, {
+            "time": 141328,
+            "duration": 235,
+            "text": "zou ",
+            "isLineEnding": 0
+        }, {
+            "time": 141563,
+            "duration": 234,
+            "text": "dao ",
+            "isLineEnding": 0
+        }, {
+            "time": 141797,
+            "duration": 234,
+            "text": "zui ",
+            "isLineEnding": 0
+        }, {
+            "time": 142031,
+            "duration": 195,
+            "text": "hou ",
+            "isLineEnding": 0
+        }, {
+            "time": 142734,
+            "duration": 469,
+            "text": "eh ",
+            "isLineEnding": 1
+        }, {
+            "time": 143672,
+            "duration": 234,
+            "text": "should ",
+            "isLineEnding": 0
+        }, {
+            "time": 143906,
+            "duration": 234,
+            "text": "not ",
+            "isLineEnding": 0
+        }, {
+            "time": 144140,
+            "duration": 235,
+            "text": "be ",
+            "isLineEnding": 0
+        }, {
+            "time": 144375,
+            "duration": 234,
+            "text": "like ",
+            "isLineEnding": 0
+        }, {
+            "time": 144609,
+            "duration": 469,
+            "text": "this ",
+            "isLineEnding": 1
+        }, {
+            "time": 146484,
+            "duration": 235,
+            "text": "You ",
+            "isLineEnding": 0
+        }, {
+            "time": 146719,
+            "duration": 234,
+            "text": "play ",
+            "isLineEnding": 0
+        }, {
+            "time": 146953,
+            "duration": 235,
+            "text": "me ",
+            "isLineEnding": 0
+        }, {
+            "time": 147188,
+            "duration": 234,
+            "text": "like ",
+            "isLineEnding": 0
+        }, {
+            "time": 147422,
+            "duration": 234,
+            "text": "a ",
+            "isLineEnding": 0
+        }, {
+            "time": 147656,
+            "duration": 938,
+            "text": "fool ",
+            "isLineEnding": 1
+        }, {
+            "time": 149765,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 150000,
+            "duration": 234,
+            "text": "r ",
+            "isLineEnding": 0
+        }, {
+            "time": 150234,
+            "duration": 235,
+            "text": "so ",
+            "isLineEnding": 0
+        }, {
+            "time": 150469,
+            "duration": 469,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 150938,
+            "duration": 507,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 151640,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 151875,
+            "duration": 234,
+            "text": "cai ",
+            "isLineEnding": 0
+        }, {
+            "time": 152109,
+            "duration": 235,
+            "text": "fa ",
+            "isLineEnding": 0
+        }, {
+            "time": 152344,
+            "duration": 469,
+            "text": "xian ",
+            "isLineEnding": 0
+        }, {
+            "time": 153515,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 153750,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 153984,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 154219,
+            "duration": 234,
+            "text": "dui ",
+            "isLineEnding": 0
+        }, {
+            "time": 154453,
+            "duration": 235,
+            "text": "shou ",
+            "isLineEnding": 0
+        }, {
+            "time": 155390,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 155625,
+            "duration": 234,
+            "text": "bei ",
+            "isLineEnding": 0
+        }, {
+            "time": 155859,
+            "duration": 235,
+            "text": "da ",
+            "isLineEnding": 0
+        }, {
+            "time": 156094,
+            "duration": 469,
+            "text": "lian ",
+            "isLineEnding": 0
+        }, {
+            "time": 156680,
+            "duration": 976,
+            "text": "oh ",
+            "isLineEnding": 1
+        }, {
+            "time": 157734,
+            "duration": 235,
+            "text": "wei ",
+            "isLineEnding": 0
+        }, {
+            "time": 157969,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 158203,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 158438,
+            "duration": 234,
+            "text": "gu ",
+            "isLineEnding": 0
+        }, {
+            "time": 158672,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 158906,
+            "duration": 469,
+            "text": "qie ",
+            "isLineEnding": 0
+        }, {
+            "time": 159609,
+            "duration": 469,
+            "text": "pao ",
+            "isLineEnding": 0
+        }, {
+            "time": 160078,
+            "duration": 235,
+            "text": "xia ",
+            "isLineEnding": 0
+        }, {
+            "time": 160313,
+            "duration": 234,
+            "text": "quan ",
+            "isLineEnding": 0
+        }, {
+            "time": 160547,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 160781,
+            "duration": 469,
+            "text": "jie ",
+            "isLineEnding": 0
+        }, {
+            "time": 161484,
+            "duration": 1875,
+            "text": "no ",
+            "isLineEnding": 1
+        }, {
+            "time": 163359,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 163594,
+            "duration": 469,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 164297,
+            "duration": 468,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 165000,
+            "duration": 234,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 165469,
+            "duration": 117,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 172734,
+            "duration": 235,
+            "text": "wei ",
+            "isLineEnding": 0
+        }, {
+            "time": 172969,
+            "duration": 234,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 173203,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 173438,
+            "duration": 234,
+            "text": "gu ",
+            "isLineEnding": 0
+        }, {
+            "time": 173672,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 173906,
+            "duration": 469,
+            "text": "qie ",
+            "isLineEnding": 0
+        }, {
+            "time": 174609,
+            "duration": 469,
+            "text": "pao ",
+            "isLineEnding": 0
+        }, {
+            "time": 175078,
+            "duration": 235,
+            "text": "xia ",
+            "isLineEnding": 0
+        }, {
+            "time": 175313,
+            "duration": 234,
+            "text": "quan ",
+            "isLineEnding": 0
+        }, {
+            "time": 175547,
+            "duration": 234,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 175781,
+            "duration": 469,
+            "text": "jie ",
+            "isLineEnding": 0
+        }, {
+            "time": 176484,
+            "duration": 1875,
+            "text": "no ",
+            "isLineEnding": 1
+        }, {
+            "time": 178359,
+            "duration": 235,
+            "text": "u ",
+            "isLineEnding": 0
+        }, {
+            "time": 178594,
+            "duration": 469,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 179297,
+            "duration": 468,
+            "text": "really ",
+            "isLineEnding": 0
+        }, {
+            "time": 180000,
+            "duration": 234,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 180351,
+            "duration": 118,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 180586,
+            "duration": 117,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 180703,
+            "duration": 117,
+            "text": "zhen ",
+            "isLineEnding": 0
+        }, {
+            "time": 180820,
+            "duration": 118,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 180938,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 181172,
+            "duration": 234,
+            "text": "ge ",
+            "isLineEnding": 0
+        }, {
+            "time": 181406,
+            "duration": 351,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 181757,
+            "duration": 352,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 182109,
+            "duration": 235,
+            "text": "dui ",
+            "isLineEnding": 0
+        }, {
+            "time": 182344,
+            "duration": 234,
+            "text": "zhe ",
+            "isLineEnding": 0
+        }, {
+            "time": 182578,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 182813,
+            "duration": 234,
+            "text": "say ",
+            "isLineEnding": 0
+        }, {
+            "time": 183047,
+            "duration": 234,
+            "text": "bye ",
+            "isLineEnding": 0
+        }, {
+            "time": 183281,
+            "duration": 469,
+            "text": "bye ",
+            "isLineEnding": 1
+        }, {
+            "time": 183984,
+            "duration": 235,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 184219,
+            "duration": 234,
+            "text": "xiang ",
+            "isLineEnding": 0
+        }, {
+            "time": 184453,
+            "duration": 235,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 184688,
+            "duration": 234,
+            "text": "zhi ",
+            "isLineEnding": 0
+        }, {
+            "time": 184922,
+            "duration": 234,
+            "text": "xiao ",
+            "isLineEnding": 0
+        }, {
+            "time": 185156,
+            "duration": 234,
+            "text": "gou ",
+            "isLineEnding": 1
+        }, {
+            "time": 185390,
+            "duration": 235,
+            "text": "hai ",
+            "isLineEnding": 0
+        }, {
+            "time": 185625,
+            "duration": 234,
+            "text": "dui ",
+            "isLineEnding": 0
+        }, {
+            "time": 185859,
+            "duration": 235,
+            "text": "zhe ",
+            "isLineEnding": 0
+        }, {
+            "time": 186094,
+            "duration": 469,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 186563,
+            "duration": 468,
+            "text": "chong ",
+            "isLineEnding": 0
+        }, {
+            "time": 187031,
+            "duration": 469,
+            "text": "ai ",
+            "isLineEnding": 1
+        }, {
+            "time": 187734,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 187969,
+            "duration": 234,
+            "text": "zhen ",
+            "isLineEnding": 0
+        }, {
+            "time": 188203,
+            "duration": 235,
+            "text": "shi ",
+            "isLineEnding": 0
+        }, {
+            "time": 188438,
+            "duration": 234,
+            "text": "yi ",
+            "isLineEnding": 0
+        }, {
+            "time": 188672,
+            "duration": 234,
+            "text": "ge ",
+            "isLineEnding": 0
+        }, {
+            "time": 188906,
+            "duration": 351,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 189257,
+            "duration": 352,
+            "text": "girl ",
+            "isLineEnding": 1
+        }, {
+            "time": 189609,
+            "duration": 235,
+            "text": "jiu ",
+            "isLineEnding": 0
+        }, {
+            "time": 189844,
+            "duration": 234,
+            "text": "qing ",
+            "isLineEnding": 0
+        }, {
+            "time": 190078,
+            "duration": 235,
+            "text": "ni ",
+            "isLineEnding": 0
+        }, {
+            "time": 190313,
+            "duration": 234,
+            "text": "shuo ",
+            "isLineEnding": 0
+        }, {
+            "time": 190547,
+            "duration": 234,
+            "text": "bye ",
+            "isLineEnding": 0
+        }, {
+            "time": 190781,
+            "duration": 469,
+            "text": "bye ",
+            "isLineEnding": 1
+        }, {
+            "time": 191484,
+            "duration": 235,
+            "text": "bu ",
+            "isLineEnding": 0
+        }, {
+            "time": 191719,
+            "duration": 234,
+            "text": "yao ",
+            "isLineEnding": 0
+        }, {
+            "time": 191953,
+            "duration": 235,
+            "text": "zai ",
+            "isLineEnding": 0
+        }, {
+            "time": 192188,
+            "duration": 234,
+            "text": "ai ",
+            "isLineEnding": 0
+        }, {
+            "time": 192422,
+            "duration": 234,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 192656,
+            "duration": 234,
+            "text": "jiu ",
+            "isLineEnding": 0
+        }, {
+            "time": 192890,
+            "duration": 235,
+            "text": "zhe ",
+            "isLineEnding": 0
+        }, {
+            "time": 193125,
+            "duration": 234,
+            "text": "yang ",
+            "isLineEnding": 0
+        }, {
+            "time": 193359,
+            "duration": 235,
+            "text": "rang ",
+            "isLineEnding": 0
+        }, {
+            "time": 193594,
+            "duration": 234,
+            "text": "wo ",
+            "isLineEnding": 0
+        }, {
+            "time": 193828,
+            "duration": 235,
+            "text": "men ",
+            "isLineEnding": 1
+        }, {
+            "time": 194063,
+            "duration": 234,
+            "text": "say ",
+            "isLineEnding": 0
+        }, {
+            "time": 194297,
+            "duration": 234,
+            "text": "good ",
+            "isLineEnding": 0
+        }, {
+            "time": 194531,
+            "duration": 469,
+            "text": "bye ",
+            "isLineEnding": 0
+        }, {
+            "time": 195000,
+            "duration": 469,
+            "text": "bad ",
+            "isLineEnding": 0
+        }, {
+            "time": 195469,
+            "duration": 469,
+            "text": "girl ",
+            "isLineEnding": 1
+        }
+    ],
+    "pictos": [{
+            "time": 13594,
+            "duration": 293,
+            "name": "start_po"
+        }, {
+            "time": 15469,
+            "duration": 586,
+            "name": "handsdown_ar"
+        }, {
+            "time": 16406,
+            "duration": 566,
+            "name": "handsup_ar"
+        }, {
+            "time": 17344,
+            "duration": 586,
+            "name": "handsdown_ar"
+        }, {
+            "time": 18281,
+            "duration": 566,
+            "name": "handsup_ar"
+        }, {
+            "time": 22031,
+            "duration": 625,
+            "name": "oh_ar"
+        }, {
+            "time": 22969,
+            "duration": 527,
+            "name": "leftmoveintro_ar"
+        }, {
+            "time": 23906,
+            "duration": 449,
+            "name": "leftmove_mo_ar"
+        }, {
+            "time": 24844,
+            "duration": 527,
+            "name": "rightmoveintro_ar"
+        }, {
+            "time": 25781,
+            "duration": 449,
+            "name": "rightmove_mo_ar"
+        }, {
+            "time": 26719,
+            "duration": 547,
+            "name": "nooh1_ar"
+        }, {
+            "time": 27656,
+            "duration": 371,
+            "name": "nooh2_ar"
+        }, {
+            "time": 28594,
+            "duration": 449,
+            "name": "really1_ar"
+        }, {
+            "time": 29531,
+            "duration": 469,
+            "name": "really_ar"
+        }, {
+            "time": 30469,
+            "duration": 683,
+            "name": "handspush_mo_ar"
+        }, {
+            "time": 31406,
+            "duration": 586,
+            "name": "pushside_ar"
+        }, {
+            "time": 32344,
+            "duration": 683,
+            "name": "handspush2_mo_ar"
+        }, {
+            "time": 33281,
+            "duration": 586,
+            "name": "pushside2_ar"
+        }, {
+            "time": 38027,
+            "duration": 489,
+            "name": "handsswing_gh"
+        }, {
+            "time": 39375,
+            "duration": 429,
+            "name": "handpunch_ar"
+        }, {
+            "time": 39844,
+            "duration": 488,
+            "name": "handsswing2_gh"
+        }, {
+            "time": 41191,
+            "duration": 430,
+            "name": "handpunch2_ar"
+        }, {
+            "time": 41777,
+            "duration": 489,
+            "name": "handsswing_gh"
+        }, {
+            "time": 43125,
+            "duration": 429,
+            "name": "handpunch_ar"
+        }, {
+            "time": 43594,
+            "duration": 488,
+            "name": "handsswing2_gh"
+        }, {
+            "time": 44941,
+            "duration": 430,
+            "name": "handpunch2_ar"
+        }, {
+            "time": 45469,
+            "duration": 312,
+            "name": "touchhead_mo_ar"
+        }, {
+            "time": 46406,
+            "duration": 312,
+            "name": "touchhead2_mo_ar"
+        }, {
+            "time": 47344,
+            "duration": 527,
+            "name": "back_mo_ar"
+        }, {
+            "time": 49219,
+            "duration": 312,
+            "name": "touchhead_mo_ar"
+        }, {
+            "time": 50156,
+            "duration": 312,
+            "name": "touchhead2_mo_ar"
+        }, {
+            "time": 51074,
+            "duration": 528,
+            "name": "back_mo_ar"
+        }, {
+            "time": 52969,
+            "duration": 508,
+            "name": "ha_ar_sh"
+        }, {
+            "time": 54844,
+            "duration": 351,
+            "name": "legup1l_ar"
+        }, {
+            "time": 55781,
+            "duration": 527,
+            "name": "legup_sh"
+        }, {
+            "time": 56719,
+            "duration": 351,
+            "name": "legup2r_ar"
+        }, {
+            "time": 57656,
+            "duration": 527,
+            "name": "legup2_sh"
+        }, {
+            "time": 58594,
+            "duration": 351,
+            "name": "legup1l_ar"
+        }, {
+            "time": 59531,
+            "duration": 527,
+            "name": "legup_sh"
+        }, {
+            "time": 60469,
+            "duration": 390,
+            "name": "handsupslow_mo_ar"
+        }, {
+            "time": 62344,
+            "duration": 293,
+            "name": "headache_po"
+        }, {
+            "time": 63047,
+            "duration": 292,
+            "name": "kungfu_po"
+        }, {
+            "time": 63750,
+            "duration": 273,
+            "name": "low_po"
+        }, {
+            "time": 64453,
+            "duration": 332,
+            "name": "headroll_ar"
+        }, {
+            "time": 66094,
+            "duration": 722,
+            "name": "handsup_mo_ar"
+        }, {
+            "time": 67969,
+            "duration": 469,
+            "name": "handsopen_ar"
+        }, {
+            "time": 68906,
+            "duration": 469,
+            "name": "handsopenl_ar"
+        }, {
+            "time": 69844,
+            "duration": 390,
+            "name": "punch1_gh"
+        }, {
+            "time": 71719,
+            "duration": 605,
+            "name": "handsroll_ar"
+        }, {
+            "time": 74063,
+            "duration": 370,
+            "name": "ready_po"
+        }, {
+            "time": 75469,
+            "duration": 586,
+            "name": "handsdown__ar_gold"
+        }, {
+            "time": 76406,
+            "duration": 566,
+            "name": "handsup_ar"
+        }, {
+            "time": 77344,
+            "duration": 586,
+            "name": "handsdown_ar"
+        }, {
+            "time": 78281,
+            "duration": 566,
+            "name": "handsup_ar"
+        }, {
+            "time": 82031,
+            "duration": 625,
+            "name": "oh_ar"
+        }, {
+            "time": 82969,
+            "duration": 527,
+            "name": "leftmoveintro_ar"
+        }, {
+            "time": 83906,
+            "duration": 449,
+            "name": "leftmove_mo_ar"
+        }, {
+            "time": 84844,
+            "duration": 527,
+            "name": "rightmoveintro_ar"
+        }, {
+            "time": 85781,
+            "duration": 449,
+            "name": "rightmove_mo_ar"
+        }, {
+            "time": 86719,
+            "duration": 547,
+            "name": "nooh1_ar"
+        }, {
+            "time": 87656,
+            "duration": 371,
+            "name": "nooh2_ar"
+        }, {
+            "time": 88594,
+            "duration": 449,
+            "name": "really1_ar"
+        }, {
+            "time": 89531,
+            "duration": 469,
+            "name": "really_ar"
+        }, {
+            "time": 90469,
+            "duration": 859,
+            "name": "doublehandsm_ar"
+        }, {
+            "time": 91406,
+            "duration": 801,
+            "name": "doublehandsopen_ar"
+        }, {
+            "time": 92344,
+            "duration": 859,
+            "name": "doublehandsm_ar"
+        }, {
+            "time": 93281,
+            "duration": 801,
+            "name": "doublehandsopen_ar"
+        }, {
+            "time": 97969,
+            "duration": 527,
+            "name": "leftmoveintro_ar"
+        }, {
+            "time": 98906,
+            "duration": 449,
+            "name": "leftmove_mo_ar"
+        }, {
+            "time": 99844,
+            "duration": 527,
+            "name": "rightmoveintro_ar"
+        }, {
+            "time": 100781,
+            "duration": 449,
+            "name": "rightmove_mo_ar"
+        }, {
+            "time": 101719,
+            "duration": 547,
+            "name": "nooh1_ar"
+        }, {
+            "time": 102656,
+            "duration": 371,
+            "name": "nooh2_ar"
+        }, {
+            "time": 103594,
+            "duration": 449,
+            "name": "really1_ar"
+        }, {
+            "time": 104531,
+            "duration": 469,
+            "name": "really_ar"
+        }, {
+            "time": 105469,
+            "duration": 683,
+            "name": "handspush_mo_ar"
+        }, {
+            "time": 106406,
+            "duration": 586,
+            "name": "pushside_ar"
+        }, {
+            "time": 107344,
+            "duration": 683,
+            "name": "handspush2_mo_ar"
+        }, {
+            "time": 108281,
+            "duration": 586,
+            "name": "pushside2_ar"
+        }, {
+            "time": 112969,
+            "duration": 527,
+            "name": "bewithu_po"
+        }, {
+            "time": 113906,
+            "duration": 390,
+            "name": "forever_ar"
+        }, {
+            "time": 114844,
+            "duration": 488,
+            "name": "handsswing2_gh"
+        }, {
+            "time": 116191,
+            "duration": 430,
+            "name": "handpunch2_ar"
+        }, {
+            "time": 116777,
+            "duration": 489,
+            "name": "handsswing_gh"
+        }, {
+            "time": 118125,
+            "duration": 429,
+            "name": "handpunch_ar"
+        }, {
+            "time": 118594,
+            "duration": 488,
+            "name": "handsswing2_gh"
+        }, {
+            "time": 119941,
+            "duration": 430,
+            "name": "handpunch2_ar"
+        }, {
+            "time": 120469,
+            "duration": 312,
+            "name": "touchhead_mo_ar"
+        }, {
+            "time": 121406,
+            "duration": 312,
+            "name": "touchhead2_mo_ar"
+        }, {
+            "time": 122344,
+            "duration": 527,
+            "name": "back_mo_ar"
+        }, {
+            "time": 124219,
+            "duration": 312,
+            "name": "touchhead_mo_ar"
+        }, {
+            "time": 125156,
+            "duration": 312,
+            "name": "touchhead2_mo_ar"
+        }, {
+            "time": 126094,
+            "duration": 527,
+            "name": "back_mo_ar"
+        }, {
+            "time": 127969,
+            "duration": 351,
+            "name": "legup2r_ar"
+        }, {
+            "time": 128906,
+            "duration": 527,
+            "name": "legup2_sh"
+        }, {
+            "time": 129844,
+            "duration": 351,
+            "name": "legup1l_ar"
+        }, {
+            "time": 130781,
+            "duration": 527,
+            "name": "legup_sh"
+        }, {
+            "time": 131719,
+            "duration": 351,
+            "name": "legup2r_ar"
+        }, {
+            "time": 132656,
+            "duration": 527,
+            "name": "legup2_sh"
+        }, {
+            "time": 133594,
+            "duration": 351,
+            "name": "legup1l_ar"
+        }, {
+            "time": 134531,
+            "duration": 527,
+            "name": "legup_sh"
+        }, {
+            "time": 135469,
+            "duration": 390,
+            "name": "handsupslow_mo_ar"
+        }, {
+            "time": 137344,
+            "duration": 293,
+            "name": "headache_po"
+        }, {
+            "time": 138047,
+            "duration": 292,
+            "name": "kungfu_po"
+        }, {
+            "time": 138750,
+            "duration": 273,
+            "name": "low_po"
+        }, {
+            "time": 139453,
+            "duration": 332,
+            "name": "headroll_ar"
+        }, {
+            "time": 141094,
+            "duration": 722,
+            "name": "handsup_mo_ar"
+        }, {
+            "time": 142969,
+            "duration": 469,
+            "name": "handsopen_ar"
+        }, {
+            "time": 143906,
+            "duration": 469,
+            "name": "handsopenl_ar"
+        }, {
+            "time": 144844,
+            "duration": 390,
+            "name": "punch1_gh"
+        }, {
+            "time": 146719,
+            "duration": 605,
+            "name": "handsroll_ar"
+        }, {
+            "time": 149063,
+            "duration": 370,
+            "name": "ready_po"
+        }, {
+            "time": 150469,
+            "duration": 586,
+            "name": "handsdown__ar_gold"
+        }, {
+            "time": 151406,
+            "duration": 566,
+            "name": "handsup_ar"
+        }, {
+            "time": 152344,
+            "duration": 586,
+            "name": "handsdown_ar"
+        }, {
+            "time": 153281,
+            "duration": 566,
+            "name": "handsup_ar"
+        }, {
+            "time": 157031,
+            "duration": 625,
+            "name": "oh_ar"
+        }, {
+            "time": 157969,
+            "duration": 527,
+            "name": "leftmoveintro_ar"
+        }, {
+            "time": 158906,
+            "duration": 449,
+            "name": "leftmove_mo_ar"
+        }, {
+            "time": 159844,
+            "duration": 527,
+            "name": "rightmoveintro_ar"
+        }, {
+            "time": 160781,
+            "duration": 449,
+            "name": "rightmove_mo_ar"
+        }, {
+            "time": 161719,
+            "duration": 547,
+            "name": "nooh1_ar"
+        }, {
+            "time": 162656,
+            "duration": 371,
+            "name": "nooh2_ar"
+        }, {
+            "time": 163594,
+            "duration": 449,
+            "name": "really1_ar"
+        }, {
+            "time": 164531,
+            "duration": 469,
+            "name": "really_ar"
+        }, {
+            "time": 165469,
+            "duration": 859,
+            "name": "doublehandsm_ar"
+        }, {
+            "time": 166406,
+            "duration": 801,
+            "name": "doublehandsopen_ar"
+        }, {
+            "time": 167344,
+            "duration": 859,
+            "name": "doublehandsm_ar"
+        }, {
+            "time": 168281,
+            "duration": 801,
+            "name": "doublehandsopen_ar"
+        }, {
+            "time": 172969,
+            "duration": 527,
+            "name": "leftmoveintro_ar"
+        }, {
+            "time": 173906,
+            "duration": 449,
+            "name": "leftmove_mo_ar"
+        }, {
+            "time": 174844,
+            "duration": 527,
+            "name": "rightmoveintro_ar"
+        }, {
+            "time": 175781,
+            "duration": 449,
+            "name": "rightmove_mo_ar"
+        }, {
+            "time": 176719,
+            "duration": 547,
+            "name": "nooh1_ar"
+        }, {
+            "time": 177656,
+            "duration": 371,
+            "name": "nooh2_ar"
+        }, {
+            "time": 178594,
+            "duration": 449,
+            "name": "really1_ar"
+        }, {
+            "time": 179531,
+            "duration": 469,
+            "name": "really_ar"
+        }, {
+            "time": 180469,
+            "duration": 508,
+            "name": "handmove_ar"
+        }, {
+            "time": 181406,
+            "duration": 508,
+            "name": "handmove2_ar"
+        }, {
+            "time": 182344,
+            "duration": 508,
+            "name": "handmove_ar"
+        }, {
+            "time": 183281,
+            "duration": 508,
+            "name": "byebye_mo_ar"
+        }, {
+            "time": 184219,
+            "duration": 508,
+            "name": "handmove_ar"
+        }, {
+            "time": 185156,
+            "duration": 508,
+            "name": "handmove2_ar"
+        }, {
+            "time": 186094,
+            "duration": 293,
+            "name": "closeopen_gh"
+        }, {
+            "time": 187969,
+            "duration": 508,
+            "name": "handmove_ar"
+        }, {
+            "time": 188906,
+            "duration": 508,
+            "name": "handmove2_ar"
+        }, {
+            "time": 189844,
+            "duration": 508,
+            "name": "handmove_ar"
+        }, {
+            "time": 190781,
+            "duration": 508,
+            "name": "byebye_mo_ar"
+        }, {
+            "time": 191719,
+            "duration": 508,
+            "name": "handmove_ar"
+        }, {
+            "time": 192656,
+            "duration": 508,
+            "name": "handmove2_ar"
+        }, {
+            "time": 193594,
+            "duration": 293,
+            "name": "closeopen_gh"
+        }, {
+            "time": 195469,
+            "duration": 527,
+            "name": "badgirl_ar"
+        }
+    ],
+    "AudioPreview": {
+        "coverflow": {
+            "startbeat": 0
+        },
+        "prelobby": {
+            "startbeat": 0
+        }
+    },
+    "AudioPreviewFadeTime": 57
+}
