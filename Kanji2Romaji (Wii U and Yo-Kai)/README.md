@@ -7,6 +7,7 @@ A tool made to convert Just Dance Wii U and Just Dance Yo-Kai: Special Edition's
 
 You also need pyKakasi and Unidecode in order to be able to run this tool
 > `pip install pykakasi`
+
 > `pip install unidecode`
 
 ## Instructions
