@@ -7,7 +7,7 @@ A tool made to convert Just Dance Wii U and Just Dance Yo-Kai: Special Edition's
 
 You also need pyKakasi and Unidecode in order to be able to run this tool
 > `pip install pykakasi`
-`pip install unidecode`
+> `pip install unidecode`
 
 ## Instructions
 Run the `justdancejapan_romajiconverter.py` file and wait for it to initialize
@@ -18,4 +18,5 @@ Select the desired KTAPE file and after that, check the `output` folder
 
 ## Credits
 [pykakasi · PyPI](https://pypi.org/project/pykakasi/)
+
 [Unidecode · PyPI](https://pypi.org/project/Unidecode/)
