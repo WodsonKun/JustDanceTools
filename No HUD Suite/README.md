@@ -1,5 +1,6 @@
+
 # No HUD Suite
-Tool that converts usual video formats (with or without audio) to **Just Dance 2017** (PC) or **Just Dance 2016, Just Dance 2017, Just Dance 2018 and Just Dance 2019** (Wii U)
+Tool that converts usual video formats (with or without audio) to **Just Dance 2017** (PC) or **Just Dance 2014, Just Dance 2015, Just Dance 2016, Just Dance 2017, Just Dance 2018 and Just Dance 2019** (Wii U)
 
 ## Instructions
 - Open `NoHUDTool.exe`
@@ -11,6 +12,12 @@ The interface is simple to use, just click on what you want it to do and press "
 Rename a audio file's extension to `.avi` and put it on the tool
 
 The tool will generate a WAV.CKD from that .avi
+
+## To-do
+- Add support for **Nintendo Wii**'s WEBMs and WAV.CKD format
+- Add support for **Nintendo Switch**'s VP9 WEBMs and WAV.CKD format
+- Add support for **Sony PlayStation 3**'s WEBMs and WAV.CKD format
+- Add support for **Microsoft Xbox 360**'s WEBMs and WAV.CKD format
 
 ## Requirements
 - Python 3+
