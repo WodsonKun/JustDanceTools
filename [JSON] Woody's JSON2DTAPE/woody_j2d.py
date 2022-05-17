@@ -43,50 +43,12 @@ def createOutputDir():
         os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
     except:
         pass # Caso a pasta já exista, ele não faz nada
-        
-# goToMain (por: WodsonKun)
-def goToMain():
-    mainMenuQ = input(str("Deseja voltar ao menu principal? (Y or N): ")) # Pergunta se o usuário quer retornar ao menu principal
-    if (mainMenuQ == "y") or (mainMenuQ == "Y"):
-        MainOption = None
-        MainMenu() # Retorna ao menu principal
-    elif (mainMenuQ == "n") or (mainMenuQ == "N"):
-        exit()
-    else:
-        print("Por favor, selecione uma opção válida!")
-        print("Perguntando novamente em 5 segundos...")
-        time.sleep(5) # Define um timer de 5 segundos
-        os.system('cls') # Limpa o console
-        goToMain() # Retorna ao menu principal  
 
-########################################################################## WodsonKun's JSON2DTAPE (v1.1.0) #########################################################################
-####################################################################### Créditos to  planedec50, augustodoidin #####################################################################
-
-### Cria o menu principal
-def MainMenu():
-    os.system('cls')
-    print("E aí? Bem vindo ao JSON2DTAPE do WodsonKun!")
-    print("Créditos a: planedec50, augustodoidin")
-    print("Selecione uma opção:")
-    print("-----------------------------")
-    print("[1] Gere uma songdesc através de um JSON")
-    print("[2] Gere um KTAPE através de um JSON")
-    print("[3] Gere um DTAPE através de um JSON")
-    print("[4] Gere um Musictrack através de um JSON")
-    print("[5] Cortar pictos-atlas (Now (novo) / Vitality School)")
-    print("[6] Cortar pictos-sprite (Now (velho))")
-    print("")
-    print("----- Mais opções ainda estão pra serem adicionadas -----")
-    
-    global MainOption
-    MainOption = int(input("Insira sua opção aqui: "))
-
-### Chama o menu principal
-MainMenu()
+########################################################################## WodsonKun's JSON2DTAPE (v1.1.5) #########################################################################
+######################################################################## Créditos a planedec50, augustodoidin ######################################################################
 
 ### Cria um songdesc através de um JSON (funciona com todos os tipos)
-if (MainOption == 1):
-    
+def SongDescJ2D():
     # Inicializa o Tkinter (para usar o seletor de arquivos)
     openFile = Tk()
     openFile.title('')
@@ -191,11 +153,8 @@ if (MainOption == 1):
     # Fecha o arquivo
     arq.close()
     
-    # Pergunta se você quer voltar para o menu principal
-    goToMain()
-    
 # Gera um KTAPE através de um JSON (todos funcionam)
-if (MainOption == 2):
+def KTAPEJ2D():
     # Pergunta se é um JSON do Vitality School
     QPinYin = input(str("Se for um JSON do Vitality School, deseja converter o KTAPE para PinYin? (Isso os torna legíveis para a Old Gen): "))
         
@@ -316,13 +275,9 @@ if (MainOption == 2):
     
     # Fecha o arquivo
     arq.close()
-    
-    # Pergunta se você quer retornar ao menu principal
-    goToMain()
 
 # Gera um DTAPE através do JSON principal e dos JSONs de moves
-if (MainOption == 3):
-
+def DTAPEJ2D():
     # Inicializa o Tkinter (para usar o seletor de arquivos)
     openFile = Tk()
     openFile.title('')
@@ -927,8 +882,7 @@ if (MainOption == 3):
     goToMain()
 
 # Gera uma musictrack através de um JSON (funciona com todos os tipos)
-if (MainOption == 4):
-
+def MusictrackJ2D():
     # Inicializa o Tkinter (para usar o seletor de arquivos)
     openFile = Tk()
     openFile.title('')
@@ -1067,7 +1021,7 @@ if (MainOption == 4):
     goToMain()
  
 # Corta pictos-atlas e os converte para TGA.CKD
-if (MainOption == 5):
+def PictosAtlasJ2D():
     # Código original por mishok, adaptado levemente para uso em conjunto com a ferramenta por WodsonKun
     # Inicializa o Tkinter novamente (para usar o seletor de arquivos)
     openFile = Tk()
@@ -1135,7 +1089,7 @@ if (MainOption == 5):
     goToMain()
 
 # Corta pictos-sprite e os converte para TGA.CKD
-if (MainOption == 6):
+def PictosSpriteJ2D():
     # Código original por icebb, adaptado levemente para uso em conjunto com a ferramenta por WodsonKun
     # Inicializa o Tkinter novamente (para usar o seletor de arquivos)
     openFile = Tk()
@@ -1196,13 +1150,44 @@ if (MainOption == 6):
     
     # Limpa a pasta temporária
     shutil.rmtree("tmp_output")
-    
-    # Pergunta se você quer retornar ao menu principal
-    goToMain()
-    
-else:
-    print("Digite uma opção válida!")
-    print("Perguntando novamente em 5 segundos...")
-    time.sleep(5)
-    MainOption = None
-    MainMenu()
+
+if __name__=='__main__':
+    while(True):
+        os.system('cls')
+        print("E aí? Bem vindo ao JSON2DTAPE do WodsonKun!")
+        print("Créditos a: planedec50, augustodoidin")
+        print("Selecione uma opção:")
+        print("-----------------------------")
+        print("[1] Gere uma songdesc através de um JSON")
+        print("[2] Gere um KTAPE através de um JSON")
+        print("[3] Gere um DTAPE através de um JSON")
+        print("[4] Gere um Musictrack através de um JSON")
+        print("[5] Cortar pictos-atlas (Now (novo) / Vitality School)")
+        print("[6] Cortar pictos-sprite (Now (velho))")
+        print("[7] Sair do JSON2DTAPE")
+        print("-----------------------------")
+        
+        option = ''
+        try:
+            option = int(input('Escolha sua opção: '))
+        except:
+            print('Opção inválida! Por favor, escolha uma opção válida')
+        #Check what choice was entered and act accordingly
+        if option == 1:
+            SongDescJ2D()
+        if option == 2:
+            KTAPEJ2D()
+        if option == 3:
+            DTAPEJ2D()
+        if option == 4:
+            MusictrackJ2D()
+        if option == 5:
+            PictosAtlasJ2D()
+        if option == 6:
+            PictosSpriteJ2D()
+        if option == 7:
+            print('Obrigado por usar nosso JSON2DTAPE!')
+            time.sleep(2)
+            exit()
+        else:
+            print('Opção inválida! Por favor, escolha uma opção válida')
