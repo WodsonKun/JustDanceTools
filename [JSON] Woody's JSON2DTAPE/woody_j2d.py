@@ -3,13 +3,13 @@ import os, io, sys, json, time, math, unidecode, pathlib, random, numpy, shutil,
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image
-
+'''
 # Importa o Jyutping, para ser possível converter os KTAPEs para PinYin
 text_trap = io.StringIO()
 sys.stderr = text_trap
 import pinyin_jyutping_sentence
 sys.stderr = sys.__stderr__
-
+'''
 ## Funções que facilitam a conversão dos JSONs para TAPEs
 # hex2RGB (por Julian White | https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python)
 def hex2RGB(value):
@@ -24,27 +24,7 @@ def hex2RGB(value):
 def randomId():
     return math.floor(random.randint(0, 40000) * (400000 - 100000 + 1) + 100000) # Gera um valor randômico e retorna o mesmo para ser usado como ID
 
-# ubiArtTime (por: planedec50, WodsonKun)
-def ubiArtTime(jsonTimeValue, parse):
-    if (genNewBeats == "y") or (genNewBeats == "Y"): # Se novas beats tenham sido geradas...
-        if bool(parse):
-            return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
-        elif not bool(parse):
-            return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
-    if (genNewBeats == "n") or (genNewBeats == "N"):
-        if bool(parse):
-            return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
-        elif not bool(parse):
-            return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
-    
-# createOutputDir (by: WodsonKun)
-def createOutputDir():
-    try:
-        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
-
-########################################################################## WodsonKun's JSON2DTAPE (v1.1.5) #########################################################################
+########################################################################## WodsonKun's JSON2DTAPE (v1.2.0) #########################################################################
 ######################################################################## Créditos a planedec50, augustodoidin ######################################################################
 
 ### Cria um songdesc através de um JSON (funciona com todos os tipos)
@@ -108,7 +88,10 @@ def SongDescJ2D():
         json2BColor = "0xFF777777"
     
     # Cria a pasta com o codenome da música
-    createOutputDir()
+    try:
+        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
     
     # Começa a escrever a songdesc (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
     arq = open("output" + "//" + jsonMapName + "//songdesc.tpl.ckd", "w", encoding='utf-8')
@@ -178,7 +161,10 @@ def KTAPEJ2D():
     jsonLyricData = jsonMainData['lyrics']
     
     # Cria a pasta com o codenome da música
-    createOutputDir()
+    try:
+        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
     
     # Cria um array para guardar as beats emendadas
     BeatsMap24 = []
@@ -235,6 +221,19 @@ def KTAPEJ2D():
                 BeatsMap24.append(i * 24)
             finally:
                 i+=1
+
+    # ubiArtTime (por: planedec50, WodsonKun)
+    def ubiArtTime(jsonTimeValue, parse):
+        if (genNewBeats == "y") or (genNewBeats == "Y"): # Se novas beats tenham sido geradas...
+            if bool(parse):
+                return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
+            elif not bool(parse):
+                return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
+        if (genNewBeats == "n") or (genNewBeats == "N"):
+            if bool(parse):
+                return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
+            elif not bool(parse):
+                return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
     
     # Começa a escrever o KTAPE (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
     arq = open("output" + "//" + jsonMapName + "//" + jsonMapName.lower() + "_tml_karaoke.ktape.ckd", "w", encoding='utf-8')
@@ -303,20 +302,23 @@ def DTAPEJ2D():
     totalPictos = len(jsonPictoData)
     
     # Cria a pasta com o codenome da música
-    createOutputDir()
+    try:
+        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
     
-    # Cria um array para guardar as beats emendadas
+    # Escreve um array para colocar as beats emendadas
     BeatsMap24 = []
     
-    # Pergunta se quer converter as beats
-    genNewBeats = input(str("Você quer gerar beats novas? (Y ou N): "))
-    if (genNewBeats == "y") or (genNewBeats == "Y"):
-        NewBeats = []
-        bpm = float(input("Insira o BPM da música: "))
+    # Escreve as beats no formato UbiArt
+    genNewBeats = input(str("Você quer gerar beats novas? (Y or N): ")) # Pergunta se novas beats devem ser geradas
+    if (genNewBeats == "y") or (genNewBeats == "Y"): # Caso sim...
+        NewBeats = [] # Cria um array para as beats novas
+        bpm = float(input("Insira o BPM da música: ")) # Pede o BPM da música
         beat = int(round(60000/bpm))
         gerados = 0
         quantidade = len(jsonBeatData)
-        while (gerados <= quantidade):
+        while (gerados <= quantidade): # Gera os beats novos
             if gerados == quantidade:
                 gerados = gerados +1
                 NewBeats.append(beat*gerados)
@@ -324,6 +326,7 @@ def DTAPEJ2D():
                 gerados = gerados +1
                 NewBeats.append(beat*gerados)
         
+        # Emenda as beats
         if (len(NewBeats) > 5 and NewBeats[0] != 0):
             NewBeats.insert(0, 0)
             firstBeat = NewBeats[0]
@@ -334,7 +337,8 @@ def DTAPEJ2D():
                     NewBeats[i:nextBeats[i] - firstBeat]
                 finally:
                     i+=1
-
+        
+        # Coloca as beats emendadas no BeatsMap24
         i = 0
         while (i < len(NewBeats)):
             try:
@@ -360,6 +364,19 @@ def DTAPEJ2D():
                 BeatsMap24.append(i * 24)
             finally:
                 i+=1
+
+    # ubiArtTime (por: planedec50, WodsonKun)
+    def ubiArtTime(jsonTimeValue, parse):
+        if (genNewBeats == "y") or (genNewBeats == "Y"): # Se novas beats tenham sido geradas...
+            if bool(parse):
+                return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
+            elif not bool(parse):
+                return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
+        if (genNewBeats == "n") or (genNewBeats == "N"):
+            if bool(parse):
+                return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
+            elif not bool(parse):
+                return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
     
     # Começa a escrever o DTAPE (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
     arq = open("output" + "//" + jsonMapName + "//" + jsonMapName.lower() + "_tml_dance.dtape.ckd", "w", encoding='utf-8')
@@ -926,7 +943,10 @@ def MusictrackJ2D():
         jsonLoopEndData = len(jsonBeatData)
     
     # Cria uma pasta com o codename da música
-    createOutputDir()
+    try:
+        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
     
     # Começa a escrever a musictrack (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
     arq = open("output" + "//" + jsonMapName + "//" + jsonMapName.lower() + "_musictrack.tpl.ckd", "w", encoding='utf-8')
@@ -973,6 +993,19 @@ def MusictrackJ2D():
             finally:
                 i+=1
 
+        # ubiArtTime (por: planedec50, WodsonKun)
+        def ubiArtTime(jsonTimeValue, parse):
+            if (genNewBeats == "y") or (genNewBeats == "Y"): # Se novas beats tenham sido geradas...
+                if bool(parse):
+                    return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
+                elif not bool(parse):
+                    return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
+            if (genNewBeats == "n") or (genNewBeats == "N"):
+                if bool(parse):
+                    return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
+                elif not bool(parse):
+                    return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
+
         # Multiplica as beats por 48
         def multiplyBeats(number):
             return number * 48
@@ -982,9 +1015,9 @@ def MusictrackJ2D():
         
         # Se for um valor do Vitality School...
         if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja, divide os valores por 48, fazendo o processo reverso para ficarem legíveis ao jogo
-            jsonStartBeatData = int(int(numpy.interp(int(jsonSPData['enterTime']), NewBeats, BeatsMap24, 0)) / 48 - 24)
-            jsonLoopStartData = int(int(numpy.interp(int(jsonSPData['loopStartTime']), NewBeats, BeatsMap24, 0)) / 48 - 24)
-            jsonLoopEndData = int(int(numpy.interp(int(jsonSPData['loopEndTime']), NewBeats, BeatsMap24, 0)) / 48 - 24)
+            jsonStartBeatData = int(int(numpy.interp(int(jsonSPData['enterTime']), NewBeats, BeatsMap24, 0)) / 48)
+            jsonLoopStartData = int(int(numpy.interp(int(jsonSPData['loopStartTime']), NewBeats, BeatsMap24, 0)) / 48)
+            jsonLoopEndData = int(int(numpy.interp(int(jsonSPData['loopEndTime']), NewBeats, BeatsMap24, 0)) / 48)
                 
     elif (genNewBeats == "n") or (genNewBeats == "N"): # Caso não...
         # Coloca as beats emendadas no BeatsMap24
@@ -1004,9 +1037,9 @@ def MusictrackJ2D():
         
         # Se for um valor do Vitality School...
         if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja, divide os valores por 48, fazendo o processo reverso para ficarem legíveis ao jogo
-            jsonStartBeatData = int(int(numpy.interp(int(jsonSPData['enterTime']), jsonBeatData, BeatsMap24, 0)) / 48 - 24)
-            jsonLoopStartData = int(int(numpy.interp(int(jsonSPData['loopStartTime']), jsonBeatData, BeatsMap24, 0)) / 48 - 24)
-            jsonLoopEndData = int(int(numpy.interp(int(jsonSPData['loopEndTime']), jsonBeatData, BeatsMap24, 0)) / 48 - 24) 
+            jsonStartBeatData = int(int(numpy.interp(int(jsonSPData['enterTime']), jsonBeatData, BeatsMap24, 0)) / 48)
+            jsonLoopStartData = int(int(numpy.interp(int(jsonSPData['loopStartTime']), jsonBeatData, BeatsMap24, 0)) / 48)
+            jsonLoopEndData = int(int(numpy.interp(int(jsonSPData['loopEndTime']), jsonBeatData, BeatsMap24, 0)) / 48) 
     
     # Escreve o resto e o footer da musictrack
     arq.write(',"signatures":[{"__class":"MusicSignature","marker":1,"beats":3},{"__class":"MusicSignature","marker":4,"beats":4},{"__class":"MusicSignature","marker":194,"beats":3},{"__class":"MusicSignature","marker":197,"beats":4}],"sections":[{"__class":"MusicSection","marker":1,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":19,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":52,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":68,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":84,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":100,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":132,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":148,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":164,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":190,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":196,"sectionType":2,"comment":""},{"__class":"MusicSection","marker":194,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":259,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":195,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":291,"sectionType":7,"comment":""}], "startBeat": 0, "endBeat": ' + str(len(jsonBeatData)) + ', "videoStartTime": 0, "previewEntry": ' + str(jsonStartBeatData) + ', "previewLoopStart": ' + str(jsonLoopStartData) + ', "previewLoopEnd": ' + str(jsonLoopEndData) + ', "volume": 0}, "path": "world/maps/' + jsonMapName.lower() + '/audio/' + jsonMapName.lower() + '.wav", "url": "jmcs://jd-contents/' + jsonMapName + '/' + jsonMapName + '.ogg"}}]}')

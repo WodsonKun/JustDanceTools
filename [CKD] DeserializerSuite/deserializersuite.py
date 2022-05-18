@@ -2,13 +2,6 @@ import os, sys, io, time, json, struct, pathlib, shutil
 from tkinter import *
 from tkinter import filedialog
 
-# createOutputDir (by: WodsonKun)
-def createOutputDir():
-    try:
-        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
-
 # DTAPE and KTAPE (from Just Dance 2014 and Just Dance 2015)
 def dec_tml_14():
     # Inicializa o Tkinter (para usar o seletor de arquivos)
@@ -355,6 +348,12 @@ def dec_tml(tml_file):
     dtape.close()
     f.close()
     
+    # Creates output folder
+    try:
+        os.mkdir("output//" + mapname) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
+    
     # Moves DTAPE and KTAPE to output folder
     shutil.move("raw_ktape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_karaoke.ktape.ckd")
     shutil.move("raw_dtape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_dance.dtape.ckd")
@@ -545,6 +544,12 @@ def dec_dtape():
     f.close()
     arq.close()
     
+    # Creates output folder
+    try:
+        os.mkdir("output//" + mapname) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
+    
     # Moves DTAPE to output folder
     shutil.move("raw_dtape.dec", "output" + "//" + entry_mapname + "//" + entry_mapname.lower() + "_tml_dance.dtape.ckd")
  
@@ -648,6 +653,12 @@ def dec_ktape():
     f.close()
     arq.close()
     
+    # Creates output folder
+    try:
+        os.mkdir("output//" + mapname) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
+    
     # Moves DTAPE and KTAPE to output folder
     shutil.move("raw_ktape.dec", "output" + "//" + entry_mapname + "//" + entry_mapname.lower() + "_tml_karaoke.ktape.ckd")
 
@@ -666,11 +677,8 @@ def dec_sd_14():
     # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
     openFile.destroy()
     
-    # Creates output folder
-    createOutputDir()
-    
+    # Reads and deserializes the songdesc
     entry_mapnamealtsd = None
-    
     f.read(56)
     entry_mpnamelengthsd = struct.unpack('>I', f.read(4))[0]
     entry_mapnamesd = f.read(entry_mpnamelengthsd).decode("utf-8")
@@ -711,6 +719,14 @@ def dec_sd_14():
     entry_lyricscolor2 = struct.unpack('>f', f.read(4))[0]
     entry_lyricscolor1 = struct.unpack('>f', f.read(4))[0]
     entry_lyricscolor0 = struct.unpack('>f', f.read(4))[0]
+    
+    # Creates output folder
+    try:
+        os.mkdir("output//" + mapname) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
+    
+    # Starts writing the songdesc
     arq = open("output" + "//" + entry_mapnamesd + "//songdesc.tpl.ckd", "w", encoding='utf-8')
     arq.write('''{"__class":"Actor_Template","WIP":0,"LOWUPDATE":0,"UPDATE_LAYER":0,"PROCEDURAL":0,"STARTPAUSED":0,"FORCEISENVIRONMENT":0,"COMPONENTS":[{"__class":"JD_SongDescTemplate","MapName":"''' + entry_mapnamesd + '''","JDVersion":2017,"OriginalJDVersion":2014,"Artist":"''' + entry_artistsd + '''","DancerName":"Unknown Dancer","Title":"''' + entry_titlesd + '''","Credits": "All rights of the producer and other rightholders to the recorded work reserved. Unless otherwise authorized, the duplication, rental, loan, exchange or use of this video game for public performance, broadcasting and online distribution to the public are prohibited.", "PhoneImages": {''')
     arq.write('"Cover": "world/maps/' + entry_mapnamesd.lower() + '/menuart/textures/' + entry_mapnamesd.lower() + '_cover_phone.jpg",')
@@ -742,9 +758,7 @@ def dec_sd_15():
     # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
     openFile.destroy()
     
-    # Creates output folder
-    createOutputDir()
-    
+    # Reads and deserializes the songdesc
     entry_mapnamealtsd = None
     f.read(56)
     entry_mpnamelengthsd = struct.unpack('>I', f.read(4))[0]
@@ -787,10 +801,19 @@ def dec_sd_15():
     else:
         f.read(8)
     '''
+    f.read(8)
     entry_lyricscolor3 = struct.unpack('>f', f.read(4))[0]
     entry_lyricscolor2 = struct.unpack('>f', f.read(4))[0]
     entry_lyricscolor1 = struct.unpack('>f', f.read(4))[0]
     entry_lyricscolor0 = struct.unpack('>f', f.read(4))[0]
+    
+    # Creates output folder
+    try:
+        os.mkdir("output//" + entry_mapnamesd) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
+    
+    # Starts writing the songdesc
     arq = open("output" + "//" + entry_mapnamesd + "//songdesc.tpl.ckd", "w", encoding='utf-8')
     arq.write('''{"__class":"Actor_Template","WIP":0,"LOWUPDATE":0,"UPDATE_LAYER":0,"PROCEDURAL":0,"STARTPAUSED":0,"FORCEISENVIRONMENT":0,"COMPONENTS":[{"__class":"JD_SongDescTemplate","MapName":"''' + entry_mapnamesd + '''","JDVersion":2017,"OriginalJDVersion":2015,"Artist":"''' + entry_artistsd + '''","DancerName":"Unknown Dancer","Title":"''' + entry_titlesd + '''","Credits": "All rights of the producer and other rightholders to the recorded work reserved. Unless otherwise authorized, the duplication, rental, loan, exchange or use of this video game for public performance, broadcasting and online distribution to the public are prohibited.", "PhoneImages": {''')
     arq.write('"Cover": "world/maps/' + entry_mapnamesd.lower() + '/menuart/textures/' + entry_mapnamesd.lower() + '_cover_phone.jpg",')
@@ -827,7 +850,10 @@ def dec_mt_14():
     MapName = str(input('Type the codename of the song: '))
     
     # Creates output folder
-    createOutputDir()
+    try:
+        os.mkdir("output//" + MapName) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
     
     arq = open("output" + "//" + MapName + "//" + MapName.lower() + "_musictrack.tpl.ckd", "w")
     arq.write('{')
@@ -971,7 +997,10 @@ def dec_mt_15():
     MapName = str(input('Type the codename of the song: '))
     
     # Creates output folder
-    createOutputDir()
+    try:
+        os.mkdir("output//" + MapName) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
     
     arq = open("output" + "//" + MapName + "//" + MapName.lower() + "_musictrack.tpl.ckd", "w")
     arq.write('{')
@@ -1109,18 +1138,15 @@ def dec_mt_15():
 if __name__=='__main__':
     while(True):
         os.system('cls')
-        print("Welcome to WodsonKun's DecryptorSuite!")
-        print("Credits to augustodoidin")
+        print("                                          Welcome to WodsonKun's DeserializerSuite!")
+        print("                                                 Credits to augustodoidin")
         print("Select a option:")
         print("-----------------------------")
-        print("[1] Decrypt a songdesc from Just Dance 2014 / Just Dance Wii U / Just Dance Yo-Kai: Special Edition")
-        print("[2] Decrypts DTAPE and KTAPE from Just Dance 2014 / Just Dance Wii U / Just Dance Yo-Kai: Special Edition")
-        print("[3] Decrypt a Musictrack from Just Dance 2014 / Just Dance Wii U / Just Dance Yo-Kai: Special Edition")
-        print("[4] Decrypt a songdesc from Just Dance 2015 / Just Dance 2015 China")
-        print("[5] Decrypt a DTAPE from Just Dance 2015 / Just Dance 2015 China")
-        print("[6] Decrypt a KTAPE from Just Dance 2015 / Just Dance 2015 China")
-        print("[7] Decrypt a Musictrack from Just Dance 2015 / Just Dance 2015 China")
-        print("[8] Exit the DecryptorSuite")
+        print("[1] Deserialize a songdesc from Just Dance 2014 / Just Dance 2015")
+        print("[2] Deserializes DTAPE and KTAPE from Just Dance 2014 / Just Dance 2015")
+        print("[3] Deserialize a Musictrack from Just Dance 2014 / Just Dance 2015")
+        print("[4] Exit the DeserializerSuite")
+        print("\n\n\nNote: This tool supports the following games:\n - Just Dance 2014\n - Just Dance Wii U\n - Just Dance Yo-Kai: Special Edition\n - Just Dance 2015\n - Just Dance 2015 (China)")
         print("-----------------------------")
         
         option = ''
@@ -1130,20 +1156,25 @@ if __name__=='__main__':
             print('Wrong input. Please enter a number ...')
         #Check what choice was entered and act accordingly
         if option == 1:
-            dec_sd_14()
+            VerQuestion = int(input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): '))
+            if (VerQuestion == 2014):
+                dec_sd_14()
+            elif (VerQuestion == 2015):
+                dec_sd_15()
         if option == 2:
-            dec_tml_14()
+            VerQuestion = int(input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): '))
+            if (VerQuestion == 2014):
+                dec_tml_14()
+            elif (VerQuestion == 2015):
+                dec_dtape()
+                dec_ktape()
         if option == 3:
-            dec_mt_14()
+            VerQuestion = int(input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): '))
+            if (VerQuestion == 2014):
+                dec_mt_14()
+            elif (VerQuestion == 2015):
+                dec_mt_15()
         if option == 4:
-            dec_sd_15()
-        if option == 5:
-            dec_dtape()
-        if option == 6:
-            dec_ktape()
-        if option == 7:
-            dec_mt_15()
-        if option == 8:
             print('Thanks for using our decryptor!')
             time.sleep(2)
             exit()
