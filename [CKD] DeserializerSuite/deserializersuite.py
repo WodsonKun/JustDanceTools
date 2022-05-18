@@ -2,6 +2,12 @@ import os, sys, io, time, json, struct, pathlib, shutil
 from tkinter import *
 from tkinter import filedialog
 
+# Creates the output folder (only if doesn't exists)
+try:
+    os.mkdir('output')
+except:
+    pass
+
 # DTAPE and KTAPE (from Just Dance 2014 and Just Dance 2015)
 def dec_tml_14():
     # Inicializa o Tkinter (para usar o seletor de arquivos)
@@ -655,7 +661,7 @@ def dec_ktape():
     
     # Creates output folder
     try:
-        os.mkdir("output//" + mapname) # Cria uma pasta com o codename da música do JSON
+        os.mkdir("output//" + entry_mapname) # Cria uma pasta com o codename da música do JSON
     except:
         pass # Caso a pasta já exista, ele não faz nada
     
@@ -722,7 +728,7 @@ def dec_sd_14():
     
     # Creates output folder
     try:
-        os.mkdir("output//" + mapname) # Cria uma pasta com o codename da música do JSON
+        os.mkdir("output//" + entry_mapnamesd) # Cria uma pasta com o codename da música do JSON
     except:
         pass # Caso a pasta já exista, ele não faz nada
     
@@ -847,15 +853,15 @@ def dec_mt_14():
     openFile.destroy()
     
     # Asks for codename
-    MapName = str(input('Type the codename of the song: '))
+    MTMapName = str(input('Type the codename of the song: '))
     
     # Creates output folder
     try:
-        os.mkdir("output//" + MapName) # Cria uma pasta com o codename da música do JSON
+        os.mkdir("output//" + MTMapName) # Cria uma pasta com o codename da música do JSON
     except:
         pass # Caso a pasta já exista, ele não faz nada
     
-    arq = open("output" + "//" + MapName + "//" + MapName.lower() + "_musictrack.tpl.ckd", "w")
+    arq = open("output" + "//" + MTMapName + "//" + MTMapName.lower() + "_musictrack.tpl.ckd", "w")
     arq.write('{')
     arq.write('"__class":"Actor_Template",')
     arq.write('"WIP":0,')
@@ -970,7 +976,7 @@ def dec_mt_14():
     arq.write('"previewLoopEnd":' + str(endbeat) + ',')
     arq.write('"volume":0')
     arq.write('},')
-    arq.write('"path": "world/maps/' + MapName.lower() + '/audio/' + MapName.lower() + '.wav", "url": "jmcs://jd-contents/' + MapName + '/' + MapName + '.ogg"')
+    arq.write('"path": "world/maps/' + MTMapName.lower() + '/audio/' + MTMapName.lower() + '.wav", "url": "jmcs://jd-contents/' + MTMapName + '/' + MTMapName + '.ogg"')
     arq.write('}}]}')
     
     byte = f.read(4)
@@ -994,15 +1000,15 @@ def dec_mt_15():
     openFile.destroy()
     
     # Asks for codename
-    MapName = str(input('Type the codename of the song: '))
+    MTMapName = str(input('Type the codename of the song: '))
     
     # Creates output folder
     try:
-        os.mkdir("output//" + MapName) # Cria uma pasta com o codename da música do JSON
+        os.mkdir("output//" + MTMapName) # Cria uma pasta com o codename da música do JSON
     except:
         pass # Caso a pasta já exista, ele não faz nada
     
-    arq = open("output" + "//" + MapName + "//" + MapName.lower() + "_musictrack.tpl.ckd", "w")
+    arq = open("output" + "//" + MTMapName + "//" + MTMapName.lower() + "_musictrack.tpl.ckd", "w")
     arq.write('{')
     arq.write('"__class":"Actor_Template",')
     arq.write('"WIP":0,')
@@ -1126,7 +1132,7 @@ def dec_mt_15():
     arq.write('"previewLoopEnd":' + str(endbeat) + ',')
     arq.write('"volume":0')
     arq.write('},')
-    arq.write('"path": "world/maps/' + MapName.lower() + '/audio/' + MapName.lower() + '.wav", "url": "jmcs://jd-contents/' + MapName + '/' + MapName + '.ogg"')
+    arq.write('"path": "world/maps/' + MTMapName.lower() + '/audio/' + MTMapName.lower() + '.wav", "url": "jmcs://jd-contents/' + MTMapName + '/' + MTMapName + '.ogg"')
     arq.write('}}]}')
     
     byte = f.read(4)
