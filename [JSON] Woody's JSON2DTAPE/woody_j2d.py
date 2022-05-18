@@ -877,9 +877,6 @@ def DTAPEJ2D():
     
     # Fecha o arquivo
     arq.close()
-    
-    # Pergunta se você quer retornar ao menu principal
-    goToMain()
 
 # Gera uma musictrack através de um JSON (funciona com todos os tipos)
 def MusictrackJ2D():
@@ -1016,9 +1013,6 @@ def MusictrackJ2D():
     
     # Fecha o arquivo
     arq.close()
-    
-    # Pergunta se você quer retornar ao menu principal
-    goToMain()
  
 # Corta pictos-atlas e os converte para TGA.CKD
 def PictosAtlasJ2D():
@@ -1084,9 +1078,6 @@ def PictosAtlasJ2D():
     
     # Limpa a pasta temporária
     shutil.rmtree("tmp_output")
-    
-    # Pergunta se você quer retornar ao menu principal
-    goToMain()
 
 # Corta pictos-sprite e os converte para TGA.CKD
 def PictosSpriteJ2D():
