@@ -3,13 +3,13 @@ import os, io, sys, json, time, math, unidecode, pathlib, random, numpy, shutil,
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image
-'''
+
 # Importa o Jyutping, para ser possível converter os KTAPEs para PinYin
 text_trap = io.StringIO()
 sys.stderr = text_trap
 import pinyin_jyutping_sentence
 sys.stderr = sys.__stderr__
-'''
+
 ## Funções que facilitam a conversão dos JSONs para TAPEs
 # hex2RGB (por Julian White | https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python)
 def hex2RGB(value):
