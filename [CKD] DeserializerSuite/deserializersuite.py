@@ -20,37 +20,16 @@ def dec_tml_14():
     # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
     openFile.destroy()
     
-    # Decrypts
-    tml_json = dec_tml(tml_file)
-    
-    text_trap = io.StringIO()
-    sys.stderr = text_trap
-    
-    oldcoachid = []
-    fixcoachid = {}
-    for mv in tml_json[0]['Clips']:
-        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
-            if(mv['CoachId'] not in oldcoachid):
-                oldcoachid.append(mv['CoachId'])
-    oldcoachid = sorted(oldcoachid, key=int)
-    
-    for x in range(len(oldcoachid)):
-        fixcoachid.update({oldcoachid[x]: x})
-        
-    for mv in tml_json[0]['Clips']:
-        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
-            mv['CoachId'] = fixcoachid[mv['CoachId']]
-    
-    sys.stderr = sys.__stderr__
-    
-def dec_tml(tml_file):
     f = open(tml_file, "rb")
     f.read(56)
     mapnamelenght = struct.unpack('>I',f.read(4))[0]
     mapname = f.read(mapnamelenght).decode("utf-8")
     f.read(76)
     entries = struct.unpack('>I',f.read(4))[0]
-
+    
+    # Ask if it is a Solo, Duet, Trio or Quartet routine
+    NumCoachDT = int(input("How many coaches the song has (1, 2, 3, 4): "))
+    
     for e in range(entries):
         e_entryoffset = struct.unpack('>I',f.read(4))[0]
         e_unknown1 = struct.unpack('>I',f.read(4))[0]
@@ -121,7 +100,6 @@ def dec_tml(tml_file):
 
         entry_starttime = round(me_starttime * 24)
         entry_duration = round(me_duration * 24) - entry_starttime
-        entry_coachid = me_coachid
 
         dtape.write("{")
         dtape.write('"__class":"MotionClip",')
@@ -132,7 +110,33 @@ def dec_tml(tml_file):
         dtape.write('"Duration":' + str(entry_duration) + ',')
         dtape.write('"ClassifierPath":"' + me_movepath.replace("jd5", "maps") + me_movefile + '",')
         dtape.write('"GoldMove":' + str(me_goldmove) + ',')
-        dtape.write('"CoachId":' + str(entry_coachid) + ',')
+        try:
+            if (NumCoachDT == 1):
+                if (me_coachid == 2):
+                    dtape.write('"CoachId": 0,')
+            elif (NumCoachDT == 2):
+                if (me_coachid == 1):
+                    dtape.write('"CoachId": 0,')
+                if (me_coachid == 3):
+                    dtape.write('"CoachId": 1,')
+            elif (NumCoachDT == 3):
+                if (me_coachid == 1):
+                    dtape.write('"CoachId": 0,')
+                if (me_coachid == 2):
+                    dtape.write('"CoachId": 1,')
+                if (me_coachid == 3):
+                    dtape.write('"CoachId": 2,')
+            elif (NumCoachDT == 4):
+                if (me_coachid == 1):
+                    dtape.write('"CoachId": 0,')
+                if (me_coachid == 3):
+                    dtape.write('"CoachId": 1,')
+                if (me_coachid == 5):
+                    dtape.write('"CoachId": 2,')
+                if (me_coachid == 7):
+                    dtape.write('"CoachId": 3,')
+        except:
+            dtape.write('"CoachId":' + str(me_coachid) + ',')
         dtape.write('"MoveType":0,')
         dtape.write('"Color":[')
         dtape.write('1,')
@@ -378,8 +382,8 @@ def dec_dtape():
     # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
     openFile.destroy()
     
-    # Creates output folder
-    createOutputDir()
+    # Asks for codename
+    entry_mapname = str(input('Type the codename of the song: '))
     
     arq = open("raw_dtape.dec", "w")
     arq.write('{')
@@ -552,7 +556,7 @@ def dec_dtape():
     
     # Creates output folder
     try:
-        os.mkdir("output//" + mapname) # Cria uma pasta com o codename da música do JSON
+        os.mkdir("output//" + entry_mapname) # Cria uma pasta com o codename da música do JSON
     except:
         pass # Caso a pasta já exista, ele não faz nada
     
@@ -574,8 +578,8 @@ def dec_ktape():
     # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
     openFile.destroy()
     
-    # Creates output folder
-    createOutputDir()
+    # Asks for codename
+    entry_mapname = str(input('Type the codename of the song: '))
     
     arq = open("raw_ktape.dec", "w", encoding="utf8")
     arq.write('{')
