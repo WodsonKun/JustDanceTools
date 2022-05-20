@@ -28,20 +28,10 @@ def randomId():
 ######################################################################## Créditos a planedec50, augustodoidin ######################################################################
 
 ### Cria um songdesc através de um JSON (funciona com todos os tipos)
-def SongDescJ2D():
-    # Inicializa o Tkinter (para usar o seletor de arquivos)
-    openFile = Tk()
-    openFile.title('')
-    
-    # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
-    
+def SongDescJ2D(mainjson):
     # Abre e lê o JSON (UTF-8-SIG, para idêntificação dos caracteres japoneses, chineses ou coreanos)
     with open(mainjson, "r", encoding='utf-8-sig') as raw:
         jsonMainData = json.load(raw)
-        
-    # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
-    openFile.destroy()
     
     # Lê os campos necessários do JSON para geração da songdesc (caso os valores não sejam encontrados, ele pergunta por valores do usuário e define valores padrão para os outros)
     jsonMapName = jsonMainData['MapName']
@@ -137,169 +127,20 @@ def SongDescJ2D():
     arq.close()
     
 # Gera um KTAPE através de um JSON (todos funcionam)
-def KTAPEJ2D():
+def KTAPEJ2D(mainjson):
     # Pergunta se é um JSON do Vitality School
-    QPinYin = input(str("Se for um JSON do Vitality School, deseja converter o KTAPE para PinYin? (Isso os torna legíveis para a Old Gen): "))
-        
-    # Inicializa o Tkinter (para usar o seletor de arquivos)
-    openFile = Tk()
-    openFile.title('')
+    QVSJSON = input(str("É um JSON do Vitality School? (Y ou N): "))
+    if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja...
+        QPinYin = input(str("Deseja converter o KTAPE para PinYin? (Isso os torna legíveis para a Old Gen): "))
     
-    # Procura o JSON principal
-    mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your JSON", filetypes=[("Just Dance: Vitality School JSON (.json)", "*.json")] )
-    
-    # Lê o JSON principal
+    # Abre e lê o JSON (UTF-8-SIG, para idêntificação dos caracteres japoneses, chineses ou coreanos)
     with open(mainjson, "r", encoding='utf-8-sig') as raw:
         jsonMainData = json.load(raw)
-        
-    # Destrói a instância do Tkinter
-    openFile.destroy()
     
     # Lê os campos necessários para gerar o KTAPE
     jsonMapName = jsonMainData['MapName']
     jsonBeatData = jsonMainData['beats']
     jsonLyricData = jsonMainData['lyrics']
-    
-    # Cria a pasta com o codenome da música
-    try:
-        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
-    
-    # Cria um array para guardar as beats emendadas
-    BeatsMap24 = []
-    
-    # Pergunta se quer converter as beats
-    genNewBeats = input(str("Você quer gerar beats novas? (Y ou N): "))
-    if (genNewBeats == "y") or (genNewBeats == "Y"):
-        NewBeats = []
-        bpm = float(input("Insira o BPM da música: "))
-        beat = int(round(60000/bpm))
-        gerados = 0
-        quantidade = len(jsonBeatData)
-        while (gerados <= quantidade):
-            if gerados == quantidade:
-                gerados = gerados +1
-                NewBeats.append(beat*gerados)
-            else:
-                gerados = gerados +1
-                NewBeats.append(beat*gerados)
-        
-        if (len(NewBeats) > 5 and NewBeats[0] != 0):
-            NewBeats.insert(0, 0)
-            firstBeat = NewBeats[0]
-            nextBeats = NewBeats[0:5]
-            i = 0
-            while (i < 5):
-                try:
-                    NewBeats[i:nextBeats[i] - firstBeat]
-                finally:
-                    i+=1
-
-        i = 0
-        while (i < len(NewBeats)):
-            try:
-                BeatsMap24.append(i * 24)
-            finally:
-                i+=1
-                
-    elif (genNewBeats == "n") or (genNewBeats == "N"):
-        if (len(jsonBeatData) > 5 and jsonBeatData[0] != 0):
-            jsonBeatData.insert(0, 0)
-            firstBeat = jsonBeatData[0]
-            nextBeats = jsonBeatData[0:5]
-            i = 0
-            while (i < 5):
-                try:
-                    jsonBeatData[i:nextBeats[i] - firstBeat]
-                finally:
-                    i+=1
-
-        i = 0
-        while (i < len(jsonBeatData)):
-            try:
-                BeatsMap24.append(i * 24)
-            finally:
-                i+=1
-
-    # ubiArtTime (por: planedec50, WodsonKun)
-    def ubiArtTime(jsonTimeValue, parse):
-        if (genNewBeats == "y") or (genNewBeats == "Y"): # Se novas beats tenham sido geradas...
-            if bool(parse):
-                return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
-            elif not bool(parse):
-                return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
-        if (genNewBeats == "n") or (genNewBeats == "N"):
-            if bool(parse):
-                return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
-            elif not bool(parse):
-                return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
-    
-    # Começa a escrever o KTAPE (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
-    arq = open("output" + "//" + jsonMapName + "//" + jsonMapName.lower() + "_tml_karaoke.ktape.ckd", "w", encoding='utf-8')
-    
-    # Escreve o header do KTAPE
-    arq.write('{"__class": "Tape","Clips": ')
-    
-    # Escreve os clips do KTAPE
-    i = 0
-    clips = '['
-    while i < len(jsonMainData['lyrics'][1:-1]):
-        clips = clips + '{"__class": "KaraokeClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-        clips = clips + str(ubiArtTime(jsonLyricData[i]['time'], True))
-        clips = clips + ',"Duration": '
-        clips = clips + str(ubiArtTime(jsonLyricData[i]['duration'], True))
-        if (QPinYin == "Y") or (QPinYin == "y"):
-            if (jsonLyricData[i - 1]['isLineEnding'] == 1): 
-                clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])).capitalize() + ' ","IsEndOfLine": '
-            elif (jsonLyricData[i]['isLineEnding'] == 1): 
-                clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + '","IsEndOfLine": '
-            else:
-                clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + ' ","IsEndOfLine": '
-        if (QPinYin == "N") or (QPinYin == "n"):
-            clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + jsonLyricData[i]['text'] + '","IsEndOfLine": '
-        try:
-            clips = clips + str(jsonLyricData[i]['isLineEnding'])
-        except KeyError:
-            clips = clips + '0'
-        clips = clips + ',"ContentType": 0,"StartTimeTolerance": 4,"EndTimeTolerance": 4,"SemitoneTolerance": 5}'
-        clips = clips + ','
-        i += 1
-    clips = clips + ']'
-    clips = clips.replace(",]","]")
-    arq.write(clips)
-    
-    # Escreve o footer do KTAPE
-    arq.write(',"TapeClock": 0,"TapeBarCount": 1,"FreeResourcesAfterPlay": 0,"MapName": "' + jsonMapName + '","SoundwichEvent": ""}')
-    
-    # Fecha o arquivo
-    arq.close()
-
-# Gera um DTAPE através do JSON principal e dos JSONs de moves
-def DTAPEJ2D():
-    # Inicializa o Tkinter (para usar o seletor de arquivos)
-    openFile = Tk()
-    openFile.title('')
-    
-    # Procura o JSON principal
-    mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your JSON", filetypes=[("Just Dance: Vitality School JSON (.json)", "*.json")] )
-    
-    # Abre e lê o JSON principal
-    with open(mainjson, "r", encoding='utf-8-sig') as raw:
-        jsonMainData = json.load(raw)
-        
-    # Destrói a instância do Tkinter
-    openFile.destroy()
-    
-    # Lê os campos necessários para gerar o DTAPE
-    jsonMapName = jsonMainData['MapName']
-    try:
-        jsonNumCoach = jsonMainData['NumCoach']
-    except:
-        jsonNumCoach = int(input('Type the number of coaches: '))
-    jsonBeatData = jsonMainData['beats']
-    jsonPictoData = jsonMainData['pictos']
-    totalPictos = len(jsonPictoData)
     
     # Cria a pasta com o codenome da música
     try:
@@ -347,23 +188,64 @@ def DTAPEJ2D():
                 i+=1
                 
     elif (genNewBeats == "n") or (genNewBeats == "N"):
-        if (len(jsonBeatData) > 5 and jsonBeatData[0] != 0):
-            jsonBeatData.insert(0, 0)
-            firstBeat = jsonBeatData[0]
-            nextBeats = jsonBeatData[0:5]
+        # Faz o cálculo necessário para as beats
+        if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja um JSON do Vitality School...
+            NewBeats = [] # Cria um array para as beats novas, já que converter as normais direto do JSON resulta em valores absurdos
+            bpminit = jsonBeatData[30] - jsonBeatData[29] # Faz o cálculo inicial do BPM, diminuindo o valor de uma beat por outra (Nota: isso não dá o BPM exato, pois há chance da música ter Tempo Change)
+            bpm = float(60000 / bpminit) # Faz o cálculo do BPM, dividindo 60000 pelo valor, dando o BPM (como float, para ser mais exato)
+            beat = int(round(60000/bpm)) # Faz o valor final, dividindo 60000 pelo valor do BPM, iniciando a sequência de beats
+            gerados = 0
+            quantidade = len(jsonBeatData)
+            while (gerados <= quantidade): # Gera os beats novos
+                if gerados == quantidade:
+                    gerados = gerados +1
+                    NewBeats.append(beat*gerados)
+                else:
+                    gerados = gerados +1
+                    NewBeats.append(beat*gerados)
+            
+            # Re-arranges beats from NewBeats to jsonBeatData
+            jsonBeatData = []
+            jsonBeatData = NewBeats
+        
+            # Emenda as beats
+            if (len(NewBeats) > 5 and NewBeats[0] != 0):
+                NewBeats.insert(0, 0)
+                firstBeat = NewBeats[0]
+                nextBeats = NewBeats[0:5]
+                i = 0
+                while (i < 5):
+                    try:
+                        NewBeats[i:nextBeats[i] - firstBeat]
+                    finally:
+                        i+=1
+
+            # Coloca as beats emendadas no BeatsMap24
             i = 0
-            while (i < 5):
+            while (i < len(NewBeats)):
                 try:
-                    jsonBeatData[i:nextBeats[i] - firstBeat]
+                    BeatsMap24.append(i * 24)
                 finally:
                     i+=1
+        
+        elif (QVSJSON == "N") or (QVSJSON == "n"): # Caso seja um JSON do Vitality School...
+            if (len(jsonBeatData) > 5 and jsonBeatData[0] != 0):
+                jsonBeatData.insert(0, 0)
+                firstBeat = jsonBeatData[0]
+                nextBeats = jsonBeatData[0:5]
+                i = 0
+                while (i < 5):
+                    try:
+                        jsonBeatData[i:nextBeats[i] - firstBeat]
+                    finally:
+                        i+=1
 
-        i = 0
-        while (i < len(jsonBeatData)):
-            try:
-                BeatsMap24.append(i * 24)
-            finally:
-                i+=1
+            i = 0
+            while (i < len(jsonBeatData)):
+                try:
+                    BeatsMap24.append(i * 24)
+                finally:
+                    i+=1
 
     # ubiArtTime (por: planedec50, WodsonKun)
     def ubiArtTime(jsonTimeValue, parse):
@@ -373,10 +255,202 @@ def DTAPEJ2D():
             elif not bool(parse):
                 return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
         if (genNewBeats == "n") or (genNewBeats == "N"):
+            if (QVSJSON == "Y") or (QVSJSON == "y"):
+                if bool(parse):
+                    return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
+                elif not bool(parse):
+                    return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
+            else:
+                if bool(parse):
+                    return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
+                elif not bool(parse):
+                    return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
+    
+    # Começa a escrever o KTAPE (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
+    arq = open("output" + "//" + jsonMapName + "//" + jsonMapName.lower() + "_tml_karaoke.ktape.ckd", "w", encoding='utf-8')
+    
+    # Escreve o header do KTAPE
+    arq.write('{"__class": "Tape","Clips": ')
+    
+    # Escreve os clips do KTAPE
+    i = 0
+    clips = '['
+    while i < len(jsonMainData['lyrics'][1:-1]):
+        clips = clips + '{"__class": "KaraokeClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+        clips = clips + str(ubiArtTime(jsonLyricData[i]['time'], True))
+        clips = clips + ',"Duration": '
+        clips = clips + str(ubiArtTime(jsonLyricData[i]['duration'], True))
+        if (QVSJSON == "Y") or (QVSJSON == "y"):
+            if (QPinYin == "Y") or (QPinYin == "y"):
+                if (jsonLyricData[i - 1]['isLineEnding'] == 1): 
+                    clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])).capitalize() + ' ","IsEndOfLine": '
+                elif (jsonLyricData[i]['isLineEnding'] == 1): 
+                    clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + '","IsEndOfLine": '
+                else:
+                    clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + ' ","IsEndOfLine": '
+            if (QPinYin == "N") or (QPinYin == "n"):
+                clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + jsonLyricData[i]['text'] + '","IsEndOfLine": '
+        else:
+            clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + jsonLyricData[i]['text'] + '","IsEndOfLine": '
+        try:
+            clips = clips + str(jsonLyricData[i]['isLineEnding'])
+        except KeyError:
+            clips = clips + '0'
+        clips = clips + ',"ContentType": 0,"StartTimeTolerance": 4,"EndTimeTolerance": 4,"SemitoneTolerance": 5}'
+        clips = clips + ','
+        i += 1
+    clips = clips + ']'
+    clips = clips.replace(",]","]")
+    arq.write(clips)
+    
+    # Escreve o footer do KTAPE
+    arq.write(',"TapeClock": 0,"TapeBarCount": 1,"FreeResourcesAfterPlay": 0,"MapName": "' + jsonMapName + '","SoundwichEvent": ""}')
+    
+    # Fecha o arquivo
+    arq.close()
+
+# Gera um DTAPE através do JSON principal e dos JSONs de moves
+def DTAPEJ2D(mainjson):
+    # Abre e lê o JSON (UTF-8-SIG, para idêntificação dos caracteres japoneses, chineses ou coreanos)
+    with open(mainjson, "r", encoding='utf-8-sig') as raw:
+        jsonMainData = json.load(raw)
+    
+    # Lê os campos necessários para gerar o DTAPE
+    jsonMapName = jsonMainData['MapName']
+    try:
+        jsonNumCoach = jsonMainData['NumCoach']
+    except:
+        jsonNumCoach = int(input('Type the number of coaches: '))
+    jsonBeatData = jsonMainData['beats']
+    jsonPictoData = jsonMainData['pictos']
+    totalPictos = len(jsonPictoData)
+    
+    # Cria a pasta com o codenome da música
+    try:
+        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
+    except:
+        pass # Caso a pasta já exista, ele não faz nada
+    
+    # Pergunta se é um JSON do Vitality School
+    QVSJSON = input(str("É um JSON do Vitality School? (Y ou N): "))
+    
+    # Escreve um array para colocar as beats emendadas
+    BeatsMap24 = []
+    
+    # Escreve as beats no formato UbiArt
+    genNewBeats = input(str("Você quer gerar beats novas? (Y or N): ")) # Pergunta se novas beats devem ser geradas
+    if (genNewBeats == "y") or (genNewBeats == "Y"): # Caso sim...
+        NewBeats = [] # Cria um array para as beats novas
+        bpm = float(input("Insira o BPM da música: ")) # Pede o BPM da música
+        beat = int(round(60000/bpm))
+        gerados = 0
+        quantidade = len(jsonBeatData)
+        while (gerados <= quantidade): # Gera os beats novos
+            if gerados == quantidade:
+                gerados = gerados +1
+                NewBeats.append(beat*gerados)
+            else:
+                gerados = gerados +1
+                NewBeats.append(beat*gerados)
+        
+        # Emenda as beats
+        if (len(NewBeats) > 5 and NewBeats[0] != 0):
+            NewBeats.insert(0, 0)
+            firstBeat = NewBeats[0]
+            nextBeats = NewBeats[0:5]
+            i = 0
+            while (i < 5):
+                try:
+                    NewBeats[i:nextBeats[i] - firstBeat]
+                finally:
+                    i+=1
+        
+        # Coloca as beats emendadas no BeatsMap24
+        i = 0
+        while (i < len(NewBeats)):
+            try:
+                BeatsMap24.append(i * 24)
+            finally:
+                i+=1
+                
+    elif (genNewBeats == "n") or (genNewBeats == "N"):
+        # Faz o cálculo necessário para as beats
+        if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja um JSON do Vitality School...
+            NewBeats = [] # Cria um array para as beats novas, já que converter as normais direto do JSON resulta em valores absurdos
+            bpminit = jsonBeatData[30] - jsonBeatData[29] # Faz o cálculo inicial do BPM, diminuindo o valor de uma beat por outra (Nota: isso não dá o BPM exato, pois há chance da música ter Tempo Change)
+            bpm = float(60000 / bpminit) # Faz o cálculo do BPM, dividindo 60000 pelo valor, dando o BPM (como float, para ser mais exato)
+            beat = int(round(60000/bpm)) # Faz o valor final, dividindo 60000 pelo valor do BPM, iniciando a sequência de beats
+            gerados = 0
+            quantidade = len(jsonBeatData)
+            while (gerados <= quantidade): # Gera os beats novos
+                if gerados == quantidade:
+                    gerados = gerados +1
+                    NewBeats.append(beat*gerados)
+                else:
+                    gerados = gerados +1
+                    NewBeats.append(beat*gerados)
+            
+            # Re-arranges beats from NewBeats to jsonBeatData
+            jsonBeatData = []
+            jsonBeatData = NewBeats
+        
+            # Emenda as beats
+            if (len(NewBeats) > 5 and NewBeats[0] != 0):
+                NewBeats.insert(0, 0)
+                firstBeat = NewBeats[0]
+                nextBeats = NewBeats[0:5]
+                i = 0
+                while (i < 5):
+                    try:
+                        NewBeats[i:nextBeats[i] - firstBeat]
+                    finally:
+                        i+=1
+
+            # Coloca as beats emendadas no BeatsMap24
+            i = 0
+            while (i < len(NewBeats)):
+                try:
+                    BeatsMap24.append(i * 24)
+                finally:
+                    i+=1
+        
+        elif (QVSJSON == "N") or (QVSJSON == "n"): # Caso seja um JSON do Vitality School...
+            if (len(jsonBeatData) > 5 and jsonBeatData[0] != 0):
+                jsonBeatData.insert(0, 0)
+                firstBeat = jsonBeatData[0]
+                nextBeats = jsonBeatData[0:5]
+                i = 0
+                while (i < 5):
+                    try:
+                        jsonBeatData[i:nextBeats[i] - firstBeat]
+                    finally:
+                        i+=1
+
+            i = 0
+            while (i < len(jsonBeatData)):
+                try:
+                    BeatsMap24.append(i * 24)
+                finally:
+                    i+=1
+
+    # ubiArtTime (por: planedec50, WodsonKun)
+    def ubiArtTime(jsonTimeValue, parse):
+        if (genNewBeats == "y") or (genNewBeats == "Y"): # Se novas beats tenham sido geradas...
             if bool(parse):
-                return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
+                return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
             elif not bool(parse):
-                return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
+                return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
+        if (genNewBeats == "n") or (genNewBeats == "N"):
+            if (QVSJSON == "Y") or (QVSJSON == "y"):
+                if bool(parse):
+                    return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
+                elif not bool(parse):
+                    return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
+            else:
+                if bool(parse):
+                    return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
+                elif not bool(parse):
+                    return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
     
     # Começa a escrever o DTAPE (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
     arq = open("output" + "//" + jsonMapName + "//" + jsonMapName.lower() + "_tml_dance.dtape.ckd", "w", encoding='utf-8')
@@ -445,7 +519,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -534,7 +608,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -551,7 +625,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -661,7 +735,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -678,7 +752,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -695,7 +769,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -826,7 +900,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -843,7 +917,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -860,7 +934,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -877,7 +951,7 @@ def DTAPEJ2D():
                     dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips = dclips + str(ubiArtTime(jsonMoves3Data[i]['time'], True))
                     dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 8)
+                    dclips = dclips + str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 12)
                     dclips = dclips + ',"EffectType": 1},'
             except:
                 pass
@@ -896,20 +970,10 @@ def DTAPEJ2D():
     arq.close()
 
 # Gera uma musictrack através de um JSON (funciona com todos os tipos)
-def MusictrackJ2D():
-    # Inicializa o Tkinter (para usar o seletor de arquivos)
-    openFile = Tk()
-    openFile.title('')
-    
-    # Procura o JSON principal (apenas ele é usado para gerar a musictrack, caso seja um JSON do Just Dance Now)
-    mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
-    
+def MusictrackJ2D(mainjson):
     # Abre e lê o JSON (UTF-8-SIG, para idêntificação dos caracteres japoneses, chineses ou coreanos)
     with open(mainjson, "r", encoding='utf-8-sig') as raw:
         jsonMainData = json.load(raw)
-        
-    # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
-    openFile.destroy()
     
     # Lê os campos necessários do JSON para geração da musictrack
     jsonMapName = jsonMainData['MapName']
@@ -992,25 +1056,12 @@ def MusictrackJ2D():
                 BeatsMap24.append(i * 24)
             finally:
                 i+=1
-
-        # ubiArtTime (por: planedec50, WodsonKun)
-        def ubiArtTime(jsonTimeValue, parse):
-            if (genNewBeats == "y") or (genNewBeats == "Y"): # Se novas beats tenham sido geradas...
-                if bool(parse):
-                    return int(numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0)) # Caso seja "verdadeiro", ele faz a interpolação dos valores e retorna os mesmos
-                elif not bool(parse):
-                    return numpy.interp(jsonTimeValue, NewBeats, BeatsMap24, 0) 
-            if (genNewBeats == "n") or (genNewBeats == "N"):
-                if bool(parse):
-                    return int(numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0))
-                elif not bool(parse):
-                    return numpy.interp(jsonTimeValue, jsonBeatData, BeatsMap24, 0)
-
+        
         # Multiplica as beats por 48
         def multiplyBeats(number):
             return number * 48
-        multipliedBeats48 = map(multiplyBeats, NewBeats)
-        arrMultipliedBeats48 = list(multipliedBeats48)
+            arrMultipliedBeats48 = list(map(multiplyBeats, NewBeats))
+            arq.write(str(arrMultipliedBeats48)) # Insere as beats multiplicadas em uma variável
         arq.write(str(arrMultipliedBeats48)) # Insere as beats multiplicadas em uma variável
         
         # Se for um valor do Vitality School...
@@ -1028,12 +1079,34 @@ def MusictrackJ2D():
             finally:
                 i+=1
         
-        # Multiplica as beats por 48
-        def multiplyBeats(number):
-            return number * 48
-        multipliedBeats48 = map(multiplyBeats, jsonBeatData)
-        arrMultipliedBeats48 = list(multipliedBeats48)
-        arq.write(str(arrMultipliedBeats48)) # Insere as beats multiplicadas em uma variável
+        # Faz o cálculo necessário para as beats
+        if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja um JSON do Vitality School...
+            NewBeats = [] # Cria um array para as beats novas, já que converter as normais direto do JSON resulta em valores absurdos
+            bpminit = jsonBeatData[30] - jsonBeatData[29] # Faz o cálculo inicial do BPM, diminuindo o valor de uma beat por outra (Nota: isso não dá o BPM exato, pois há chance da música ter Tempo Change)
+            bpm = float(60000 / bpminit) # Faz o cálculo do BPM, dividindo 60000 pelo valor, dando o BPM (como float, para ser mais exato)
+            beat = int(round(60000/bpm)) # Faz o valor final, dividindo 60000 pelo valor do BPM, iniciando a sequência de beats
+            gerados = 0
+            quantidade = len(jsonBeatData)
+            while (gerados <= quantidade): # Gera os beats novos
+                if gerados == quantidade:
+                    gerados = gerados +1
+                    NewBeats.append(beat*gerados)
+                else:
+                    gerados = gerados +1
+                    NewBeats.append(beat*gerados)
+            
+            def multiplyBeats(number):
+                return number * 48
+            arrMultipliedBeats48 = list(map(multiplyBeats, NewBeats)) # Multiplica e insere as beats multiplicadas em um array
+            if (arrMultipliedBeats48 != 0): # Caso a primeira beat não seja 0...
+                arrMultipliedBeats48.insert(0, 0) # Insere uma beat de valor 0 no início do array
+            arq.write(str(arrMultipliedBeats48))
+        
+        elif (QVSJSON == "N") or (QVSJSON == "n"):
+            def multiplyBeats(number):
+                return number * 48
+            arrMultipliedBeats48 = list(map(multiplyBeats, jsonBeatData))
+            arq.write(str(arrMultipliedBeats48)) # Insere as beats multiplicadas em uma variável
         
         # Se for um valor do Vitality School...
         if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja, divide os valores por 48, fazendo o processo reverso para ficarem legíveis ao jogo
@@ -1178,40 +1251,116 @@ def PictosSpriteJ2D():
 if __name__=='__main__':
     while(True):
         os.system('cls')
-        print("E aí? Bem vindo ao JSON2DTAPE do WodsonKun!")
-        print("Créditos a: planedec50, augustodoidin")
-        print("Selecione uma opção:")
+        print("How're you doing?")
+        print("Welcome to WodsonKun's JSON2DTAPE!")
+        print("Credits to: planedec50, augustodoidin")
+        print("Select a option:")
         print("-----------------------------")
-        print("[1] Gere uma songdesc através de um JSON")
-        print("[2] Gere um KTAPE através de um JSON")
-        print("[3] Gere um DTAPE através de um JSON")
-        print("[4] Gere um Musictrack através de um JSON")
-        print("[5] Cortar pictos-atlas (Now (novo) / Vitality School)")
-        print("[6] Cortar pictos-sprite (Now (velho))")
-        print("[7] Sair do JSON2DTAPE")
+        print("[1] Generate a songdesc from a JSON")
+        print("[2] Generate a KTAPE from a JSON")
+        print("[3] Generate a DTAPE from a JSON")
+        print("[4] Generate a musictrack from a JSON")
+        print("[5] Cut pictos-atlas (Now [New] / Vitality School)")
+        print("[6] Cut pictos-sprite (Now [Old])")
+        print("[7] Converts everything at once")
+        print("[8] Exits the JSON2DTAPE")
         print("-----------------------------")
         
         option = ''
         try:
-            option = int(input('Escolha sua opção: '))
+            option = int(input('Choose your option: '))
         except:
-            print('Opção inválida! Por favor, escolha uma opção válida')
+            print('')
         #Check what choice was entered and act accordingly
         if option == 1:
-            SongDescJ2D()
+            # Inicializa o Tkinter (para usar o seletor de arquivos)
+            openFile = Tk()
+            openFile.title('')
+            
+            # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
+            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+                
+            # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
+            openFile.destroy()
+            
+            # Do everything at once (Songdesc, DTAPE, KTAPE, Musictrack and pictos)
+            SongDescJ2D(mainjson)
+            
         if option == 2:
-            KTAPEJ2D()
+            # Inicializa o Tkinter (para usar o seletor de arquivos)
+            openFile = Tk()
+            openFile.title('')
+            
+            # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
+            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+                
+            # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
+            openFile.destroy()
+            
+            # Do everything at once (Songdesc, DTAPE, KTAPE, Musictrack and pictos)
+            KTAPEJ2D(mainjson)
         if option == 3:
-            DTAPEJ2D()
+            # Inicializa o Tkinter (para usar o seletor de arquivos)
+            openFile = Tk()
+            openFile.title('')
+            
+            # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
+            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+                
+            # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
+            openFile.destroy()
+            
+            # Do everything at once (Songdesc, DTAPE, KTAPE, Musictrack and pictos)
+            DTAPEJ2D(mainjson)
+            
         if option == 4:
-            MusictrackJ2D()
+            # Inicializa o Tkinter (para usar o seletor de arquivos)
+            openFile = Tk()
+            openFile.title('')
+            
+            # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
+            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+                
+            # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
+            openFile.destroy()
+            
+            # Do everything at once (Songdesc, DTAPE, KTAPE, Musictrack and pictos)
+            MusictrackJ2D(mainjson)
+            
         if option == 5:
             PictosAtlasJ2D()
+            
         if option == 6:
             PictosSpriteJ2D()
+            
         if option == 7:
-            print('Obrigado por usar nosso JSON2DTAPE!')
+            # Inicializa o Tkinter (para usar o seletor de arquivos)
+            openFile = Tk()
+            openFile.title('')
+            
+            # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
+            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+                
+            # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
+            openFile.destroy()
+            
+            # Do everything at once (Songdesc, DTAPE, KTAPE, Musictrack and pictos)
+            SongDescJ2D(mainjson)
+            DTAPEJ2D(mainjson)
+            KTAPEJ2D(mainjson)
+            MusictrackJ2D(mainjson)
+            QPictoType = int(input("Pictos-Atlas ou Pictos-Sprite (1 = Atlas / 2 = Sprite / 3 = None)?: "))
+            if (QPictoType == 1):
+                PictosAtlasJ2D()
+            elif (QPictoType == 2):
+                PictosSpriteJ2D()
+            elif (QPictoType == 3):
+                pass
+        
+        if option == 8:
+            print('Thanks for using our JSON2DTAPE!')
             time.sleep(2)
             exit()
+        
         else:
-            print('Opção inválida! Por favor, escolha uma opção válida')
+            print('Wrong option! Please, choose a valid option')
