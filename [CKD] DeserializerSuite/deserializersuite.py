@@ -358,8 +358,9 @@ def dec_tml(tml_file):
     except:
         pass # Caso a pasta já exista, ele não faz nada
     
-    # Loads the DTAPE
-    dtapejson = json.load(open("raw_dtape.dec", "r"))
+    # Loads the old DTAPE into memory and then deletes it
+    dtapejson = json.load(open(dtape, "r"))
+    os.remove(dtape)
     
     # Fixes CoachId issue
     oldcoachid = []
@@ -392,16 +393,13 @@ def dec_tml(tml_file):
         if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
             mv['CoachId'] = gestfixcoachid[mv['CoachId']]
     
-    fixdtape = open("raw_fixed_dtape.dec", "w")
+    fixdtape = open("raw_dtape.dec", "w")
     fixdtape.write(str(dtapejson).replace("'", '"'))
     fixdtape.close()
     
-    # Delete old DTAPE
-    os.remove("raw_dtape.dec")
-    
     # Moves DTAPE and KTAPE to output folder
     shutil.move("raw_ktape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_karaoke.ktape.ckd")
-    shutil.move("raw_fixed_dtape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_dance.dtape.ckd")
+    shutil.move("raw_dtape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_dance.dtape.ckd")
 
 def dec_dtape():
     # Inicializa o Tkinter (para usar o seletor de arquivos)
