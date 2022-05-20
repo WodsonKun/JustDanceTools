@@ -7,29 +7,49 @@ try:
     os.mkdir('output')
 except:
     pass
-
+'''
 # DTAPE and KTAPE (from Just Dance 2014 and Just Dance 2015)
-def dec_tml_14():
-    # Inicializa o Tkinter (para usar o seletor de arquivos)
-    openFile = Tk()
-    openFile.title('')
+def dec_tml_14(tml_file):
+    tml_json = dec_tml(tml_file)
     
-    # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    tml_file = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Timeline file", filetypes=[("Timeline (.tpl.ckd)", "timeline.tpl.ckd")] )
+    oldcoachid = []
+    fixcoachid = {}
+    gestoldcoachid = []
+    gestfixcoachid = {}
+    for mv in tml_json[0]['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 0):
+            if(mv['CoachId'] not in oldcoachid):
+                oldcoachid.append(mv['CoachId'])
+    oldcoachid = sorted(oldcoachid, key=int)
+    
+    for x in range(len(oldcoachid)):
+        fixcoachid.update({oldcoachid[x]: x})
         
-    # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
-    openFile.destroy()
+    for mv in tml_json[0]['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 0):
+            mv['CoachId'] = fixcoachid[mv['CoachId']]
+            
+    for mv in tml_json[0]['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
+            if(mv['CoachId'] not in gestoldcoachid):
+                gestoldcoachid.append(mv['CoachId'])
+    gestoldcoachid = sorted(gestoldcoachid, key=int)
     
+    for x in range(len(gestoldcoachid)):
+        gestfixcoachid.update({gestoldcoachid[x]: x})
+        
+    for mv in tml_json[0]['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
+            mv['CoachId'] = gestfixcoachid[mv['CoachId']]
+    return tml_json
+'''
+def dec_tml(tml_file):
     f = open(tml_file, "rb")
     f.read(56)
     mapnamelenght = struct.unpack('>I',f.read(4))[0]
     mapname = f.read(mapnamelenght).decode("utf-8")
     f.read(76)
     entries = struct.unpack('>I',f.read(4))[0]
-    
-    # Ask if it is a Solo, Duet, Trio or Quartet routine
-    NumCoachDT = int(input("How many coaches the song has (1, 2, 3, 4): "))
-    
     for e in range(entries):
         e_entryoffset = struct.unpack('>I',f.read(4))[0]
         e_unknown1 = struct.unpack('>I',f.read(4))[0]
@@ -110,33 +130,7 @@ def dec_tml_14():
         dtape.write('"Duration":' + str(entry_duration) + ',')
         dtape.write('"ClassifierPath":"' + me_movepath.replace("jd5", "maps") + me_movefile + '",')
         dtape.write('"GoldMove":' + str(me_goldmove) + ',')
-        try:
-            if (NumCoachDT == 1):
-                if (me_coachid == 2):
-                    dtape.write('"CoachId": 0,')
-            elif (NumCoachDT == 2):
-                if (me_coachid == 1):
-                    dtape.write('"CoachId": 0,')
-                if (me_coachid == 3):
-                    dtape.write('"CoachId": 1,')
-            elif (NumCoachDT == 3):
-                if (me_coachid == 1):
-                    dtape.write('"CoachId": 0,')
-                if (me_coachid == 2):
-                    dtape.write('"CoachId": 1,')
-                if (me_coachid == 3):
-                    dtape.write('"CoachId": 2,')
-            elif (NumCoachDT == 4):
-                if (me_coachid == 1):
-                    dtape.write('"CoachId": 0,')
-                if (me_coachid == 3):
-                    dtape.write('"CoachId": 1,')
-                if (me_coachid == 5):
-                    dtape.write('"CoachId": 2,')
-                if (me_coachid == 7):
-                    dtape.write('"CoachId": 3,')
-        except:
-            dtape.write('"CoachId":' + str(me_coachid) + ',')
+        dtape.write('"CoachId":' + str(me_coachid) + ',')
         dtape.write('"MoveType":0,')
         dtape.write('"Color":[')
         dtape.write('1,')
@@ -354,7 +348,7 @@ def dec_tml_14():
     dtape.write('"TapeBarCount":1,')
     dtape.write('"FreeResourcesAfterPlay":0,')
     dtape.write('"MapName":"' + mapname + '"')
-    dtape.write('}')  
+    dtape.write('}') 
     dtape.close()
     f.close()
     
@@ -364,9 +358,50 @@ def dec_tml_14():
     except:
         pass # Caso a pasta já exista, ele não faz nada
     
+    # Loads the DTAPE
+    dtapejson = json.load(open("raw_dtape.dec", "r"))
+    
+    # Fixes CoachId issue
+    oldcoachid = []
+    fixcoachid = {}
+    gestoldcoachid = []
+    gestfixcoachid = {}
+    for mv in dtapejson['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 0):
+            if(mv['CoachId'] not in oldcoachid):
+                oldcoachid.append(mv['CoachId'])
+    oldcoachid = sorted(oldcoachid, key=int)
+    
+    for x in range(len(oldcoachid)):
+        fixcoachid.update({oldcoachid[x]: x})
+        
+    for mv in dtapejson['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 0):
+            mv['CoachId'] = fixcoachid[mv['CoachId']]
+            
+    for mv in dtapejson['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
+            if(mv['CoachId'] not in gestoldcoachid):
+                gestoldcoachid.append(mv['CoachId'])
+    gestoldcoachid = sorted(gestoldcoachid, key=int)
+    
+    for x in range(len(gestoldcoachid)):
+        gestfixcoachid.update({gestoldcoachid[x]: x})
+        
+    for mv in dtapejson['Clips']:
+        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
+            mv['CoachId'] = gestfixcoachid[mv['CoachId']]
+    
+    fixdtape = open("raw_fixed_dtape.dec", "w")
+    fixdtape.write(str(dtapejson).replace("'", '"'))
+    fixdtape.close()
+    
+    # Delete old DTAPE
+    os.remove("raw_dtape.dec")
+    
     # Moves DTAPE and KTAPE to output folder
     shutil.move("raw_ktape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_karaoke.ktape.ckd")
-    shutil.move("raw_dtape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_dance.dtape.ckd")
+    shutil.move("raw_fixed_dtape.dec", "output" + "//" + mapname + "//" + mapname.lower() + "_tml_dance.dtape.ckd")
 
 def dec_dtape():
     # Inicializa o Tkinter (para usar o seletor de arquivos)
@@ -1174,7 +1209,18 @@ if __name__=='__main__':
         if option == 2:
             VerQuestion = int(input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): '))
             if (VerQuestion == 2014):
-                dec_tml_14()
+                # Inicializa o Tkinter (para usar o seletor de arquivos)
+                openFile = Tk()
+                openFile.title('')
+                
+                # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
+                tml_file = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Timeline file", filetypes=[("Timeline (.tpl.ckd)", "timeline.tpl.ckd")] )
+                    
+                # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
+                openFile.destroy()
+                
+                # Starts deserializing
+                dec_tml(tml_file)
             elif (VerQuestion == 2015):
                 dec_dtape()
                 dec_ktape()
