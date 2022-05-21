@@ -93,7 +93,7 @@ def SongDescJ2D(mainjson):
         arq.write('"coach1": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_1_phone.png", "coach2": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_2_phone.png"')
     elif (jsonNumCoach == "Trio" or jsonNumCoach == 3):
         arq.write('"coach1": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_1_phone.png", "coach2": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_2_phone.png", "coach3": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_3_phone.png"')
-    elif (jsonNumCoach == "Quartet" or jsonNumCoach == 4):
+    elif (jsonNumCoach == "Quartet" or jsonNumCoach == 4 or jsonNumCoach == "Quatuor"):
         arq.write('"coach1": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_1_phone.png", "coach2": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_2_phone.png", "coach3": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_3_phone.png", "coach4": "world/maps/' + jsonMapName.lower() + '/menuart/textures/' + jsonMapName.lower() + '_coach_4_phone.png"')
     arq.write('},')
     if (jsonNumCoach == "Solo" or jsonNumCoach == 1):
@@ -102,7 +102,7 @@ def SongDescJ2D(mainjson):
         arq.write('"NumCoach": ' + str(2) + ',')
     elif (jsonNumCoach == "Trio" or jsonNumCoach == 3):
         arq.write('"NumCoach": ' + str(3) + ',')
-    elif (jsonNumCoach == "Quartet" or jsonNumCoach == 4):
+    elif (jsonNumCoach == "Quartet" or jsonNumCoach == 4 or jsonNumCoach == "Quatuor"):
         arq.write('"NumCoach": ' + str(4) + ',')
     arq.write('"MainCoach": -1,')
     if (jsonDifficulty == "Easy" or jsonDifficulty == 1):
@@ -778,7 +778,7 @@ def DTAPEJ2D(mainjson):
             i += 1
     
     # Checa quantos coaches a música tem, e caso tenha quatro coaches, procura por seus moves e os converte
-    if (jsonNumCoach == "Quartet" or jsonNumCoach == 4):
+    if (jsonNumCoach == "Quartet" or jsonNumCoach == 4 or jsonNumCoach == "Quatuor"):
     
         # Inicializa o Tkinter (para pegar os JSONs usando o seletor de arquivos)
         openFile = Tk()
@@ -958,7 +958,7 @@ def DTAPEJ2D(mainjson):
             
             # Aumenta o valor de "i"
             i += 1
-    
+        
     dclips = dclips + ']'
     dclips = dclips.replace(",]","]")
     arq.write(dclips)
