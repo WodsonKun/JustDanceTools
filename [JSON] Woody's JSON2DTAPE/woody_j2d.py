@@ -276,30 +276,30 @@ def KTAPEJ2D(mainjson):
     i = 0
     clips = '['
     while i < len(jsonMainData['lyrics'][1:-1]):
-        clips = clips + '{"__class": "KaraokeClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-        clips = clips + str(ubiArtTime(jsonLyricData[i]['time'], True))
-        clips = clips + ',"Duration": '
-        clips = clips + str(ubiArtTime(jsonLyricData[i]['duration'], True))
+        clips += '{"__class": "KaraokeClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+        clips += str(ubiArtTime(jsonLyricData[i]['time'], True))
+        clips += ',"Duration": '
+        clips += str(ubiArtTime(jsonLyricData[i]['duration'], True))
         if (QVSJSON == "Y") or (QVSJSON == "y"):
             if (QPinYin == "Y") or (QPinYin == "y"):
                 if (jsonLyricData[i - 1]['isLineEnding'] == 1): 
-                    clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])).capitalize() + ' ","IsEndOfLine": '
+                    clips += ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])).capitalize() + ' ","IsEndOfLine": '
                 elif (jsonLyricData[i]['isLineEnding'] == 1): 
-                    clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + '","IsEndOfLine": '
+                    clips += ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + '","IsEndOfLine": '
                 else:
-                    clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + ' ","IsEndOfLine": '
+                    clips += ',"Pitch": 8.661958,"Lyrics": "' + unidecode.unidecode(pinyin_jyutping_sentence.pinyin(jsonLyricData[i]['text'])) + ' ","IsEndOfLine": '
             if (QPinYin == "N") or (QPinYin == "n"):
-                clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + jsonLyricData[i]['text'] + '","IsEndOfLine": '
+                clips += ',"Pitch": 8.661958,"Lyrics": "' + jsonLyricData[i]['text'] + '","IsEndOfLine": '
         else:
-            clips = clips + ',"Pitch": 8.661958,"Lyrics": "' + jsonLyricData[i]['text'] + '","IsEndOfLine": '
+            clips += ',"Pitch": 8.661958,"Lyrics": "' + jsonLyricData[i]['text'] + '","IsEndOfLine": '
         try:
-            clips = clips + str(jsonLyricData[i]['isLineEnding'])
+            clips += str(jsonLyricData[i]['isLineEnding'])
         except KeyError:
-            clips = clips + '0'
-        clips = clips + ',"ContentType": 0,"StartTimeTolerance": 4,"EndTimeTolerance": 4,"SemitoneTolerance": 5}'
-        clips = clips + ','
+            clips += '0'
+        clips += ',"ContentType": 0,"StartTimeTolerance": 4,"EndTimeTolerance": 4,"SemitoneTolerance": 5}'
+        clips += ','
         i += 1
-    clips = clips + ']'
+    clips += ']'
     clips = clips.replace(",]","]")
     arq.write(clips)
     
@@ -482,17 +482,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
         while i < len(jsonMoves0Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json0GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json0GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -500,12 +500,12 @@ def DTAPEJ2D(mainjson):
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
         while i < len(jsonMainData['pictos'][1:-1]):
-            dclips = dclips + '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['duration'], True))
-            dclips = dclips + ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
-            dclips = dclips + ','
+            dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['duration'], True))
+            dclips += ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
+            dclips += ','
             
             # Aumenta o valor de "i"
             i += 1
@@ -516,11 +516,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -553,17 +553,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
         while i < len(jsonMoves0Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json0GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json0GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -571,17 +571,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 2
         i = 0
         while i < len(jsonMoves1Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves1Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves1Data[i]['name'] + '.msm", '
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json1GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json1GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 1, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 1, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -589,12 +589,12 @@ def DTAPEJ2D(mainjson):
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
         while i < len(jsonMainData['pictos'][1:-1]):
-            dclips = dclips + '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['duration'], True))
-            dclips = dclips + ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
-            dclips = dclips + ','
+            dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['duration'], True))
+            dclips += ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
+            dclips += ','
             
             # Aumenta o valor de "i"
             i += 1
@@ -605,11 +605,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -622,11 +622,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -662,17 +662,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
         while i < len(jsonMoves0Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json0GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json0GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -680,17 +680,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 2
         i = 0
         while i < len(jsonMoves1Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves1Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves1Data[i]['name'] + '.msm", '
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json1GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json1GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 1, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 1, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -698,17 +698,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 3
         i = 0
         while i < len(jsonMoves2Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves2Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves2Data[i]['name'] + '.msm", '
             try:
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json2GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json2GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 2, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 2, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -716,12 +716,12 @@ def DTAPEJ2D(mainjson):
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
         while i < len(jsonMainData['pictos'][1:-1]):
-            dclips = dclips + '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['duration'], True))
-            dclips = dclips + ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
-            dclips = dclips + ','
+            dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['duration'], True))
+            dclips += ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
+            dclips += ','
             
             # Aumenta o valor de "i"
             i += 1
@@ -732,11 +732,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -749,11 +749,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -766,11 +766,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
                 if (json2GoldMove != "") or (json2GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -809,17 +809,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
         while i < len(jsonMoves0Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves0Data[i]['name'] + '.msm", '
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json0GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json0GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 0, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -827,17 +827,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 2
         i = 0
         while i < len(jsonMoves1Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves1Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves1Data[i]['name'] + '.msm", '
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json1GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json1GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 1, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 1, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -845,17 +845,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 3
         i = 0
         while i < len(jsonMoves2Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves2Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves2Data[i]['name'] + '.msm", '
             try:
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json2GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json2GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 2, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 2, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -863,17 +863,17 @@ def DTAPEJ2D(mainjson):
         # Faz um loop para escrever a estrutura de clips dos moves do Player 4
         i = 0
         while i < len(jsonMoves3Data[1:-1]):
-            dclips = dclips + '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonMoves3Data[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonMoves3Data[i]['duration'], True))
-            dclips = dclips + ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves3Data[i]['name'] + '.msm", '
+            dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
+            dclips += str(ubiArtTime(jsonMoves3Data[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonMoves3Data[i]['duration'], True))
+            dclips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMoves3Data[i]['name'] + '.msm", '
             try:
                 json3GoldMove = jsonMoves3Data[i]['goldMove']
-                dclips = dclips + '"GoldMove": ' + str(json3GoldMove) + ','
+                dclips += '"GoldMove": ' + str(json3GoldMove) + ','
             except KeyError:
-                dclips = dclips + '"GoldMove": 0,'
-            dclips = dclips + '"CoachId": 3, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                dclips += '"GoldMove": 0,'
+            dclips += '"CoachId": 3, "MoveType": 0, "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             
             # Aumenta o valor de "i"
             i += 1
@@ -881,12 +881,12 @@ def DTAPEJ2D(mainjson):
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
         while i < len(jsonMainData['pictos'][1:-1]):
-            dclips = dclips + '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['time'], True))
-            dclips = dclips + ',"Duration": '
-            dclips = dclips + str(ubiArtTime(jsonPictoData[i]['duration'], True))
-            dclips = dclips + ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
-            dclips = dclips + ','
+            dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
+            dclips += ',"Duration": '
+            dclips += str(ubiArtTime(jsonPictoData[i]['duration'], True))
+            dclips += ',"PictoPath": "world/maps/' + jsonMapName.lower() + '/timeline/pictos/' + jsonPictoData[i]['name'] + '.tga", "MontagePath": "", "AtlIndex": 4294967295, "CoachCount": 4294967295}'
+            dclips += ','
             
             # Aumenta o valor de "i"
             i += 1
@@ -897,11 +897,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -914,11 +914,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -931,11 +931,11 @@ def DTAPEJ2D(mainjson):
             try:
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
                 if (json2GoldMove != "") or (json2GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
@@ -948,18 +948,18 @@ def DTAPEJ2D(mainjson):
             try:
                 json3GoldMove = jsonMoves3Data[i]['goldMove']
                 if (json3GoldMove != "") or (json3GoldMove != 0):
-                    dclips = dclips + '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves3Data[i]['time'], True))
-                    dclips = dclips + ',"Duration": '
-                    dclips = dclips + str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 12)
-                    dclips = dclips + ',"EffectType": 1},'
+                    dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                    dclips += str(ubiArtTime(jsonMoves3Data[i]['time'], True))
+                    dclips += ',"Duration": '
+                    dclips += str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 12)
+                    dclips += ',"EffectType": 1},'
             except:
                 pass
             
             # Aumenta o valor de "i"
             i += 1
         
-    dclips = dclips + ']'
+    dclips += ']'
     dclips = dclips.replace(",]","]")
     arq.write(dclips)
         
@@ -1122,7 +1122,7 @@ def MusictrackJ2D(mainjson):
  
 # Corta pictos-atlas e os converte para TGA.CKD
 def PictosAtlasJ2D():
-    # Código original por mishok, adaptado levemente para uso em conjunto com a ferramenta por WodsonKun
+    # Código original por JDEliot, adaptado levemente para uso em conjunto com a ferramenta por WodsonKun
     # Inicializa o Tkinter novamente (para usar o seletor de arquivos)
     openFile = Tk()
     openFile.title('')
@@ -1137,6 +1137,9 @@ def PictosAtlasJ2D():
     # Lê o codename do JSON principal
     jsonMapName = input(str("Digite o codename da música: "))
     
+    # Pergunta quantos coaches são
+    #jsonNumCoach = input(int("Digite o número de coaches: "))
+    
     # Criar uma pasta para armazenar os pictos
     try:
         os.makedirs('output/' + jsonMapName + '/pictos')
@@ -1145,34 +1148,18 @@ def PictosAtlasJ2D():
     except:
         pass
     
-    # Abre o JSON e o PNG do pictos-atlas
-    with open(picatls_json) as raw:
-        jsonData = json.load(raw)
-    fp = open(picatls_png,"rb")
-    pngLoad = Image.open(fp)
+    with open(picatls_json) as f:
+        jsonData = json.load(f)
+    sprite = Image.open(open(picatls_png,"rb"))
+    pictoWidth = jsonData["imageSize"]["width"]
+    pictoHeight = jsonData["imageSize"]["height"]
     
-    # Informações dos pictos-atlas
-    totalPictos = len(jsonData['images'])
-    pictosList = list(jsonData['images'])
-    widthSize = jsonData['imageSize']['width']
-    heigthSize = jsonData['imageSize']['height']
-
-    running = True
-    cP = 0
-    while running:
-        if cP < totalPictos:
-            cXY = jsonData['images'][pictosList[cP]]
-            left = cXY[0]
-            top = cXY[1]
-            right = cXY[0] + widthSize
-            bottom = cXY[1] + heigthSize
-            cropped_example = pngLoad.crop((left, top, right, bottom))
-            cropped_example.save('tmp_output/pictos_png/' + pictosList[cP] + ".png")
-        else:
-            running = False
-
-        cP += 1
-        pass
+    for picto in list(jsonData["images"]):
+        x1 = jsonData["images"][picto][0]
+        y1 = jsonData["images"][picto][1]
+        x2 = x1 + pictoWidth
+        y2 = y1 + pictoHeight
+        sprite.crop((x1, y1, x2, y2)).save(f"tmp_output/pictos_png/{picto}.png")
     
     # Converte os pictogramas de PNG para DDS
     for pictopng in os.listdir('tmp_output/pictos_png/'):
@@ -1187,7 +1174,7 @@ def PictosAtlasJ2D():
 
 # Corta pictos-sprite e os converte para TGA.CKD
 def PictosSpriteJ2D():
-    # Código original por icebb, adaptado levemente para uso em conjunto com a ferramenta por WodsonKun
+    # Código original por JDEliot, adaptado levemente para uso em conjunto com a ferramenta por WodsonKun
     # Inicializa o Tkinter novamente (para usar o seletor de arquivos)
     openFile = Tk()
     openFile.title('')
@@ -1200,7 +1187,10 @@ def PictosSpriteJ2D():
     openFile.destroy()
     
     # Lê o codename do JSON principal
-    jsonMapName = input(str("Digite o codename da música: "))
+    jsonMapName = str(input("Digite o codename da música: "))
+    
+    # Pergunta quantos coaches são
+    jsonNumCoach = int(input("Digite o número de coaches: "))
     
     # Criar uma pasta para armazenar os pictos
     try:
@@ -1213,29 +1203,23 @@ def PictosSpriteJ2D():
     # Abre o PNG do pictos-sprite
     picsprt_img = Image.open(picsprt_png)
     
-    # Informações dos pictos a serem cortados
-    manypictos = picsprt_img.size[0] / 256
-    width, height = picsprt_img.size
-    
-    # Valores padrão
-    left = 0
-    top = height - 256
-    right = 256
-    bottom = 2 * height - 256
-    
-    # Abre o CSS e corta os pictos
-    i = 0
-    for line in open(picsprt_css):
-        while ((line[(i - 1):i]) == "{") == False:
-            i += 1
-        if ((line[(i - 1):i]) == "{") == True:
-            i -= 1
-            picto = (line[7:i])
-            i = 0
-            cropped_picto = picsprt_img.crop((left, top, right, bottom))
-            cropped_picto.save('tmp_output/pictos_png/' + picto + '.png')
-            left += 256
-            right += 256
+    # Corta os pictos
+    if jsonNumCoach > 1:
+        y1 = 40
+        x1 = 217
+    else:
+        y1 = 0
+        x1 = 256
+    x = 256
+    y = 0
+    for picto in open(picsprt_css):
+        pictoName = picto.split("-")[1].split("{")[0]
+        picto = picsprt_img.crop((y,y1,x,x1))
+        y = y + 256
+        x = x + 256
+        if (jsonNumCoach > 1):
+            picto = picto.resize((256,256))
+        picto.save("tmp_output/pictos_png/" + pictoName + ".png")
     
     # Converte os pictogramas de PNG para DDS
     for pictopng in os.listdir('tmp_output/pictos_png/'):
