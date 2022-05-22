@@ -2,47 +2,6 @@ import os, sys, io, time, json, struct, pathlib, shutil
 from tkinter import *
 from tkinter import filedialog
 
-# Creates the output folder (only if doesn't exists)
-try:
-    os.mkdir('output')
-except:
-    pass
-'''
-# DTAPE and KTAPE (from Just Dance 2014 and Just Dance 2015)
-def dec_tml_14(tml_file):
-    tml_json = dec_tml(tml_file)
-    
-    oldcoachid = []
-    fixcoachid = {}
-    gestoldcoachid = []
-    gestfixcoachid = {}
-    for mv in tml_json[0]['Clips']:
-        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 0):
-            if(mv['CoachId'] not in oldcoachid):
-                oldcoachid.append(mv['CoachId'])
-    oldcoachid = sorted(oldcoachid, key=int)
-    
-    for x in range(len(oldcoachid)):
-        fixcoachid.update({oldcoachid[x]: x})
-        
-    for mv in tml_json[0]['Clips']:
-        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 0):
-            mv['CoachId'] = fixcoachid[mv['CoachId']]
-            
-    for mv in tml_json[0]['Clips']:
-        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
-            if(mv['CoachId'] not in gestoldcoachid):
-                gestoldcoachid.append(mv['CoachId'])
-    gestoldcoachid = sorted(gestoldcoachid, key=int)
-    
-    for x in range(len(gestoldcoachid)):
-        gestfixcoachid.update({gestoldcoachid[x]: x})
-        
-    for mv in tml_json[0]['Clips']:
-        if(mv['__class'] == "MotionClip" and mv['MoveType'] == 1):
-            mv['CoachId'] = gestfixcoachid[mv['CoachId']]
-    return tml_json
-'''
 def dec_tml(tml_file):
     f = open(tml_file, "rb")
     f.read(56)
@@ -407,7 +366,7 @@ def dec_dtape():
     openFile.title('')
     
     # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    dtapefile = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your DTAPE file", filetypes=[("DTAPE (.ktape.ckd)", "*.dtape.ckd")] )
+    dtapefile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your DTAPE file", filetypes=[("DTAPE (.ktape.ckd)", "*.dtape.ckd")] )
     
     # Abre e lê o JSON
     f = open(dtapefile, "rb")
@@ -603,7 +562,7 @@ def dec_ktape():
     openFile.title('')
     
     # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    ktapefile = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your KTAPE file", filetypes=[("KTAPE (.ktape.ckd)", "*.ktape.ckd")] )
+    ktapefile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your KTAPE file", filetypes=[("KTAPE (.ktape.ckd)", "*.ktape.ckd")] )
     
     # Abre e lê o JSON
     f = open(ktapefile, "rb")
@@ -712,7 +671,7 @@ def dec_sd_14():
     openFile.title('')
     
     # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    sdfile = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Songdesc file", filetypes=[("Songdesc (.tpl.ckd)", "*.tpl.ckd")] )
+    sdfile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Songdesc file", filetypes=[("Songdesc (.tpl.ckd)", "*.tpl.ckd")] )
     
     # Abre e lê o JSON
     f = open(sdfile, "rb")
@@ -793,7 +752,7 @@ def dec_sd_15():
     openFile.title('')
     
     # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    sdfile = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Songdesc file", filetypes=[("Songdesc (.tpl.ckd)", "*.tpl.ckd")] )
+    sdfile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Songdesc file", filetypes=[("Songdesc (.tpl.ckd)", "*.tpl.ckd")] )
     
     # Abre e lê o JSON
     f = open(sdfile, "rb")
@@ -881,7 +840,7 @@ def dec_mt_14():
     openFile.title('')
     
     # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    mt_file = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Musictrack file", filetypes=[("Musictrack (.tpl.ckd)", "*.tpl.ckd")] )
+    mt_file = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Musictrack file", filetypes=[("Musictrack (.tpl.ckd)", "*.tpl.ckd")] )
     
     # Abre e lê o JSON
     f = open(mt_file, "rb")
@@ -1028,7 +987,7 @@ def dec_mt_15():
     openFile.title('')
     
     # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-    mt_file = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Musictrack file", filetypes=[("Musictrack (.tpl.ckd)", "*.tpl.ckd")] )
+    mt_file = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Musictrack file", filetypes=[("Musictrack (.tpl.ckd)", "*.tpl.ckd")] )
     
     # Abre e lê o JSON
     f = open(mt_file, "rb")
@@ -1040,10 +999,7 @@ def dec_mt_15():
     MTMapName = str(input('Type the codename of the song: '))
     
     # Creates output folder
-    try:
-        os.mkdir("output//" + MTMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
+    os.makedirs("output//" + MTMapName, exist_ok=True)
     
     arq = open("output" + "//" + MTMapName + "//" + MTMapName.lower() + "_musictrack.tpl.ckd", "w")
     arq.write('{')
@@ -1178,7 +1134,8 @@ def dec_mt_15():
     arq.close()
     f.close()
 
-if __name__=='__main__':
+if __name__ == '__main__':
+    os.makedirs('output', exist_ok=True)
     while(True):
         os.system('cls')
         print("                                          Welcome to WodsonKun's DeserializerSuite!")
@@ -1192,45 +1149,43 @@ if __name__=='__main__':
         print("\n\n\nNote: This tool supports the following games:\n - Just Dance 2014\n - Just Dance Wii U\n - Just Dance Yo-Kai: Special Edition\n - Just Dance 2015\n - Just Dance 2015 (China)")
         print("-----------------------------")
         
-        option = ''
-        try:
-            option = int(input('Enter your choice: '))
-        except:
-            print('Wrong input. Please enter a number ...')
+        option = input('Enter your choice: ')
+
         #Check what choice was entered and act accordingly
-        if option == 1:
-            VerQuestion = int(input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): '))
-            if (VerQuestion == 2014):
+        if option == "1":
+            VerQuestion = input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): ')
+            if (VerQuestion == "2014"):
                 dec_sd_14()
-            elif (VerQuestion == 2015):
+            elif (VerQuestion == "2015"):
                 dec_sd_15()
-        if option == 2:
-            VerQuestion = int(input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): '))
-            if (VerQuestion == 2014):
+        if option == "2":
+            VerQuestion = input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): ')
+            if (VerQuestion == "2014"):
                 # Inicializa o Tkinter (para usar o seletor de arquivos)
                 openFile = Tk()
                 openFile.title('')
                 
                 # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-                tml_file = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Timeline file", filetypes=[("Timeline (.tpl.ckd)", "timeline.tpl.ckd")] )
+                tml_file = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your Timeline file", filetypes=[("Timeline (.tpl.ckd)", "timeline.tpl.ckd")] )
                     
                 # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
                 openFile.destroy()
                 
                 # Starts deserializing
                 dec_tml(tml_file)
-            elif (VerQuestion == 2015):
+            elif (VerQuestion == "2015"):
                 dec_dtape()
                 dec_ktape()
-        if option == 3:
-            VerQuestion = int(input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): '))
-            if (VerQuestion == 2014):
+        if option == "3":
+            VerQuestion = input('Are you deserializing from Just Dance 2014 or Just Dance 2015? (2014 or 2015): ')
+            if (VerQuestion == "2014"):
                 dec_mt_14()
-            elif (VerQuestion == 2015):
+            elif (VerQuestion == "2015"):
                 dec_mt_15()
-        if option == 4:
+        if option == "4":
             print('Thanks for using our decryptor!')
             time.sleep(2)
             exit()
         else:
             print('Invalid option. Please enter a number between 1 and 8.')
+            time.sleep(1)
