@@ -1,0 +1,4 @@
+unidecode
+numpy
+Pillow
+pinyin_jyutping_sentence

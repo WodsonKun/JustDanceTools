@@ -1,5 +1,3 @@
-
-
 # WEBM Converter (PC, Nintendo Wii U and Just Dance Unlimited)
 This tool converts usual video formats to the following games:
 - Just Dance 2014 (Nintendo Wii U)
@@ -11,16 +9,12 @@ This tool converts usual video formats to the following games:
 
 Note: ***WAV.CKD*** audio is only compatible with **Just Dance 2017** (PC)
 
-## Instructions
+## How to use
+- Place ``FFmpeg`` and ``mkclean``'s binaries inside the ``bin`` folder
 - Open `NoHUDTool.exe`
 The interface is simple to use, just click on what you want it to do and press "Convert"
 
-**Note: As I wrote the tool for personal use, I wrote the whole UI in Portuguese (Brazilian) instead of English, so if you have any issue understanding, use Google Translate until I update the tool**
-
-### Little trick...
-Rename a audio file's extension to `.avi` and put it on the tool
-
-The tool will generate a WAV.CKD from that ".avi"
+**Note: As I wrote the tool for personal use, I wrote the whole UI in Portuguese (Brazilian) instead of English, so wait for a update**
 
 ## To-do
 - Add support for **Nintendo Wii**'s WEBMs and WAV.CKD format
@@ -30,11 +24,13 @@ The tool will generate a WAV.CKD from that ".avi"
 
 ## Requirements
 - Python 3+
-- DirectPlay (Windows add-on)
+- DirectPlay
+- FFmpeg
+- mkclean
 
 ## Credits
-[Eliott · GitHub](https://github.com/JDEliot)
+[JDEliot · GitHub](https://github.com/JDEliot) | WAV.CKD Python conversion code
 
-[FFmpeg · GitHub](https://github.com/FFmpeg)
+[FFmpeg · GitHub](https://github.com/FFmpeg) | Video convertion
 
-[foundation-source/mkclean · GitHub](https://github.com/Matroska-Org/foundation-source/tree/master/mkclean)
+[foundation-source/mkclean · GitHub](https://github.com/Matroska-Org/foundation-source/tree/master/mkclean) | WEBM Cleaning
