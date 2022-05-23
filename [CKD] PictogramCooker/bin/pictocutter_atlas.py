@@ -7,6 +7,8 @@ def cutAtlas(pngFile, jsonFile, output):
 	sprite = PIL.Image.open(pngFile)
 	pictoWidth = atlas["imageSize"]["width"]
 	pictoHeight = atlas["imageSize"]["height"]
+	if sprite.width != pictoWidth * 7:
+		sprite = sprite.resize(pictoWidth * 7, round(sprite.height * (pictoWidth * 7 / sprite.width)))
 	for picto in atlas["images"]:
 		print(picto)
 		x1 = atlas["images"][picto]["width"]
