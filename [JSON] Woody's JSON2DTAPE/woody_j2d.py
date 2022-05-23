@@ -78,10 +78,7 @@ def SongDescJ2D(mainjson):
         json2BColor = "0xFF777777"
     
     # Cria a pasta com o codenome da música
-    try:
-        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
+    os.makedirs("output//" + jsonMapName, exist_ok=True) # Cria uma pasta com o codename da música do JSON
     
     # Começa a escrever a songdesc (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
     arq = open("output" + "//" + jsonMapName + "//songdesc.tpl.ckd", "w", encoding='utf-8')
@@ -143,10 +140,7 @@ def KTAPEJ2D(mainjson):
     jsonLyricData = jsonMainData['lyrics']
     
     # Cria a pasta com o codenome da música
-    try:
-        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
+    os.makedirs("output//" + jsonMapName, exist_ok=True) # Cria uma pasta com o codename da música do JSON
     
     # Escreve um array para colocar as beats emendadas
     BeatsMap24 = []
@@ -326,10 +320,7 @@ def DTAPEJ2D(mainjson):
     totalPictos = len(jsonPictoData)
     
     # Cria a pasta com o codenome da música
-    try:
-        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
+    os.makedirs("output//" + jsonMapName, exist_ok=True) # Cria uma pasta com o codename da música do JSON
     
     # Pergunta se é um JSON do Vitality School
     QVSJSON = input(str("É um JSON do Vitality School? (Y ou N): "))
@@ -467,7 +458,7 @@ def DTAPEJ2D(mainjson):
         openFile.title('')
         
         # Procura os JSONs de Moves0 e Moves1
-        Moves0JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
+        Moves0JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
         
         # Lê os JSONs de Moves0 e Moves1
         with open(Moves0JSON, "r", encoding='utf-8') as raw:
@@ -535,8 +526,8 @@ def DTAPEJ2D(mainjson):
         openFile.title('')
         
         # Procura os JSONs de Moves0 e Moves1
-        Moves0JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
-        Moves1JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves1 JSON (.json)", "*.json")] )
+        Moves0JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
+        Moves1JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves1 JSON (.json)", "*.json")] )
         
         # Lê os JSONs de Moves0 e Moves1
         with open(Moves0JSON, "r", encoding='utf-8') as raw:
@@ -641,9 +632,9 @@ def DTAPEJ2D(mainjson):
         openFile.title('')
         
         # Procura os JSONs de Moves0, Moves1 e Moves2
-        Moves0JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
-        Moves1JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves1 JSON (.json)", "*.json")] )
-        Moves2JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves2 JSON (.json)", "*.json")] )
+        Moves0JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
+        Moves1JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves1 JSON (.json)", "*.json")] )
+        Moves2JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves2 JSON (.json)", "*.json")] )
         
         # Lê os JSONs de Moves0 e Moves1
         with open(Moves0JSON, "r", encoding='utf-8') as raw:
@@ -785,10 +776,10 @@ def DTAPEJ2D(mainjson):
         openFile.title('')
         
         # Procura os JSONs de Moves0, Moves1, Moves2 e Moves3
-        Moves0JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
-        Moves1JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves1 JSON (.json)", "*.json")] )
-        Moves2JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves2 JSON (.json)", "*.json")] )
-        Moves3JSON = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves3 JSON (.json)", "*.json")] )
+        Moves0JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves0 JSON (.json)", "*.json")] )
+        Moves1JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves1 JSON (.json)", "*.json")] )
+        Moves2JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves2 JSON (.json)", "*.json")] )
+        Moves3JSON = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Moves3 JSON (.json)", "*.json")] )
         
         # Lê os JSONs de Moves0 e Moves1
         with open(Moves0JSON, "r", encoding='utf-8') as raw:
@@ -987,7 +978,7 @@ def MusictrackJ2D(mainjson):
         openFile.title('')
         
         # Procura o JSON de prévias do Vitality School (apenas ele é usado para gerar a musictrack)
-        songprevjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+        songprevjson = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu SongPreviewBeats JSON", filetypes=[("SongPreviewBeats JSON (.json)", "*_SongPreviewBeats.json")] )
         
         # Abre e lê o JSON (UTF-8-SIG, para idêntificação dos caracteres japoneses, chineses ou coreanos)
         with open(songprevjson, "r", encoding='utf-8-sig') as raw:
@@ -1007,10 +998,7 @@ def MusictrackJ2D(mainjson):
         jsonLoopEndData = len(jsonBeatData)
     
     # Cria uma pasta com o codename da música
-    try:
-        os.mkdir("output//" + jsonMapName) # Cria uma pasta com o codename da música do JSON
-    except:
-        pass # Caso a pasta já exista, ele não faz nada
+    os.makedirs("output//" + jsonMapName, exist_ok=True) # Cria uma pasta com o codename da música do JSON
     
     # Começa a escrever a musictrack (obrigatório usar utf-8, pois qualquer outro encoding quebra o jogo)
     arq = open("output" + "//" + jsonMapName + "//" + jsonMapName.lower() + "_musictrack.tpl.ckd", "w", encoding='utf-8')
@@ -1128,8 +1116,8 @@ def PictosAtlasJ2D():
     openFile.title('')
     
     # Procura os arquivos necessários para cortar o pictos-atlas
-    picatls_png = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione sua imagem pictos-atlas", filetypes=[("Pictos-Atlas (.png)", "*.png")] )
-    picatls_json = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON pictos-atlas", filetypes=[("JSON Pictos-Atlas (.json)", "*.json")] )
+    picatls_png = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione sua imagem pictos-atlas", filetypes=[("Pictos-Atlas (.png)", "pictos-atlas.png")] )
+    picatls_json = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON pictos-atlas", filetypes=[("JSON Pictos-Atlas (.json)", "pictos-atlas.json")] )
     
     # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
     openFile.destroy()
@@ -1137,29 +1125,35 @@ def PictosAtlasJ2D():
     # Lê o codename do JSON principal
     jsonMapName = input(str("Digite o codename da música: "))
     
-    # Pergunta quantos coaches são
-    #jsonNumCoach = input(int("Digite o número de coaches: "))
-    
     # Criar uma pasta para armazenar os pictos
-    try:
-        os.makedirs('output/' + jsonMapName + '/pictos')
-        os.makedirs('tmp_output/pictos_png')
-        os.makedirs('tmp_output/pictos_dds')
-    except:
-        pass
+    os.makedirs('output/' + jsonMapName + '/pictos', exist_ok=True)
+    os.makedirs('tmp_output/pictos_png', exist_ok=True)
+    os.makedirs('tmp_output/pictos_dds', exist_ok=True)
     
+    # Abre o atlas e analisa suas informações básicas
     with open(picatls_json) as f:
         jsonData = json.load(f)
     sprite = Image.open(open(picatls_png,"rb"))
     pictoWidth = jsonData["imageSize"]["width"]
     pictoHeight = jsonData["imageSize"]["height"]
     
-    for picto in list(jsonData["images"]):
+    # Conta quantos pictos tem em cada linha
+    pictosPerRow = 0
+    for pictocol in jsonData["images"]:
+        if (jsonData["images"][pictocol][1] == 0):
+            pictosPerRow += 1
+    
+    # Caso o atlas seja para Duo, Trio ou Quarteto, ele usa o número de pictos por linha contado anteriormente para calcular o quanto deve ser redimensionado
+    if sprite.width != pictoWidth * pictosPerRow:
+        sprite = sprite.resize((pictoWidth * pictosPerRow, round(sprite.height * (pictoWidth * pictosPerRow / sprite.width))), Image.BICUBIC)
+    
+    # Corta e redimensiona os pictos
+    for picto in jsonData["images"]:
         x1 = jsonData["images"][picto][0]
         y1 = jsonData["images"][picto][1]
         x2 = x1 + pictoWidth
         y2 = y1 + pictoHeight
-        sprite.crop((x1, y1, x2, y2)).save(f"tmp_output/pictos_png/{picto}.png")
+        sprite.crop((x1, y1, x2, y2)).resize((256,256)).save(f"tmp_output/pictos_png/{picto}.png")
     
     # Converte os pictogramas de PNG para DDS
     for pictopng in os.listdir('tmp_output/pictos_png/'):
@@ -1180,8 +1174,8 @@ def PictosSpriteJ2D():
     openFile.title('')
     
     # Procura os arquivos necessários para cortar o pictos-sprite
-    picsprt_png = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione sua imagem pictos-sprite", filetypes=[("Pictos-Sprite (.png)", "*.png")] )
-    picsprt_css = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu CSS pictos-sprite", filetypes=[("CSS Pictos-Sprite (.css)", "*.css")] )
+    picsprt_png = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione sua imagem pictos-sprite", filetypes=[("Pictos-Sprite (.png)", "pictos-sprite.png")] )
+    picsprt_css = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu CSS pictos-sprite", filetypes=[("CSS Pictos-Sprite (.css)", "pictos-sprite.css")] )
     
     # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
     openFile.destroy()
@@ -1193,12 +1187,9 @@ def PictosSpriteJ2D():
     jsonNumCoach = int(input("Digite o número de coaches: "))
     
     # Criar uma pasta para armazenar os pictos
-    try:
-        os.makedirs('output/' + jsonMapName + '/pictos')
-        os.makedirs('tmp_output/pictos_png')
-        os.makedirs('tmp_output/pictos_dds')
-    except:
-        pass
+    os.makedirs('output/' + jsonMapName + '/pictos', exist_ok=True)
+    os.makedirs('tmp_output/pictos_png', exist_ok=True)
+    os.makedirs('tmp_output/pictos_dds', exist_ok=True)
     
     # Abre o PNG do pictos-sprite
     picsprt_img = Image.open(picsprt_png)
@@ -1262,7 +1253,7 @@ if __name__=='__main__':
             openFile.title('')
             
             # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+            mainjson = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
                 
             # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
             openFile.destroy()
@@ -1276,7 +1267,7 @@ if __name__=='__main__':
             openFile.title('')
             
             # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+            mainjson = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
                 
             # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
             openFile.destroy()
@@ -1289,7 +1280,7 @@ if __name__=='__main__':
             openFile.title('')
             
             # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+            mainjson = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
                 
             # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
             openFile.destroy()
@@ -1303,7 +1294,7 @@ if __name__=='__main__':
             openFile.title('')
             
             # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+            mainjson = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
                 
             # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
             openFile.destroy()
@@ -1323,7 +1314,7 @@ if __name__=='__main__':
             openFile.title('')
             
             # Procura o JSON principal (apenas ele é usado para gerar a songdesc)
-            mainjson = openFile.filename = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
+            mainjson = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Selecione seu JSON", filetypes=[("Now / Vitality School JSON (.json)", "*.json")] )
                 
             # Destrói o Tkinter (poupa memória e tira a janelinha que fica atrapalhando)
             openFile.destroy()
