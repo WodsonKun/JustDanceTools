@@ -22,10 +22,10 @@ def hex2RGB(value):
 
 # randomId (por WodsonKun)
 def randomId():
-    return math.floor(random.randint(0, 40000) * (400000 - 100000 + 1) + 100000) # Gera um valor randômico e retorna o mesmo para ser usado como ID
+    return math.floor(random.randint(0, 40000) * (40000 - 10000 + 1) + 10000) # Gera um valor randômico e retorna o mesmo para ser usado como ID
 
-########################################################################## WodsonKun's JSON2DTAPE (v1.2.0) #########################################################################
-######################################################################## Créditos a planedec50, augustodoidin ######################################################################
+########################################################################## WodsonKun's JSON2DTAPE (v1.3.0) #########################################################################
+##################################################################### Créditos a planedec50, augustodoidin, Eliott #################################################################
 
 ### Cria um songdesc através de um JSON (funciona com todos os tipos)
 def SongDescJ2D(mainjson):
@@ -59,7 +59,10 @@ def SongDescJ2D(mainjson):
         jsonLocaleID = 4294967295
     
     # Lê cores de letras e banners (e de novo, caso não encontrados, definem um valor padrão)
-    jsonLyricsColor = jsonMainData['lyricsColor']
+    try:
+        jsonLyricsColor = jsonMainData['lyricsColor']
+    except:
+        jsonLyricsColor = "0xFFFF0000"
     try:
         json1AColor = jsonMainData['DefaultColors']['songColor_1A']
     except:
@@ -510,7 +513,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -599,7 +602,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -616,7 +619,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -726,7 +729,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -743,7 +746,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -760,7 +763,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -891,7 +894,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -908,7 +911,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -925,7 +928,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -942,7 +945,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves3Data[i]['time'], True))
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 12)
+                    dclips += str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -993,8 +996,14 @@ def MusictrackJ2D(mainjson):
         jsonLoopEndData = jsonSPData['loopEndTime']
         
     elif (QVSJSON == "N") or (QVSJSON == "n"): # Caso não seja, lê os valores de prévia comuns e segue com a conversão
-        jsonStartBeatData = jsonMainData['AudioPreview']['coverflow']['startbeat']
-        jsonLoopStartData = jsonMainData['AudioPreview']['coverflow']['startbeat']
+        try:
+            jsonStartBeatData = jsonMainData['AudioPreview']['coverflow']['startbeat']
+        except:
+            jsonStartBeatData = jsonMainData['AudioPreview']['prelobby']['startbeat']
+        try:
+            jsonLoopStartData = jsonMainData['AudioPreview']['coverflow']['startbeat']
+        except:
+            jsonLoopStartData = jsonMainData['AudioPreview']['prelobby']['startbeat']
         jsonLoopEndData = len(jsonBeatData)
     
     # Cria uma pasta com o codename da música
@@ -1228,7 +1237,7 @@ if __name__=='__main__':
         os.system('cls')
         print("How're you doing?")
         print("Welcome to WodsonKun's JSON2DTAPE!")
-        print("Credits to: planedec50, augustodoidin")
+        print("Credits to: planedec50, augustodoidin, Eliott")
         print("Select a option:")
         print("-----------------------------")
         print("[1] Generate a songdesc from a JSON")
