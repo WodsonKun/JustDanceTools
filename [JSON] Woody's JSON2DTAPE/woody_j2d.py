@@ -511,7 +511,7 @@ def DTAPEJ2D(mainjson):
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -600,7 +600,7 @@ def DTAPEJ2D(mainjson):
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -617,7 +617,7 @@ def DTAPEJ2D(mainjson):
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -727,7 +727,7 @@ def DTAPEJ2D(mainjson):
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -744,7 +744,7 @@ def DTAPEJ2D(mainjson):
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -761,7 +761,7 @@ def DTAPEJ2D(mainjson):
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
                 if (json2GoldMove != "") or (json2GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -892,7 +892,7 @@ def DTAPEJ2D(mainjson):
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -909,7 +909,7 @@ def DTAPEJ2D(mainjson):
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -926,7 +926,7 @@ def DTAPEJ2D(mainjson):
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
                 if (json2GoldMove != "") or (json2GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -943,7 +943,7 @@ def DTAPEJ2D(mainjson):
                 json3GoldMove = jsonMoves3Data[i]['goldMove']
                 if (json3GoldMove != "") or (json3GoldMove != 0):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    dclips += str(ubiArtTime(jsonMoves3Data[i]['time'], True))
+                    dclips += str(ubiArtTime(jsonMoves3Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
                     dclips += str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 16)
                     dclips += ',"EffectType": 1},'
@@ -1054,12 +1054,12 @@ def MusictrackJ2D(mainjson):
             finally:
                 i+=1
         
-        # Multiplica as beats por 48
         def multiplyBeats(number):
             return number * 48
-            arrMultipliedBeats48 = list(map(multiplyBeats, NewBeats))
-            arq.write(str(arrMultipliedBeats48)) # Insere as beats multiplicadas em uma variável
-        arq.write(str(arrMultipliedBeats48)) # Insere as beats multiplicadas em uma variável
+        arrMultipliedBeats48 = list(map(multiplyBeats, NewBeats)) # Multiplica e insere as beats multiplicadas em um array
+        if (arrMultipliedBeats48[0] != 0): # Caso a primeira beat não seja 0...
+            arrMultipliedBeats48.insert(0, 0) # Insere uma beat de valor 0 no início do array
+        arq.write(str(arrMultipliedBeats48))
         
         # Se for um valor do Vitality School...
         if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja, divide os valores por 48, fazendo o processo reverso para ficarem legíveis ao jogo
@@ -1095,7 +1095,7 @@ def MusictrackJ2D(mainjson):
             def multiplyBeats(number):
                 return number * 48
             arrMultipliedBeats48 = list(map(multiplyBeats, NewBeats)) # Multiplica e insere as beats multiplicadas em um array
-            if (arrMultipliedBeats48 != 0): # Caso a primeira beat não seja 0...
+            if (arrMultipliedBeats48[0] != 0): # Caso a primeira beat não seja 0...
                 arrMultipliedBeats48.insert(0, 0) # Insere uma beat de valor 0 no início do array
             arq.write(str(arrMultipliedBeats48))
         
@@ -1227,7 +1227,7 @@ def PictosSpriteJ2D():
         
     # Converte os pictogramas de DDS para TGA.CKD
     for pictodds in os.listdir('tmp_output/pictos_dds/'):
-        subprocess.check_call('bin\\quickbms -Q -o "bin\\scriptDDStoCKD.bms" "tmp_output\\pictos_dds\\' + pictodds + '" "output\\' + jsonMapName + '\\pictos' ,stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('bin\\quickbms -Q -o "bin\\scriptDDStoCKD.bms" "tmp_output\\pictos_dds\\' + pictodds + '" "output\\' + jsonMapName + '\\pictos', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
     # Limpa a pasta temporária
     shutil.rmtree("tmp_output")
