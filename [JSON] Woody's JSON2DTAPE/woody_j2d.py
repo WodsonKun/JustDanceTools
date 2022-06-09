@@ -513,7 +513,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -602,7 +602,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -619,7 +619,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -729,7 +729,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -746,7 +746,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -763,7 +763,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -894,7 +894,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves0Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -911,7 +911,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves1Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -928,7 +928,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves2Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass
@@ -945,7 +945,7 @@ def DTAPEJ2D(mainjson):
                     dclips += '{"__class": "GoldEffectClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
                     dclips += str(ubiArtTime(jsonMoves3Data[i]['time'], True) + 24)
                     dclips += ',"Duration": '
-                    dclips += str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 16)
+                    dclips += str(ubiArtTime(jsonMoves3Data[i]['duration'], True) + 24)
                     dclips += ',"EffectType": 1},'
             except:
                 pass

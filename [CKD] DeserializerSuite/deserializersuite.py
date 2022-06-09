@@ -318,8 +318,8 @@ def dec_tml(tml_file):
         pass # Caso a pasta já exista, ele não faz nada
     
     # Loads the old DTAPE into memory and then deletes it
-    dtapejson = json.load(open(dtape, "r"))
-    os.remove(dtape)
+    dtapejson = json.load(open("raw_dtape.dec", "r"))
+    os.remove("raw_dtape.dec")
     
     # Fixes CoachId issue
     oldcoachid = []
