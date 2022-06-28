@@ -1,4 +1,4 @@
-import os, sys, io, time, pathlib, subprocess, shutil
+import os, sys, io, json, time, pathlib, subprocess, shutil
 from tkinter import *
 from tkinter import filedialog
 
@@ -24,8 +24,8 @@ def PCWEBMConv():
         for videofile in os.listdir(videofolder):
             # Converts and cleans the No HUD
             print("Converting " + os.path.basename(videofile) + " to PC WEBM...")
-            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (videofolder + "/" + videofile).replace("/", "\\") + '" -threads:v 4 -sws_flags bicubic -codec:v libvpx  -r:v 25  -b:v 8000k -bufsize 6000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -b:v 7000k  -aspect 16:9 -b:v 8000k -filter:v scale=1280:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            subprocess.check_call('"bin\\mkclean.exe" "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '" "output\\pc\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (videofolder + "/" + videofile).replace("/", "\\") + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '" "output\\pc\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             
             # Cleans unnecessary stuff
             print("Cleaning files...\n")
@@ -44,8 +44,8 @@ def PCWEBMConv():
         
         # Converts and cleans the No HUD
         print("Converting " + os.path.basename(videofile) + " to PC WEBM...")
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 4 -sws_flags bicubic -codec:v libvpx  -r:v 25  -b:v 8000k -bufsize 6000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -b:v 7000k  -aspect 16:9 -b:v 8000k -filter:v scale=1280:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\mkclean.exe" "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '" "output\\pc\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '" "output\\pc\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
         # Cleans unnecessary stuff
         print("Cleaning files...\n")
@@ -67,11 +67,17 @@ def PCWAVConv():
         # Destroys Tkinter
         openFile.destroy()
         
+        # Volume?
+        QVolume = str(input("Do you wanna increase the volume? (Useful for JDU / JDN OGGs and MP4s) (Y or N)): "))
+        
         # For each file found inside the desired folder...
         for audiofile in os.listdir(audiofolder):
             # Converts the video into a WAV (for the WAV.CKD generator)
             print("Converting " + os.path.basename(audiofile) + " to PC WAV.CKD...")
-            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (audiofolder + "/" + audiofile).replace("/", "\\") + '" -ac 2 -f wav "output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            if (QVolume == "Y" or QVolume == "y"):
+                subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (audiofolder + "/" + audiofile).replace("/", "\\") + '" -ar 48000 -ac 2 -filter:a "volume=12dB" -f wav "output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            else:
+                subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (audiofolder + "/" + audiofile).replace("/", "\\") + '" -ar 48000 -ac 2 -f wav "output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             
             # Converts the WAV onto a WAV.CKD
             with open('output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav"), "rb+") as wav:
@@ -96,9 +102,15 @@ def PCWAVConv():
         # Destroys Tkinter
         openFile.destroy()
         
+        # Volume?
+        QVolume = str(input("Do you wanna increase the volume? (Useful for JDU / JDN OGGs and MP4s) (Y or N)): "))
+        
         # Converts the video into a WAV (for the WAV.CKD generator)
         print("Converting " + os.path.basename(audiofile) + " to PC WAV.CKD...")
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ar 48000 -ac 2 -f wav "output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if (QVolume == "Y" or QVolume == "y"):
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ar 48000 -ac 2 -filter:a "volume=12dB" -f wav "output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        else:
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ar 48000 -ac 2 -f wav "output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
         # Converts the WAV onto a WAV.CKD
         with open('output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav"), "rb+") as wav:
@@ -124,9 +136,15 @@ def PCAMBConv():
     # Destroys Tkinter
     openFile.destroy()
     
+    # Volume?
+    QVolume = str(input("Do you wanna increase the volume? (Useful for JDU / JDN OGGs and MP4s) (Y or N)): "))
+    
     # Converts AMB audio onto a Little Endian 16-bit PCM audio
-    print("Converting " + os.path.basename(audiofile) + " to PC AMB...")
-    subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + ambfile + '" -f wav -bitexact -acodec pcm_s16le -ar 48000 -ac 2 -loglevel quiet "output\\pc\\' + os.path.basename(ambfile).replace(os.path.basename(ambfile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    print("Converting " + os.path.basename(ambfile) + " to PC AMB...")
+    if (QVolume == "Y" or QVolume == "y"):
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + ambfile + '" -f wav -bitexact -acodec pcm_s16le -filter:a "volume=12dB" -ar 48000 -ac 2 -loglevel quiet "output\\pc\\' + os.path.basename(ambfile).replace(os.path.basename(ambfile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + ambfile + '" -f wav -bitexact -acodec pcm_s16le -ar 48000 -ac 2 -loglevel quiet "output\\pc\\' + os.path.basename(ambfile).replace(os.path.basename(ambfile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
     # Creates "ambs" directory inside of "output"
     os.makedirs('output\\pc\\ambs', exist_ok=True)
@@ -201,7 +219,7 @@ def WiiWAVConv():
     openFile.title('')
     
     # Searches for the necessary file
-    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Video (.mp4 / .bik / .webm / .avi / .mkv / .mov)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov")])
+    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a")])
     
     # Destroys Tkinter
     openFile.destroy()
@@ -264,7 +282,50 @@ def WiiWAVConv():
     for i in range(int(filesize/8)):
         denc.write(rightbytes[i])   
     denc.close()
+
+def JDUAudioCrop():
+    # Initializes Tkinter (file picker)
+    openFile = Tk()
+    openFile.title('')
     
+    # Searches for the necessary file
+    musictrack = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Musictrack (_musictrack.tpl.ckd)", "*_musictrack.tpl.ckd")])
+    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a")])
+    
+    # Destroys Tkinter
+    openFile.destroy()
+    
+    # Asks if the song has a AMB and if you wanna generate a file for it
+    AMBGen = str(input('This song has a intro AMB? If it does, do you wanna generate a OGG for it? (Y or N): '))
+    
+    # Creates "jdu" directory inside of "output"
+    os.makedirs('output\\jdu', exist_ok=True)
+    
+    # Opens the musictrack
+    with open(musictrack, "r", encoding='utf-8') as mt:
+        musictrackData = json.load(mt)
+    
+    # Gets videoStartTime
+    videoStartTime = musictrackData['COMPONENTS'][0]['trackData']['structure']['videoStartTime']
+    
+    # Turns it into a positive value (doesn't matter if the value is positive already or not) and divide it
+    newStartTime = 60000 / abs(videoStartTime)
+    
+    # Saves the cropping value onto a variable
+    cropValue1 = int(str(newStartTime)[0:4])
+    cropValue2 = str(cropValue1).replace(str(cropValue1)[:1], str(cropValue1)[:1] + ".")
+    print(cropValue2)
+    
+    time.sleep(3)
+    
+    # Crops the audio (and the AMB, if chosen)
+    if (AMBGen == "Y" or AMBGen == "y"):
+        subprocess.run('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ss 0ms -t ' + str(cropValue2) + ' "output\\jdu\\amb_intro_' + os.path.basename(audiofile) + '"')#, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
+        pass
+    print('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ss ' + str(cropValue2) + ' "output\\jdu\\' + os.path.basename(audiofile) + '"')
+    subprocess.run('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ss ' + str(cropValue2) + ' "output\\jdu\\' + os.path.basename(audiofile) + '"')#, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
 if __name__=='__main__':
     while(True):
         os.system('cls')
@@ -278,7 +339,8 @@ if __name__=='__main__':
         print('[3] Converts a Audio file to PC AMB')
         print('[4] Converts a Video file to Nintendo Wii WEBM')
         print('[5] Converts a Audio file to Nintendo Wii WAV.CKD / AMB')
-        print('[6] Exits the MediaTool')
+        print('[6] Crops a Just Dance Unlimited audio (from Just Dance 2014 to Just Dance 2022)')
+        print('[7] Exits the MediaTool')
         print("-----------------------------")
         
         option = ''
@@ -307,6 +369,9 @@ if __name__=='__main__':
             WiiWAVConv()
         
         if option == 6:
+            JDUAudioCrop()
+        
+        if option == 7:
             print('Thanks for using our MediaTool!')
             time.sleep(2)
             exit()
