@@ -114,14 +114,14 @@ def SongDescJ2D(mainjson):
     elif (jsonDifficulty == "Extreme" or jsonDifficulty == 4):
         arq.write('"Difficulty": ' + str(4) + ',')
     if (jsonDifficulty == "Easy" or jsonDifficulty == 1):
-        arq.write('"Energy": ' + str(0) + ',')
+        arq.write('"SweatDifficulty": ' + str(0) + ',')
     elif (jsonDifficulty == "Normal" or jsonDifficulty == 2):
-        arq.write('"Energy": ' + str(1) + ',')
+        arq.write('"SweatDifficulty": ' + str(1) + ',')
     elif (jsonDifficulty == "Hard" or jsonDifficulty == 3):
-        arq.write('"Energy": ' + str(2) + ',')
+        arq.write('"SweatDifficulty": ' + str(2) + ',')
     elif (jsonDifficulty == "Extreme" or jsonDifficulty == 4):
-        arq.write('"Energy": ' + str(3) + ',')
-    arq.write('"backgroundType": 0,"LyricsType": 0,"Tags": ["main"],"Status": 3,"LocaleID": ' + str(jsonLocaleID) + ',"MojoValue": 0,"CountInProgression": 1,"DefaultColors":{"songcolor_2a": [1, ' + str(hex2RGB(json2AColor)[0]/255) + ', ' +  str(hex2RGB(json2AColor)[1]/255) + ', ' +  str(hex2RGB(json2AColor)[2]/255) + '], "lyrics": [1, ' + str(hex2RGB(jsonLyricsColor)[0]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[1]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[2]/255) + '], "theme": [1, 1, 1, 1],"songcolor_1a": [1, ' + str(hex2RGB(json1AColor)[0]/255) + ', ' +  str(hex2RGB(json1AColor)[1]/255) + ', ' +  str(hex2RGB(json1AColor)[2]/255) + '],"songcolor_2b": [1, ' + str(hex2RGB(json2BColor)[0]/255) + ', ' +  str(hex2RGB(json2BColor)[1]/255) + ', ' +  str(hex2RGB(json2BColor)[2]/255) + '],"songcolor_1b": [1, ' + str(hex2RGB(json1BColor)[0]/255) + ', ' +  str(hex2RGB(json1BColor)[1]/255) + ', ' +  str(hex2RGB(json1BColor)[2]/255) + ']},"Paths": {"Avatars": null,"AsyncPlayers": null}}]}')
+        arq.write('"SweatDifficulty": ' + str(3) + ',')
+    arq.write('"backgroundType": 0,"LyricsType": 0,"Tags": ["main"],"Status": 3,"LocaleID": ' + str(jsonLocaleID) + ',"MojoValue": 0,"CountInProgression": 1,"DefaultColors":{"songcolor_2a": [1, ' + str(hex2RGB(json2AColor)[0]/255) + ', ' +  str(hex2RGB(json2AColor)[1]/255) + ', ' +  str(hex2RGB(json2AColor)[2]/255) + '], "lyrics": [1, ' + str(hex2RGB(jsonLyricsColor)[0]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[1]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[2]/255) + '], "theme": [1, 1, 1, 1],"songcolor_1a": [1, ' + str(hex2RGB(json1AColor)[0]/255) + ', ' +  str(hex2RGB(json1AColor)[1]/255) + ', ' +  str(hex2RGB(json1AColor)[2]/255) + '],"songcolor_2b": [1, ' + str(hex2RGB(json2BColor)[0]/255) + ', ' +  str(hex2RGB(json2BColor)[1]/255) + ', ' +  str(hex2RGB(json2BColor)[2]/255) + '],"songcolor_1b": [1, ' + str(hex2RGB(json1BColor)[0]/255) + ', ' +  str(hex2RGB(json1BColor)[1]/255) + ', ' +  str(hex2RGB(json1BColor)[2]/255) + ']},"VideoPreviewPath": ""}]}')
     
     # Fecha o arquivo
     arq.close()
@@ -272,7 +272,7 @@ def KTAPEJ2D(mainjson):
     # Escreve os clips do KTAPE
     i = 0
     clips = '['
-    while i < len(jsonMainData['lyrics'][1:-1]):
+    for data in range(len(jsonMainData['lyrics'])):
         clips += '{"__class": "KaraokeClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
         clips += str(ubiArtTime(jsonLyricData[i]['time'], True))
         clips += ',"Duration": '
@@ -475,7 +475,7 @@ def DTAPEJ2D(mainjson):
         
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -493,7 +493,8 @@ def DTAPEJ2D(mainjson):
     
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
-        while i < len(jsonMainData['pictos'][1:-1]):
+        
+        while i < len(jsonMainData['pictos']):
             dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
             dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
             dclips += ',"Duration": '
@@ -506,7 +507,7 @@ def DTAPEJ2D(mainjson):
         
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
@@ -546,7 +547,7 @@ def DTAPEJ2D(mainjson):
         
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -564,7 +565,7 @@ def DTAPEJ2D(mainjson):
             
         # Faz um loop para escrever a estrutura de clips dos moves do Player 2
         i = 0
-        while i < len(jsonMoves1Data[1:-1]):
+        while i < len(jsonMoves1Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -582,7 +583,7 @@ def DTAPEJ2D(mainjson):
     
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
-        while i < len(jsonMainData['pictos'][1:-1]):
+        while i < len(jsonMainData['pictos']):
             dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
             dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
             dclips += ',"Duration": '
@@ -595,7 +596,7 @@ def DTAPEJ2D(mainjson):
             
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
@@ -612,7 +613,7 @@ def DTAPEJ2D(mainjson):
         
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 2
         i = 0
-        while i < len(jsonMoves1Data[1:-1]):
+        while i < len(jsonMoves1Data):
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
@@ -655,7 +656,7 @@ def DTAPEJ2D(mainjson):
         
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -673,7 +674,7 @@ def DTAPEJ2D(mainjson):
             
         # Faz um loop para escrever a estrutura de clips dos moves do Player 2
         i = 0
-        while i < len(jsonMoves1Data[1:-1]):
+        while i < len(jsonMoves1Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -691,7 +692,7 @@ def DTAPEJ2D(mainjson):
         
         # Faz um loop para escrever a estrutura de clips dos moves do Player 3
         i = 0
-        while i < len(jsonMoves2Data[1:-1]):
+        while i < len(jsonMoves2Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -709,7 +710,7 @@ def DTAPEJ2D(mainjson):
     
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
-        while i < len(jsonMainData['pictos'][1:-1]):
+        while i < len(jsonMainData['pictos']):
             dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
             dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
             dclips += ',"Duration": '
@@ -722,7 +723,7 @@ def DTAPEJ2D(mainjson):
             
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
@@ -739,7 +740,7 @@ def DTAPEJ2D(mainjson):
         
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 2
         i = 0
-        while i < len(jsonMoves1Data[1:-1]):
+        while i < len(jsonMoves1Data):
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
@@ -756,7 +757,7 @@ def DTAPEJ2D(mainjson):
             
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 3
         i = 0
-        while i < len(jsonMoves2Data[1:-1]):
+        while i < len(jsonMoves2Data):
             try:
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
                 if (json2GoldMove != "") or (json2GoldMove != 0):
@@ -802,7 +803,7 @@ def DTAPEJ2D(mainjson):
         
         # Faz um loop para escrever a estrutura de clips dos moves do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves0Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -820,7 +821,7 @@ def DTAPEJ2D(mainjson):
             
         # Faz um loop para escrever a estrutura de clips dos moves do Player 2
         i = 0
-        while i < len(jsonMoves1Data[1:-1]):
+        while i < len(jsonMoves1Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves1Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -838,7 +839,7 @@ def DTAPEJ2D(mainjson):
         
         # Faz um loop para escrever a estrutura de clips dos moves do Player 3
         i = 0
-        while i < len(jsonMoves2Data[1:-1]):
+        while i < len(jsonMoves2Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves2Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -856,7 +857,7 @@ def DTAPEJ2D(mainjson):
             
         # Faz um loop para escrever a estrutura de clips dos moves do Player 4
         i = 0
-        while i < len(jsonMoves3Data[1:-1]):
+        while i < len(jsonMoves3Data):
             dclips += '{"__class": "MotionClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": ' + str(1) + ',"StartTime": '
             dclips += str(ubiArtTime(jsonMoves3Data[i]['time'], True))
             dclips += ',"Duration": '
@@ -874,7 +875,7 @@ def DTAPEJ2D(mainjson):
     
         # Roda outro loop para escrever a estrutura de clips dos pictogramas
         i = 0
-        while i < len(jsonMainData['pictos'][1:-1]):
+        while i < len(jsonMainData['pictos']):
             dclips += '{"__class": "PictogramClip", "Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
             dclips += str(ubiArtTime(jsonPictoData[i]['time'], True))
             dclips += ',"Duration": '
@@ -887,7 +888,7 @@ def DTAPEJ2D(mainjson):
             
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 1
         i = 0
-        while i < len(jsonMoves0Data[1:-1]):
+        while i < len(jsonMoves0Data):
             try:
                 json0GoldMove = jsonMoves0Data[i]['goldMove']
                 if (json0GoldMove != "") or (json0GoldMove != 0):
@@ -904,7 +905,7 @@ def DTAPEJ2D(mainjson):
         
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 2
         i = 0
-        while i < len(jsonMoves1Data[1:-1]):
+        while i < len(jsonMoves1Data):
             try:
                 json1GoldMove = jsonMoves1Data[i]['goldMove']
                 if (json1GoldMove != "") or (json1GoldMove != 0):
@@ -921,7 +922,7 @@ def DTAPEJ2D(mainjson):
             
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 3
         i = 0
-        while i < len(jsonMoves2Data[1:-1]):
+        while i < len(jsonMoves2Data):
             try:
                 json2GoldMove = jsonMoves2Data[i]['goldMove']
                 if (json2GoldMove != "") or (json2GoldMove != 0):
@@ -938,7 +939,7 @@ def DTAPEJ2D(mainjson):
             
         # Roda mais um loop para escrever a estrutura de clips de GoldEffect do Player 4
         i = 0
-        while i < len(jsonMoves3Data[1:-1]):
+        while i < len(jsonMoves3Data):
             try:
                 json3GoldMove = jsonMoves3Data[i]['goldMove']
                 if (json3GoldMove != "") or (json3GoldMove != 0):
@@ -1083,13 +1084,13 @@ def MusictrackJ2D(mainjson):
             bpm = float(60000 / bpminit) # Faz o cálculo do BPM, dividindo 60000 pelo valor, dando o BPM (como float, para ser mais exato)
             beat = int(round(60000/bpm)) # Faz o valor final, dividindo 60000 pelo valor do BPM, iniciando a sequência de beats
             gerados = 0
-            quantidade = len(jsonBeatData)
+            quantidade = len(jsonBeatData) + 4
             while (gerados <= quantidade): # Gera os beats novos
                 if gerados == quantidade:
-                    gerados = gerados +1
+                    gerados = gerados + 1
                     NewBeats.append(beat*gerados)
                 else:
-                    gerados = gerados +1
+                    gerados = gerados + 1
                     NewBeats.append(beat*gerados)
             
             def multiplyBeats(number):
@@ -1112,8 +1113,11 @@ def MusictrackJ2D(mainjson):
             jsonLoopEndData = int(int(numpy.interp(int(jsonSPData['loopEndTime']), jsonBeatData, BeatsMap24, 0)) / 48) 
     
     # Escreve o resto e o footer da musictrack
-    arq.write(',"signatures":[{"__class":"MusicSignature","marker":1,"beats":3},{"__class":"MusicSignature","marker":4,"beats":4},{"__class":"MusicSignature","marker":194,"beats":3},{"__class":"MusicSignature","marker":197,"beats":4}],"sections":[{"__class":"MusicSection","marker":1,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":19,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":52,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":68,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":84,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":100,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":132,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":148,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":164,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":190,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":196,"sectionType":2,"comment":""},{"__class":"MusicSection","marker":194,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":259,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":195,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":291,"sectionType":7,"comment":""}], "startBeat": 0, "endBeat": ' + str(len(jsonBeatData)) + ', "videoStartTime": 0, "previewEntry": ' + str(jsonStartBeatData) + ', "previewLoopStart": ' + str(jsonLoopStartData) + ', "previewLoopEnd": ' + str(jsonLoopEndData) + ', "volume": 0}, "path": "world/maps/' + jsonMapName.lower() + '/audio/' + jsonMapName.lower() + '.wav", "url": "jmcs://jd-contents/' + jsonMapName + '/' + jsonMapName + '.ogg"}}]}')
-    
+    if (QVSJSON == "Y") or (QVSJSON == "y"): # Caso seja um JSON do Vitality School...
+        arq.write(',"signatures":[{"__class":"MusicSignature","marker":1,"beats":3},{"__class":"MusicSignature","marker":4,"beats":4},{"__class":"MusicSignature","marker":194,"beats":3},{"__class":"MusicSignature","marker":197,"beats":4}],"sections":[{"__class":"MusicSection","marker":1,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":19,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":52,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":68,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":84,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":100,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":132,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":148,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":164,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":190,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":196,"sectionType":2,"comment":""},{"__class":"MusicSection","marker":194,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":259,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":195,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":291,"sectionType":7,"comment":""}], "startBeat": 0, "endBeat": ' + str(len(jsonBeatData) + 4) + ', "videoStartTime": 0, "previewEntry": ' + str(jsonStartBeatData) + ', "previewLoopStart": ' + str(jsonLoopStartData) + ', "previewLoopEnd": ' + str(jsonLoopEndData) + ', "volume": 0}, "path": "world/maps/' + jsonMapName.lower() + '/audio/' + jsonMapName.lower() + '.wav", "url": "jmcs://jd-contents/' + jsonMapName + '/' + jsonMapName + '.ogg"}}]}')
+    elif (QVSJSON == "N") or (QVSJSON == "n"):
+        arq.write(',"signatures":[{"__class":"MusicSignature","marker":1,"beats":3},{"__class":"MusicSignature","marker":4,"beats":4},{"__class":"MusicSignature","marker":194,"beats":3},{"__class":"MusicSignature","marker":197,"beats":4}],"sections":[{"__class":"MusicSection","marker":1,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":19,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":52,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":68,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":84,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":100,"sectionType":1,"comment":""},{"__class":"MusicSection","marker":132,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":148,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":164,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":190,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":196,"sectionType":2,"comment":""},{"__class":"MusicSection","marker":194,"sectionType":6,"comment":""},{"__class":"MusicSection","marker":259,"sectionType":3,"comment":""},{"__class":"MusicSection","marker":195,"sectionType":7,"comment":""},{"__class":"MusicSection","marker":291,"sectionType":7,"comment":""}], "startBeat": 0, "endBeat": ' + str(len(jsonBeatData)) + ', "videoStartTime": 0, "previewEntry": ' + str(jsonStartBeatData) + ', "previewLoopStart": ' + str(jsonLoopStartData) + ', "previewLoopEnd": ' + str(jsonLoopEndData) + ', "volume": 0}, "path": "world/maps/' + jsonMapName.lower() + '/audio/' + jsonMapName.lower() + '.wav", "url": "jmcs://jd-contents/' + jsonMapName + '/' + jsonMapName + '.ogg"}}]}')
+        
     # Fecha o arquivo
     arq.close()
  
