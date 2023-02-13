@@ -24,7 +24,7 @@ def PCWEBMConv():
         for videofile in os.listdir(videofolder):
             # Converts and cleans the No HUD
             print("Converting " + os.path.basename(videofile) + " to PC WEBM...")
-            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (videofolder + "/" + videofile).replace("/", "\\") + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (videofolder + "/" + videofile).replace("/", "\\") + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '" "output\\pc\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             
             # Cleans unnecessary stuff
@@ -42,9 +42,15 @@ def PCWEBMConv():
         # Destroys Tkinter
         openFile.destroy()
         
+        # Ask if it is 60FPS (for Just Dance 2014 / Just Dance 2015 ALT routines)
+        IsSixFPS = str(input("Is it a 60FPS No HUD (Just Dance 2014 / Just Dance 2015 ALTs)? (Y or N): "))
+        
         # Converts and cleans the No HUD
         print("Converting " + os.path.basename(videofile) + " to PC WEBM...")
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if (IsSixFPS == "Y" or IsSixFPS == "y"):
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 29 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if (IsSixFPS == "N" or IsSixFPS == "n"):
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\pc\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '" "output\\pc\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
         # Cleans unnecessary stuff
@@ -97,7 +103,7 @@ def PCWAVConv():
         openFile.title('')
         
         # Searches for the necessary file
-        audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video / audio file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a")])
+        audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video / audio file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a / .opus / .flac)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a *.opus *.flac")])
         
         # Destroys Tkinter
         openFile.destroy()
@@ -126,12 +132,15 @@ def PCWAVConv():
         os.remove('output\\pc\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "wav"))
         
 def PCAMBConv():
+    # Creates "ambs" directory inside of "output"
+    os.makedirs('output\\pc\\ambs', exist_ok=True)
+    
     # Initializes Tkinter (file picker)
     openFile = Tk()
     openFile.title('')
     
     # Searches for the necessary file
-    ambfile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your No HUD video", filetypes=[("Audio (.wav / .ogg / .mp3 / .m4a)", "*.wav *.ogg *.mp3 *.m4a")])
+    ambfile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your No HUD video", filetypes=[("Audio (.wav / .ogg / .mp3 / .m4a / .opus / .flac)", "*.wav *.ogg *.mp3 *.m4a *.opus *.flac")])
     
     # Destroys Tkinter
     openFile.destroy()
@@ -145,9 +154,6 @@ def PCAMBConv():
         subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + ambfile + '" -f wav -bitexact -acodec pcm_s16le -filter:a "volume=12dB" -ar 48000 -ac 2 -loglevel quiet "output\\pc\\' + os.path.basename(ambfile).replace(os.path.basename(ambfile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     else:
         subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + ambfile + '" -f wav -bitexact -acodec pcm_s16le -ar 48000 -ac 2 -loglevel quiet "output\\pc\\' + os.path.basename(ambfile).replace(os.path.basename(ambfile).split(".")[-1], "wav") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    
-    # Creates "ambs" directory inside of "output"
-    os.makedirs('output\\pc\\ambs', exist_ok=True)
     
     # Converts the new 16-bit PCM audio to WAV.CKD
     with open('output\\pc\\' + os.path.basename(ambfile).replace(os.path.basename(ambfile).split(".")[-1], "wav"), 'rb+') as wav:
@@ -170,6 +176,9 @@ def PCAMBConv():
     os.remove('output\\pc\\' + os.path.basename(ambfile).replace(os.path.basename(ambfile).split(".")[-1], "wav"))
 
 def WiiWEBMConv():
+    # Creates "ambs" directory inside of "output"
+    os.makedirs('output\\wii', exist_ok=True)
+    
     if (BatchQ == "Y" or BatchQ == "y"):
         # Initializes Tkinter (file picker)
         openFile = Tk()
@@ -185,7 +194,7 @@ def WiiWEBMConv():
         for videofile in os.listdir(videofolder):
             # Converts and cleans the No HUD
             print("Converting " + os.path.basename(videofile) + " to Wii WEBM...")
-            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (videofolder + "/" + videofile).replace("/", "\\") + '" -threads:v 3 -sws_flags bicubic -codec:v libvpx -r:v 25 -b:v 2200k -bufsize 2200k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -an -vol 0 -aspect 4:3 -filter:v scale=512:384 "output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + (videofolder + "/" + videofile).replace("/", "\\") + '" -threads:v 3 -sws_flags bicubic -codec:v libvpx -r:v 25 -b:v 2200k -bufsize 2200k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -an -vol 0 -aspect 4:3 -filter:v scale=512:384 "output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             subprocess.check_call('"bin\\mkclean.exe" "output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '" "output\\wii\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             
             # Cleans unnecessary stuff
@@ -203,9 +212,15 @@ def WiiWEBMConv():
         # Destroys Tkinter
         openFile.destroy()
         
+        # Ask if it is 60FPS (for Just Dance 2014 / Just Dance 2015 ALT routines)
+        IsSixFPS = str(input("Is it a 60FPS No HUD (Just Dance 2014 / Just Dance 2015 ALTs)? (Y or N): "))
+        
         # Converts and cleans the No HUD
         print("Converting " + os.path.basename(videofile) + " to Wii WEBM...")
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -codec:v libvpx -r:v 25 -b:v 2200k -bufsize 2200k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -an -vol 0 -aspect 4:3 -filter:v scale=512:384 "output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if (IsSixFPS == "Y" or IsSixFPS == "y"):
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -codec:v libvpx -r:v 29 -b:v 2200k -bufsize 2200k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -an -vol 0 -aspect 4:3 -filter:v scale=512:384 "output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if (IsSixFPS == "N" or IsSixFPS == "n"):
+            subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -codec:v libvpx -r:v 25 -b:v 2200k -bufsize 2200k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -an -vol 0 -aspect 4:3 -filter:v scale=512:384 "output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" "output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '" "output\\wii\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
         # Cleans unnecessary stuff
@@ -214,12 +229,15 @@ def WiiWEBMConv():
         os.rename('output\\wii\\clean.' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm"), 'output\\wii\\' + os.path.basename(videofile).replace(os.path.basename(videofile).split(".")[-1], "wii.webm"))
         
 def WiiWAVConv():
+    # Creates "ambs" directory inside of "output"
+    os.makedirs('output\\wii', exist_ok=True)
+    
     # Initializes Tkinter (file picker)
     openFile = Tk()
     openFile.title('')
     
     # Searches for the necessary file
-    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a")])
+    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a / .opus / .flac)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a *.opus *.flac")])
     
     # Destroys Tkinter
     openFile.destroy()
@@ -230,9 +248,9 @@ def WiiWAVConv():
     # Starts converting the audio / amb
     print("Converting " + os.path.basename(audiofile) + " to Wii WAV.CKD...")
     if ('.mp4' in audiofile):
-        subprocess.check_call('bin//ffmpeg.exe -y -i ' + audiofile + ' -ar 32000 -filter:a "volume=12dB" -map_channel 0.1.0 "output//temp//left.wav" -ar 32000 -filter:a "volume=12dB" -map_channel 0.1.1 "output//temp//right.wav"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('bin//ffmpeg.exe -y -i "' + audiofile + '" -ar 32000 -filter:a "volume=12dB" -map_channel 0.1.0 "output//temp//left.wav" -ar 32000 -filter:a "volume=12dB" -map_channel 0.1.1 "output//temp//right.wav"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     else:
-        subprocess.check_call('bin//ffmpeg.exe -y -i ' + audiofile + ' -ar 32000 -map_channel 0.0.0 "output//temp//left.wav" -ar 32000 -map_channel 0.0.1 "output//temp//right.wav"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('bin//ffmpeg.exe -y -i "' + audiofile + '" -ar 32000 -map_channel 0.0.0 "output//temp//left.wav" -ar 32000 -map_channel 0.0.1 "output//temp//right.wav"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
     # Transforms the divided audio in DSP
     subprocess.check_call('bin//VGAudioCli.exe "output//temp//left.wav" "output//temp//left.dsp"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -284,6 +302,9 @@ def WiiWAVConv():
     denc.close()
 
 def JDUWEBMConv():
+    # Creates "jdu" directory inside of "output"
+    os.makedirs('output\\jdu', exist_ok=True)
+    
     # Initializes Tkinter (file picker)
     openFile = Tk()
     openFile.title('')
@@ -300,14 +321,14 @@ def JDUWEBMConv():
     # Converts and cleans the No HUD
     print("Converting " + os.path.basename(videofile) + " to JDU WEBMs...")
     if (qHDWEBM == "Y" or qHDWEBM == 'y'):
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 600k -bufsize 600k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=480:270 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 700k -bufsize 700k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=480:270 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 800k -bufsize 800k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=768:432 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 900k -bufsize 900k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=768:432 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 2000k -bufsize 2000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1280:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 3000k -bufsize 3000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1216:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 6000k -bufsize 6000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1920:1080 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 600k -bufsize 600k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=480:270 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 700k -bufsize 700k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=480:270 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 800k -bufsize 800k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=768:432 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 900k -bufsize 900k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=768:432 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 2000k -bufsize 2000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1280:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 3000k -bufsize 3000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1216:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 6000k -bufsize 6000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 8000k -bufsize 8000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1920:1080 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -317,10 +338,10 @@ def JDUWEBMConv():
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     else:
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 600k -bufsize 600k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=480:270 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 800k -bufsize 800k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=768:432 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 2000k -bufsize 2000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1280:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 6000k -bufsize 6000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 51 -qmin 11 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 600k -bufsize 600k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=480:270 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 800k -bufsize 800k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=768:432 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 2000k -bufsize 2000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 16:9 -filter:v scale=1280:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + videofile + '" -threads:v 3 -sws_flags bicubic -c:v libvpx -r:v 25 -b:v 6000k -bufsize 6000k -g 120 -rc_lookahead 16 -profile:v 1 -qmax 16 -qmin 6 -slices 4 -quality realtime -an -vol 0 -aspect 5:3 -filter:v scale=1216:720 "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         subprocess.check_call('"bin\\mkclean.exe" --doctype 2 --optimize "output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm") + '" "output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -337,37 +358,95 @@ def JDUWEBMConv():
         os.remove('output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.hd.webm"))
         os.remove('output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"))
         os.remove('output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.hd.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.hd.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.hd.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.hd.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.hd.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.hd.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.hd.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.hd.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.hd.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.hd.webm"))
     else:
         os.remove('output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"))
         os.remove('output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"))
         os.remove('output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"))
         os.remove('output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"))
-        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"), 'output\\pc\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_LOW.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_MID.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_HIGH.webm"))
+        os.rename('output\\jdu\\clean.' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"), 'output\\jdu\\' + os.path.basename(videofile).replace(os.path.splitext(videofile)[1], "_ULTRA.webm"))
 
 def JDUOGGConv():
+    # Creates "jdu" directory inside of "output"
+    os.makedirs('output\\jdu', exist_ok=True)
+    
     # Initializes Tkinter (file picker)
     openFile = Tk()
     openFile.title('')
     
     # Searches for the necessary file
-    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video / audio file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a")])
+    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video / audio file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a / .opus / .flac)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a *.opus *.flac")])
     
     # Destroys Tkinter
     openFile.destroy()
     
     # Converts the video into a OGG
     subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ar 48000 -vn -c:a libvorbis "output\\jdu\\' + os.path.basename(audiofile).replace(os.path.basename(audiofile).split(".")[-1], "ogg") + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+def JDUAudioCrop():
+    # Creates "jdu" directory inside of "output"
+    os.makedirs('output\\jdu', exist_ok=True)
+    
+    # Initializes Tkinter (file picker)
+    openFile = Tk()
+    openFile.title('')
+    
+    # Searches for the necessary file
+    musictrack = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Musictrack (_musictrack.tpl.ckd)", "*_musictrack.tpl.ckd")])
+    audiofile = filedialog.askopenfilename(initialdir=str(pathlib.Path().absolute()), title="Select your video file", filetypes=[("Video / Audio (.mp4 / .bik / .webm / .avi / .mkv / .mov / .wav / .ogg / .mp3 / .m4a / .opus / .flac)", "*.mp4 *.bik *.webm *.avi *.mkv *.mov *.wav *.ogg *.mp3 *.m4a *.opus *.flac")])
+    
+    # Creates "jdu" directory inside of "output"
+    os.makedirs('tmp', exist_ok=True)
+    
+    # Checks if the musictrack has a empty byte at the end, and if it has, creates a copy of the file without it
+    with open(musictrack, 'rb') as file_in:
+        with open("tmp/temp_musictrack.tpl.ckd", 'wb') as file_out:
+            data = file_in.read()
+            while data.endswith(b'\x00'):
+                data = data[:-1]
+            file_out.write(data)
+    
+    # Destroys Tkinter
+    openFile.destroy()
+    
+    # Asks if the song has a AMB and if you wanna generate a file for it
+    AMBGen = str(input('This song has a intro AMB? If it does, do you wanna generate a OGG for it? (Y or N): '))
+    
+    # Creates "jdu" directory inside of "output"
+    os.makedirs('output\\jdu', exist_ok=True)
+    
+    # Opens the musictrack
+    with open("tmp/temp_musictrack.tpl.ckd", "r", encoding='utf-8') as mt:
+        musictrackData = json.load(mt)
+    
+    # Gets startBeat value
+    startBeatVal = musictrackData['COMPONENTS'][0]['trackData']['structure']['startBeat']
+    
+    # Gets the marker value
+    valMarker = musictrackData['COMPONENTS'][0]['trackData']['structure']['markers'][abs(startBeatVal)]
+    
+    # Turns it into a positive value (doesn't matter if the value is positive already or not) and divide it
+    msVal = int(valMarker / 48)
+    
+    # Crops the audio (and the AMB, if chosen)
+    if (AMBGen == "Y" or AMBGen == "y"):
+        subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ss 0ms -t ' + str(msVal) + 'ms "output\\jdu\\amb_intro_' + os.path.basename(audiofile) + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
+        pass
+    subprocess.check_call('"bin\\ffmpeg.exe" -y -i "' + audiofile + '" -ss ' + str(msVal) + 'ms "output\\jdu\\' + os.path.basename(audiofile) + '"', stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    
+    # Deletes the "tmp" folder
+    shutil.rmtree("tmp")
     
 if __name__=='__main__':
     while(True):
@@ -384,7 +463,8 @@ if __name__=='__main__':
         print('[5] Converts a video / audio file to Nintendo Wii WAV.CKD / AMB')
         print('[6] Converts a video file to Just Dance Unlimited WEBMs')
         print('[7] Converts a video / audio file to Just Dance Unlimited OGG')
-        print('[8] Exits the MediaTool')
+        print('[8] Crops a Just Dance Unlimited audio (from Just Dance 2014 to Just Dance 2022)')
+        print('[9] Exits the MediaTool')
         print("-----------------------------")
         
         option = ''
@@ -419,6 +499,9 @@ if __name__=='__main__':
             JDUOGGConv()
         
         if option == 8:
+            JDUAudioCrop()
+        
+        if option == 9:
             print('Thanks for using our MediaTool!')
             time.sleep(2)
             exit()
