@@ -295,21 +295,21 @@ def Next2UAF(textureslarge, texturesphone, mappackage):
         i = 0
         clips = '['
         for DanceClips in range(len(jsonMainData['DanceData']['MotionClips'])):
-            if ('.gesture' in jsonMainData['DanceData']['MotionClips'][i]['MoveName']):
-                pass
+            clips += '{"__class": "MotionClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+            clips += str(jsonMainData['DanceData']['MotionClips'][i]['StartTime'])
+            clips += ',"Duration": '
+            clips += str(jsonMainData['DanceData']['MotionClips'][i]['Duration'])
+            if (".gesture" in jsonMainData['DanceData']['MotionClips'][i]['MoveName']):
+                clips += ',"ClassifierPath": "world/' + jsonMainData['DanceData']['MotionClips'][i]['MoveName'].replace("\\", "/")
             else:
-                clips += '{"__class": "MotionClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                clips += str(jsonMainData['DanceData']['MotionClips'][i]['StartTime'])
-                clips += ',"Duration": '
-                clips += str(jsonMainData['DanceData']['MotionClips'][i]['Duration'])
                 clips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMainData['DanceData']['MotionClips'][i]['MoveName'] + '.msm'
-                clips += '","GoldMove": '
-                clips += str(jsonMainData['DanceData']['MotionClips'][i]['GoldMove'])
-                clips += ',"CoachId": '
-                clips += str(jsonMainData['DanceData']['MotionClips'][i]['CoachId'])
-                clips += ',"MoveType": '
-                clips += str(jsonMainData['DanceData']['MotionClips'][i]['MoveType'])
-                clips += ', "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+            clips += '","GoldMove": '
+            clips += str(jsonMainData['DanceData']['MotionClips'][i]['GoldMove'])
+            clips += ',"CoachId": '
+            clips += str(jsonMainData['DanceData']['MotionClips'][i]['CoachId'])
+            clips += ',"MoveType": '
+            clips += str(jsonMainData['DanceData']['MotionClips'][i]['MoveType'])
+            clips += ', "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
             i += 1
         
         i = 0
@@ -872,21 +872,21 @@ def Plus2UAF():
             i = 0
             clips = '['
             for DanceClips in range(len(jsonMainData['DanceData']['MotionClips'])):
-                if ('.gesture' in jsonMainData['DanceData']['MotionClips'][i]['MoveName']):
-                    pass
+                clips += '{"__class": "MotionClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
+                clips += str(jsonMainData['DanceData']['MotionClips'][i]['StartTime'])
+                clips += ',"Duration": '
+                clips += str(jsonMainData['DanceData']['MotionClips'][i]['Duration'])
+                if (".gesture" in jsonMainData['DanceData']['MotionClips'][i]['MoveName']):
+                    clips += ',"ClassifierPath": "world/' + jsonMainData['DanceData']['MotionClips'][i]['MoveName'].replace("\\", "/")
                 else:
-                    clips += '{"__class": "MotionClip","Id": ' + str(randomId()) + ',"TrackId": ' + str(randomId()) + ',"IsActive": 1,"StartTime": '
-                    clips += str(jsonMainData['DanceData']['MotionClips'][i]['StartTime'])
-                    clips += ',"Duration": '
-                    clips += str(jsonMainData['DanceData']['MotionClips'][i]['Duration'])
                     clips += ',"ClassifierPath": "world/maps/' + jsonMapName.lower() + '/timeline/moves/' + jsonMainData['DanceData']['MotionClips'][i]['MoveName'] + '.msm'
-                    clips += '","GoldMove": '
-                    clips += str(jsonMainData['DanceData']['MotionClips'][i]['GoldMove'])
-                    clips += ',"CoachId": '
-                    clips += str(jsonMainData['DanceData']['MotionClips'][i]['CoachId'])
-                    clips += ',"MoveType": '
-                    clips += str(jsonMainData['DanceData']['MotionClips'][i]['MoveType'])
-                    clips += ', "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
+                clips += '","GoldMove": '
+                clips += str(jsonMainData['DanceData']['MotionClips'][i]['GoldMove'])
+                clips += ',"CoachId": '
+                clips += str(jsonMainData['DanceData']['MotionClips'][i]['CoachId'])
+                clips += ',"MoveType": '
+                clips += str(jsonMainData['DanceData']['MotionClips'][i]['MoveType'])
+                clips += ', "Color": [1, 0.968628, 0.164706, 0.552941], "MotionPlatformSpecifics": {"X360": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"ORBIS": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0},"DURANGO": {"__class": "MotionPlatformSpecific","ScoreScale": 1,"ScoreSmoothing": 0,"ScoringMode": 0}}},'
                 i += 1
             
             i = 0
