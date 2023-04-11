@@ -253,7 +253,7 @@ def Next2UAF(textureslarge, texturesphone, mappackage):
         arq.write('"MainCoach": -1,')
         arq.write('"Difficulty": ' + str(jsonDifficulty) + ',')
         arq.write('"Energy": ' + str(jsonSweatDifficulty) + ',')
-        arq.write('"backgroundType": 0,"LyricsType": 0,"Tags": ["main"],"Status": 3,"LocaleID": 4294967295,"MojoValue": 0,"CountInProgression": 1,"DefaultColors":{"songcolor_2a": [1, 0.666667, 0.666667, 0.666667],  "lyrics": [1, ' + str(hex2RGB(jsonLyricsColor)[0]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[1]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[2]/255) + '], "theme": [1, 1, 1, 1],"songcolor_1a":  [1, 0.266667, 0.266667, 0.266667],"songcolor_2b": [1, 0.466667, 0.466667, 0.466667],"songcolor_2b": [1, 0.066667, 0.066667, 0.066667]},"Paths": {"Avatars": null,"AsyncPlayers": null}}]}')
+        arq.write('"backgroundType": 0,"LyricsType": 0,"Tags": ["main"],"Status": 3,"LocaleID": 4294967295,"MojoValue": 0,"CountInProgression": 1,"DefaultColors":{"songcolor_2a": [1, 0.666667, 0.666667, 0.666667],  "lyrics": [1, ' + str(hex2RGB(jsonLyricsColor)[0]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[1]/255) + ', ' +  str(hex2RGB(jsonLyricsColor)[2]/255) + '], "theme": [1, 1, 1, 1],"songcolor_1a":  [1, 0.266667, 0.266667, 0.266667],"songcolor_2b": [1, 0.466667, 0.466667, 0.466667],"songcolor_1b": [1, 0.066667, 0.066667, 0.066667]},"Paths": {"Avatars": null,"AsyncPlayers": null}}]}')
         arq.close()
 
         # KTAPE ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
