@@ -1,6 +1,4 @@
-﻿
-
-# Woody's JSON2DTAPE
+﻿# Woody's JSON2DTAPE
 A tool made to convert **Just Dance Now** / **Just Dance: Vitality School** JSONs in order to make them compatible with UbiArt Framework-based Just Dance games
 
 ## Requirements
