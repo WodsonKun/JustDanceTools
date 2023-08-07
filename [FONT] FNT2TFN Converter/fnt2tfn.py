@@ -44,8 +44,7 @@ clips = '['
 # Writes "Page" clips
 if (isinstance(doc['font']['pages']['page'], list)): # If it is a list (has more than one page entry...)
     for page in range(len(doc['font']['pages']['page'])):
-        pagePage = int(doc['font']['pages']['page'][page]['@id']) + 2
-        clips += ('{"__class": "Page","id": ' + str(pagePage) + ', "file": "world/ui/fonts/' + str(doc['font']['pages']['page'][page]['@file']).replace(".png", ".tga") + '"},')
+        clips += ('{"__class": "Page","id": ' + str(doc['font']['pages']['page'][page]['@id']) + ', "file": "world/ui/fonts/' + str(doc['font']['pages']['page'][page]['@file']).replace(".png", ".tga") + '"},')
 elif (isinstance(doc['font']['pages']['page'], dict)): # Else, if it is a dict (has only one page entry...)
     clips += ('{"__class": "Page","id": ' + str(doc['font']['pages']['page']['@id']) + ', "file": "world/ui/fonts/' + str(doc['font']['pages']['page']['@file']).replace(".png", ".tga") + '"},')
 
@@ -68,7 +67,7 @@ for char in range(len(doc['font']['chars']['char'])):
     charXOffset = doc['font']['chars']['char'][char]['@xoffset']
     charYOffset = doc['font']['chars']['char'][char]['@yoffset']
     charXAdvance = doc['font']['chars']['char'][char]['@xadvance']
-    charPage = int(doc['font']['chars']['char'][char]['@page']) + 2
+    charPage = doc['font']['chars']['char'][char]['@page']
     charChannel = doc['font']['chars']['char'][char]['@chnl']
     
     # Writes 'Char' clips
